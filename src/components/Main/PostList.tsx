@@ -1,6 +1,10 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent } from 'react'
 import styled from "@emotion/styled"
 import PostItem from "components/Main/PostItem"
+import useInfiniteScroll, {
+    useInfiniteScrollType,
+} from 'hooks/useInfiniteScroll'
+
 import { PostListItemType } from "types/PostItem.types"
 
 export type PostType = {
@@ -23,6 +27,7 @@ export type PostType = {
 }*/
 // 기존에 정의했던 PostListItemType 삭제
 type PostListProps = {
+  selectedCategory: string
   posts: PostListItemType[]
 }
 
@@ -41,14 +46,22 @@ const PostListWrapper = styled.div`
   }
 `
 
-const PostList: FunctionComponent<PostListProps> = function ({ posts }) {
-  return (
-    <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostType) => (
-        <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
-      ))}
-    </PostListWrapper>
-  )
+const PostList: FunctionComponent<PostListProps> = function ({
+                                                                 selectedCategory,
+                                                                 posts,
+                                                             }) {
+    const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
+        selectedCategory,
+        posts,
+    )
+
+    return (
+        <PostListWrapper ref={containerRef}>
+            {postList.map(({ node: { id, frontmatter } }: PostListItemType) => (
+                <PostItem {...frontmatter} link="https://www.google.co.kr/" key={id} />
+            ))}
+        </PostListWrapper>
+    )
 }
 
 export default PostList
