@@ -1,27 +1,24 @@
 ---
-date: '2020-07-29'
-title: 'Test'
-categories: ['Web', 'SEO', 'Optimization']
-summary: '홈페이지를 운영하는 많은 사람들 또는 기업들이 검색 페이지 최상단에 보여지게 하기 위해 어떤 최적화 작업을 하는지 알아보자.'
+date: '2023-02-05'
+title: '기술블로그 시작!'
+categories: ['Blog']
+summary: '주니어 백엔드 개발자, Gatsby를 활용해 기술블로그 만들었습니다.'
 thumbnail: './test.png'
 ---
+### 쉽지 않았습니다. 하지만 그만큼 재밌었고 보람찬 작업이었습니다.
 
-### 1. Help Google Bot to Find My Contents
+자바 개발자로 일한지 9개월차, 어쩌다보니 서버작업도 하고 프론트 개발도 하다보니 본의 아니게 풀스택 개발자가 되어있었습니다..
 
-구글에 SiteMap을 제출하여 사이트에 있는 파일로서 새 페이지나 변경된 페이지가 있을 때 이를 검색 엔진에 알려주도록 할 수 있다.
+그렇게 된 김에! 기초도 다시 쌓을 겸, React를 사용하는 JAM Stack 기반 프레임워크인 **Gatsby**를 활용하여 개발 블로그를 운영해 보고자 마음먹었습니다.
 
-SiteMap은 사이트에 있는 페이지, 동영상 및 기타 파일과 각 관계에 관한 정보를 제공하는 파일로, 검색 엔진은 이를 읽고 사이트를 더 지능적으로 크롤링 할 수 있게 된다.
+마음먹은지 2달이 흐른 지금, 어설프게나마 흉내냈습니다..
 
-### 2. Use 'Robots.txt' File
+#### `vanilla JS` > `React` > `TypeScript` > `GraphQL` > `Gatsby`
 
-Robots.txt 파일은 검색 엔진에 어떤 페이지를 크롤링해도 되는지 알리는 파일로, 서버의 루트 디렉토리에 있어야 한다.
-
-과도한 Robots.txt 파일은 더 많은 방문자를 유도할 수 있는 정상적인 검색 엔진 크롤러의 접근을 막을 가능성이 있기 때문에 적절하게 설정해야 한다.
+위 언어들을 학습했습니다.
 
 ---
 
-## Source
-
-- SEO 기본 가이드
-
-  [<https://support.google.com/webmasters/answer/7451184?hl=ko&ref_topic=9460495>](<https://support.google.com/webmasters/answer/7451184?hl=ko&ref_topic=9460495>)
+### 결론은
+#### 풀스택 개발자를 목표로 학습하는 내용을 담은 기술 블로그입니다.
+#### 계속 발전시킬 것이고, 포스팅하는 글들의 퀄리티도 발전시켜 나가겠습니다. 지켜봐주세요👍
