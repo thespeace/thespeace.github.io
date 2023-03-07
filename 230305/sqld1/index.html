@@ -88,7 +88,177 @@
 <li>관계선택사양 표현: 필수, 선택</li>
 </ol>
 <h3>7. 좋은 모델링의 요건</h3>
-<h4>1) 완전성 2) 중복 배제 3) 업무 규칙 4) 데이터 재사용 5) 의사소통 6) 통합성</h4></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230305/sqld1/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<h4>1) 완전성 2) 중복 배제 3) 업무 규칙 4) 데이터 재사용 5) 의사소통 6) 통합성</h4>
+<h2>02. 엔티티(Entity)</h2>
+<h3>1. 정의 : 업무에서 관리해야 하는 데이터의 집합, 명사형, 인스턴스의 집합</h3>
+<h3>2. 특징</h3>
+<ol>
+<li>업무에서 필요하다.</li>
+<li>유일한 식별자를 가진다.</li>
+<li>2개 이상의 인스턴스를 포함 해야 한다.</li>
+<li>업무 프로세스에 이용된다.</li>
+<li>속성을 가진다</li>
+<li>관계를 가진다.</li>
+</ol>
+<h3>3. 종류</h3>
+<ul>
+<li>유무형에 따른 분류
+<ul>
+<li>유형 엔티티 : 물리적 형태가 있고 지속적으로 활용되는 엔티티</li>
+<li>개념 엔티티 : 물리적 형태가 없는 엔티티</li>
+</ul>
+</li>
+<li>발생시점에 따른 분류
+<ul>
+<li>기본 엔티티(Key Entity) : 독립적으로 생성되는 엔티티</li>
+<li>중심 엔티티(Main Entity) : 기본 엔티티와 행위 엔티티의 중간에 존재하는 엔티티</li>
+<li>행위 엔티티(Active Entity, 사건 엔티티) : 2개 이상의 부모 엔티티로부터 발생한다. 비즈니스 프로세스를 실행하면서 생성되는 엔티티, 지속적으로 정보가 추가되고 변경되어 데이터양이 가장 많다.</li>
+</ul>
+</li>
+</ul>
+<h3>4. 명명 규칙</h3>
+<ol>
+<li>현업업무에서 사용하는 용어</li>
+<li>약어 지양</li>
+<li>단수 명사</li>
+<li>유일성 보장</li>
+<li>명확성</li>
+</ol>
+<h2>03. 속성(Attribute)</h2>
+<ol>
+<li>정의 : 엔티티가 가지는 최소 의미 단위, 인스턴스의 구성요소</li>
+<li>엔티티와 인스턴스 및 속성과 속성값 간의 관계</li>
+</ol>
+<p><img src="/1ba1b6d34e4c0cbb63edf8d2dc2f0eb0/Attribute.png" alt="zz">
+3. 속성 표기법 : IE 표기법, Barker 표기법
+4. 특징</p>
+<ol>
+<li>업무에서 필요하고 관리하고자 하는 정보</li>
+<li>주식별자에 함수적으로 종속된다.</li>
+<li>속성값 하나만 가진다.(하나 이상의 속성값이면 정규화가 필요하다)</li>
+<li>종류</li>
+</ol>
+<ul>
+<li>특성에 따른 분류
+<ul>
+<li>기본 속성 : 비즈니스 프로세스에서 도출되는 본래의 속성</li>
+<li>설계 속성: 데이터 모델링 과정에서 업무 규칙화를 위해 발생하는 속성</li>
+<li>파생 속성: 다른 속성에 의해 만들어지는 속성 (↔ 저장 속성은 유도 속성을 생성하는 데 사용되는 속성)</li>
+</ul>
+</li>
+<li>분해 가능 여부에 따른 분류
+<ul>
+<li>단일 속성: 하나의 의미</li>
+<li>복합 속성: 여러 의미, 단일 속성으로 분해 가능 ex) 주소</li>
+<li>단일값 속성: 하나의 값</li>
+<li>다중값 속성: 여러 값, 엔터티로 분해 가능</li>
+</ul>
+</li>
+<li>엔터티 구성방식에 따른 분류
+<ul>
+<li>기본키 속성: 엔터티를 식별할 수 있는 속성</li>
+<li>외래키 속성: 다른 엔터티와의 관계에서 포함된 속성</li>
+<li>일반 속성: 엔터티에 포함되고 PK나 FK 속성이 아닌 속성</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>도메인 : 속성이 가질 수 있는 값의 범위</li>
+</ol>
+<h2>04. 관계</h2>
+<ol>
+<li>정의 : 엔터티 간의 논리적인 관련성, 동사형</li>
+<li>관계의 패어링 : 인스턴스 간 개별적 관계</li>
+<li>관계 표기법: 1) 관계명 2) 관계차수 3) 관계선택사양
+<ul>
+<li>관계차수(Cardinality) : 관계 내 튜플의 전체 개수, 1은 직선 多는 삼발로 표시
+<ul>
+<li>M:N 관계: 관계형 DB에서 M:N 관계의 조인은 카테시안 곱 발생</li>
+</ul>
+</li>
+<li>관계선택사양(Optionality) : 필수는 I 선택은 O로 표시</li>
+</ul>
+</li>
+<li>종류
+<ul>
+<li>ERD 기준 : 표기구분 안함
+<ul>
+<li>존재 관계 : 엔터티 간의 상태</li>
+<li>행위 관계 : 엔터티 간에 발생하는 행위</li>
+</ul>
+</li>
+<li>UML(Unified Modeling Language) 기준
+<ul>
+<li>연관 관계(Association): 실선 표기</li>
+<li>의존 관계(Dependency): 점선 표기</li>
+</ul>
+</li>
+<li>식별자에 따른 분류
+<ul>
+<li>식별 관계: 부모 엔터티의 식별자를 자식 엔터티에서 주식별자로 사용</li>
+<li>약한 엔티티: 부모 엔터티에 종속되어 존재 (↔ 강한 엔터티는 독립적으로 존재한다.)</li>
+<li>비식별 관계: 부모 엔터티의 식별자를 자식 엔터티에서 일반 컬럼으로 참조 사용, 약한 종속 관계
+<ul>
+<li>식별 관계만으로 연결되면 주식별자 수가 많아질 수밖에 없으므로 1) 관계 강약 분석 2) 자식 엔터티의</li>
+</ul>
+독립 PK 필요성 3) SQL 복잡성과 개발 생산성 고려 필요</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>관계 읽기 : 각각의/하나의 > 기준 엔터티 > 관계차수 > 대상 엔터티 > 관계선택사양 > 관계명</li>
+</ol>
+<h2>05. 식별자</h2>
+<ol>
+<li>정의: 엔터티를 대표할 수 있는 유일성을 만족하는 속성</li>
+<li>특징: 1) 유일성 2) 최소성 3) 불변성 4) 존재성</li>
+<li>종류
+<ul>
+<li>대표성 여부에 따른 분류
+<ul>
+<li>주식별자: 대표성을 만족하는 식별자</li>
+<li>보조 식별자: 유일성과 최소성만 만족하는 식별자, 참조 관계 연결에 사용할 수 없다.
+<ul>
+<li>DB 키의 종류</li>
+</ul>
+<ol>
+<li>기본키(PK; Primary Key): 엔터티를 대표하는 키, 후보키 중 선정된다.</li>
+<li>후보키: 유일성과 최소성을 만족하는 키</li>
+<li>슈퍼키: 유일성만 만족하는 키</li>
+<li>대체키: 기본키를 제외한 나머지 후보키</li>
+<li>외래키(FK; Foreign Key): 여러 테이블의 기본 키 필드, 참조 무결성(Referential Integrity)을 확인하기 위해 사용된다. (허용된 데이터 값만 저장하기 위함)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>생성 여부에 따른 분류
+<ul>
+<li>내부 식별자: 자연스럽게 존재하는 식별자 (~ 본질식별자)</li>
+<li>외부 식별자: 다른 엔터티와의 관계를 통해 생성되는 식별자</li>
+</ul>
+</li>
+<li>속성 수에 따른 분류
+<ul>
+<li>단일 식별자: 하나의 속성</li>
+<li>복합 식별자: 여러 속성</li>
+</ul>
+</li>
+<li>대체 여부에 따른 분류
+<ul>
+<li>본질 식별자: 대체될 수 없는 식별자</li>
+<li>인조 식별자: 인위적으로 만들어지는 대체가능한 식별자 (순서번호(Sequence Number)를 사용하여 생성된
+식별자)
+<ol>
+<li>후보 식별자 중 주식별자로 선정할 것이 없거나</li>
+<li>주식별자가 너무 많은 칼럼으로 구성되어 있을 때 사용한다.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>주식별자 도출 기준 : 업무에서 자주 이용되는 속성, 이름 명명 지양, 복합 식별자 지양</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230305/sqld1/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
