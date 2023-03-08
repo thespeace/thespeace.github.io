@@ -3,7 +3,7 @@ date: '2023-03-08'
 title: '[Sqld]2장.데이터 모델과 성능'
 categories: ['Sqld']
 summary: '데이터 모델과 성능'
-thumbnail: '/sqld2.png'
+thumbnail: './sqld2.png'
 ---
 
 ## 01. 성능 데이터 모델링의 개요
