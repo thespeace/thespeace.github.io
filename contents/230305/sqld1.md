@@ -2,7 +2,7 @@
 date: '2023-03-05'
 title: '[Sqld]1장.데이터 모델링의 이해'
 categories: ['Sqld']
-summary: '1. 데이터 모델링의 이해 2.데이터 모델과 성능'
+summary: '데이터 모델링의 이해'
 thumbnail: './sqld.png'
 ---
 
