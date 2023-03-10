@@ -217,6 +217,121 @@
 </li>
 </ul>
 </li>
+</ol>
+<h2>05. <code class="language-text">DB구조와 성능</code></h2>
+<ol>
+<li><code class="language-text">슈퍼타입/서브타입 데이터 모델 변환을 통한 성능 향상</code>
+<ul>
+<li>슈퍼타입/서브타입 데이터 모델 : 속성을 할당하여 배치하는 수평 분할된 형태의 모델 (공통 속성은 슈퍼타입으로 모델링하고 차이가 있는 속성은 서브타입으로 구분된다.), 변환을 통해 1) 정확하게 업무를 표현할 수 있고 2) 물리적 모델링 시 선택의 폭을 넓힐 수 있다.</li>
+<li>변환 기준 : 데이터 양, 트랜잭션 유형</li>
+<li>변환 기술
+<ul>
+<li>1:1 타입(OneToOne type) : 개별로 처리하는 트랜잭션에 대해 개별 테이블 구성, 슈퍼타입과 서브타입 각각 필요한 속성과 유형에 적합한 데이터만 가지도록 분리하여 1:1 관계를 갖도록 한다.</li>
+<li>슈퍼/서브 타입(Plus type): 슈퍼타입과 서브타입을 공통으로 처리하는 트랜잭션에 대해 슈퍼타입과 서브타입 각각의 테이블 구성</li>
+<li>All in One 타입(Single type): 일괄 처리하는 트랜잭션에 대해 단일 테이블 구성 <span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8f5cbdcab1e329f523be40f86f6fce83/7b4c0/db1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 38.020833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsTAAALEwEAmpwYAAABcElEQVR42iXQUY/iIBSG4f7/P7OT7PVs4saZ3ThOomkzVFRoqCgWqFBA6Kltdqc+92/Ol5MVRZHnOSGkLMvPz/V2u6WUIoQOh8Nms/lYf6xWK4QQxni/3+d5sZ4VRcE5z15efnwh5L2vKno8Himl1lqtNWOMUsoYwxhXlIrrtes6IcRut6uqSkoZY8xeX3+VZZn6/tm3t1tKqW1bpdTlcpFSXmat1l3XhRA4P2ut7/Fbtlj8JoQ+g9PppLSOMVprAWAcR2PM/X6fpsnPxnG01rjODcMAANn7+x+M9zFGIQQh5MR5CMFaG2NMKXHOpZQA4GYAoLV2zvWzbLlcIoT6vldKcX46ny8hBGNMjFFrXdc1Y8x7/4ynabpehTH28XjM8dvf3e4IMAE8hFAhJAAwxqSUhmFomsa575Hee6WUlJIQwhiTUt5DyBaLnxiv+16l1AiBnTv3fXpeBoCmaW632zAMzjljjPe+rut5eff/Yf8Ag5+1H3LuQPMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8f5cbdcab1e329f523be40f86f6fce83/a59e9/db1.webp 192w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/0ca9f/db1.webp 384w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/dc9b9/db1.webp 768w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/e2c2f/db1.webp 1152w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/18683/db1.webp 1155w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8f5cbdcab1e329f523be40f86f6fce83/3b721/db1.png 192w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/66595/db1.png 384w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/fe486/db1.png 768w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/d2d74/db1.png 1152w,
+/static/8f5cbdcab1e329f523be40f86f6fce83/7b4c0/db1.png 1155w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8f5cbdcab1e329f523be40f86f6fce83/fe486/db1.png"
+            alt="db"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="language-text">PK/FK 칼럼 순서 조절을 통한 성능 향상</code> : 등호 조건이나 BETWEEN 조건이 걸리는 칼럼을 앞으로 이동 (여러 조건이
+있을 경우 등호 조건이 걸리는 칼럼을 선두로 이동)</li>
+<li><code class="language-text">인덱스 특성을 고려한 PK/FK DB 성능 향상</code> : 물리적인 테이블에 FK 제약을 걸어 인덱스를 생성</li>
+</ol>
+<h2>06.<code class="language-text">분산 DB 데이터에 따른 성능</code></h2>
+<ol>
+<li><code class="language-text">분산 DB</code> : 분산된 DB를 하나의 가상 시스템으로 사용할 수 있도록 한 DB, 물리적 사이트는 분산되어 있으나 논리적으로 동일한 시스템, 과거에는 위치 중심이었으나 현재는 업무 필요에 따라 분산 설계
+<ul>
+<li>설계 방식
+<ul>
+<li>상향식 : 지역 스키마 작성 후 전역 스키마 작성</li>
+<li>하향식 : 전역 스키마 작성 후 지역사상 스키마 작성</li>
+</ul>
+</li>
+<li>장단점
+<ul>
+<li>1)신뢰성과 가용성 증가 2)빠른 응답 속도와 통신비용 절감 3)용량 확장 용이</li>
+<li>1)관리 및 통제 어려움 2)데이터 무결성 관리 어려움 3)S/W 개발 비용 및 처리 비용 증가 4)불규칙한
+응답 속도</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="language-text">분산 DB의 투명성 분위지중장병행</code>
+<ul>
+<li>분할 투명성: 하나의 논리적 관계가 분할되어 각 단편의 사본이 여러 사이트에 저장된다.</li>
+<li>위치 투명성: 사용하려는 데이터 저장 장소가 명시되지 않아도 된다.</li>
+<li>지역사상 투명성: 지역 DBMS와 물리적 DB 사이의 사상이 보장된다.</li>
+<li>중복 투명성: DB 객체 중복 여부를 몰라도 된다.</li>
+<li>장애 투명성: 구성요소(DBMS, 컴퓨터)의 장애에 무관하게 트랜잭션의 원자성이 유지된다.</li>
+<li>병행 투명성: 다수의 트랜잭션을 동시 수행했을 때 결과의 일관성이 유지되고 병렬 아니다.</li>
+</ul>
+</li>
+<li><code class="language-text">분산 DB 적용 기법</code>
+<ul>
+<li>테이블 위치 분산: 설계된 테이블의 위치를 분산한다.</li>
+<li>테이블 분할 분산(Table Fragmentation): 테이블을 쪼개서 분산한다.
+<ul>
+<li>1)수평분할 2)수직분할</li>
+</ul>
+</li>
+<li>테이블 복제 분산(Table Replication): 동일한 테이블을 다른 지역이나 서버에서 동시 생성하고, 원격지 조인을 내부 조인으로 변경하여 성능 향상
+<ul>
+<li>1)부분복제 2)광역복제</li>
+</ul>
+</li>
+<li>테이블 요약 분산(Table Summarization)
+<ul>
+<li>분석요약: 사이트 별 요약정보를 본사에서 통합하여 전체 요약정보 산출</li>
+<li>통합요약: 사이트 별 정보를 본사에서 통합하여 전체 요약정보 산출</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230308/sqld2/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
