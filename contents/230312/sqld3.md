@@ -113,3 +113,39 @@ thumbnail: './sqld3.png'
    ```
    - 테이블의 전체 데이터 삭제 (↔ DROP TABLE은 테이블 자체를 제거한다)
    - 로그를 기록하지 않기 때문에 ROLLBACK 불가
+## 03. DML
+1. INSERT: 데이터 입력
+   ```sql
+    INSERT INTO 테이블명 (칼럼명, …) VALUES (필드값, …); 
+    INSERT INTO 테이블명 VALUES (필드값, …);
+   ```
+2. UPDATE: 데이터 수정
+   ```sql
+    UPDATE 테이블명 SET 칼럼명=필드값;
+   ```
+3. DELETE: 데이터 삭제
+   ```sql
+    DELETE FROM 테이블명 WHERE 조건절; 
+    DELETE FROM 테이블명;
+   ```
+   * ``DELETE로 데이터를 삭제해도 테이블 용량은 초기화되지 않는다`` (↔ ``TRUNCATE로 삭제하면 초기화 가능``)
+   * ↔ DROP은 객체 삭제 명령어 
+4. SELECT
+   *  칼럼 별 데이터 선택
+      ```sql
+      SELECT 칼럼명 FROM 테이블명;
+      ```
+   *  데이터 중복 없이 선택
+      ```sql
+      SELECT DISTINCT 칼럼명 FROM 테이블명;
+      ```
+   *  전체 칼럼의 데이터 선택
+      ```sql
+      SELECT * FROM 테이블명; 
+      ```
+      - 앨리어스(Alias)
+        + SELECT 칼럼명 AS “별명” : 출력되는 칼럼명 설정
+        + FROM 테이블명 별명 : 쿼리 내에서 사용할 테이블명 설정, 칼럼명이 중복될 경우 SELECT절에서 앨리어스 필수
+5. ``문자열의 합성 연산자``: ``‘+’(플러스)``, ``CONCAT 함수``로도 2개 문자열 합성 가능, Oracle에서는 ‘||’(수직선 2개)도 가능
+6. DUAL : Oracle의 기본 더미 테이블, 연산 수행을 위해 사용된다
+## 04. TCL
