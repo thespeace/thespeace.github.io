@@ -164,7 +164,49 @@ NULL 불가</li>
 <li>로그를 기록하지 않기 때문에 ROLLBACK 불가</li>
 </ul>
 </li>
-</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230312/sqld3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+</ol>
+<h2>03. DML</h2>
+<ol>
+<li>INSERT: 데이터 입력
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"> <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> 테이블명 <span class="token punctuation">(</span>칼럼명<span class="token punctuation">,</span> …<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>필드값<span class="token punctuation">,</span> …<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+ <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> 테이블명 <span class="token keyword">VALUES</span> <span class="token punctuation">(</span>필드값<span class="token punctuation">,</span> …<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>UPDATE: 데이터 수정
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"> <span class="token keyword">UPDATE</span> 테이블명 <span class="token keyword">SET</span> 칼럼명<span class="token operator">=</span>필드값<span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>DELETE: 데이터 삭제
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"> <span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> 테이블명 <span class="token keyword">WHERE</span> 조건절<span class="token punctuation">;</span> 
+ <span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> 테이블명<span class="token punctuation">;</span></code></pre></div>
+<ul>
+<li><code class="language-text">DELETE로 데이터를 삭제해도 테이블 용량은 초기화되지 않는다</code> (↔ <code class="language-text">TRUNCATE로 삭제하면 초기화 가능</code>)</li>
+<li>↔ DROP은 객체 삭제 명령어</li>
+</ul>
+</li>
+<li>SELECT
+<ul>
+<li>칼럼 별 데이터 선택
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 칼럼명 <span class="token keyword">FROM</span> 테이블명<span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>데이터 중복 없이 선택
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> 칼럼명 <span class="token keyword">FROM</span> 테이블명<span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>전체 칼럼의 데이터 선택
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> 테이블명<span class="token punctuation">;</span> </code></pre></div>
+<ul>
+<li>앨리어스(Alias)
+<ul>
+<li>SELECT 칼럼명 AS “별명” : 출력되는 칼럼명 설정</li>
+<li>FROM 테이블명 별명 : 쿼리 내에서 사용할 테이블명 설정, 칼럼명이 중복될 경우 SELECT절에서 앨리어스 필수</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="language-text">문자열의 합성 연산자</code>: <code class="language-text">‘+’(플러스)</code>, <code class="language-text">CONCAT 함수</code>로도 2개 문자열 합성 가능, Oracle에서는 ‘||’(수직선 2개)도 가능</li>
+<li>DUAL : Oracle의 기본 더미 테이블, 연산 수행을 위해 사용된다</li>
+</ol>
+<h2>04. TCL</h2></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230312/sqld3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
