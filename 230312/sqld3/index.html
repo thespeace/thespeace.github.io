@@ -206,7 +206,237 @@ NULL 불가</li>
 <li><code class="language-text">문자열의 합성 연산자</code>: <code class="language-text">‘+’(플러스)</code>, <code class="language-text">CONCAT 함수</code>로도 2개 문자열 합성 가능, Oracle에서는 ‘||’(수직선 2개)도 가능</li>
 <li>DUAL : Oracle의 기본 더미 테이블, 연산 수행을 위해 사용된다</li>
 </ol>
-<h2>04. TCL</h2></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230312/sqld3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<h2>04. TCL</h2>
+<ol>
+<li><code class="language-text">**트랜잭션(transaction)**</code> : DB의 논리적 연산 단위, 하나 이상의 SQL문을 포함한다.
+<ul>
+<li>특성 - ACID
+<ul>
+<li><code class="language-text">원자성</code>(Atomicity) : 전부 실행되거나 전혀 실행되지 않는다(All or Nothing)</li>
+<li><code class="language-text">일관성</code>(Consistency) : 트랜잭션으로 인한 DB 상태의 모순이 없어야 한다</li>
+<li><code class="language-text">고립성</code>(Isolation) : 부분적인 실행 결과에 다른 트랜잭션이 접근 할 수 없다, Locking으로 고립성 보장</li>
+<li><code class="language-text">영속성</code>(Durability) : 트랜잭션의 결과는 영구적으로 저장된다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="language-text">**TCL**</code> : 데이터 무결성 보장을 목적으로 한다. 1)영구 변경 전 확인과 2)연관 작업 동시처리 가능
+<ul>
+<li>Oracle은 1) SQL 문장을 실행하면 트랜잭션이 시작되고 2) TCL을 실행하면 트랜잭션이 종료된다</li>
+<li>DDL을 실행하면 자동 커밋 (DML 이후 커밋 없이 DDL을 실행해도 자동 커밋)</li>
+<li>DB를 정상적으로 종료하면 자동 커밋, 애플리케이션 등의 이상으로 DB 접속이 단절되면 자동 롤백</li>
+</ul>
+</li>
+<li><code class="language-text">**COMMIT**</code> : 데이터를 DB에 영구적으로 반영하는 명령어, 커밋 시 트랜잭션이 완료되어 LOCKING이 해제되고, SQL
+Server은 기본적으로 자동 커밋
+<ul>
+<li><code class="language-text">COMMIT 전 </code>
+<ul>
+<li>데이터 변경이 메모리 버퍼에만 영향을 받았기 때문에 복구 가능 (NOLOGGING 옵션 사용 시 버퍼 캐시의
+기록을 생략하여 입력 성능이 향상된다)</li>
+<li>사용자는 SELECT절로 결과를 확인할 수 있으나 다른 사용자는 현재 결과를 볼 수 없다</li>
+<li>변경된 행에 LOCKING이 설정되어 다른 사용자가 변경할 수 없다 (LOCKING이 안 걸린 상태일 때 여러
+사용자가 데이터를 변경하면 상관없다)</li>
+</ul>
+</li>
+<li><code class="language-text">COMMIT 후</code>
+<ul>
+<li>변경 사항이 DB에 반영되고 이전 데이터는 복구 불가</li>
+<li>모든 사용자가 결과를 볼 수 있다</li>
+<li>LOCKING이 해제되어 다른 사용자가 행을 조작할 수 있다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code class="language-text">**ROLLBACK**</code> : 트랜잭션 시작 이전의 상태로 되돌리는 명령어, COMMIT 이전 상태로 돌려줌, ROLLBACK 시 LOCKING이 해제된다.
+<ul>
+<li><code class="language-text">SAVEPOINT</code>: 트랜잭션 일부만 롤백 할 수 있도록 중간상태를 저장하는 명령어, ‘ROLLBACK TO 저장점명’ 시 해당 저장점 상태로 돌려줌, 동일한 저장점명이 있으면 나중 저장점이 유효하다</li>
+<li>SQL Server에서는 ’BEGIN TRAN’으로 명시해야 가능하다</li>
+</ul>
+</li>
+</ol>
+<h2>05. WHERE절</h2>
+<ol>
+<li>WHERE
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 칼럼명 <span class="token keyword">FROM</span> 테이블명 <span class="token keyword">WHERE</span> 조건절<span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>연산자
+<ul>
+<li>종류
+<ul>
+<li>비교 연산자 :  =, >, >=, &#x3C;, &#x3C;=
+<ul>
+<li>비교 대상 데이터 타입에 따라 자동으로 형 변환되는 경우도 있다</li>
+</ul>
+</li>
+<li>부정 비교 연산자: ‘NOT 칼럼명 비교연산자’와 동일
+<ul>
+<li>부등호: !=, ^=, &#x3C;> (ISO 표준)</li>
+</ul>
+</li>
+<li>SQL 연산자 입력값을 비교하여 논리값 출력
+<ul>
+<li>BETWEEN A AND B : A와 B 사잇값</li>
+<li><code class="language-text">IN (리스트)</code> : 리스트 내의 값</li>
+<li>LIKE ‘문자열’ : 문자열의 형태와 일치하는 값
+<ul>
+<li>와일드카드: 1) <code class="language-text">‘%’(퍼센트)는 0개 이상의 문자</code> 2) <code class="language-text">‘_’(언더바)는 1개의 단일 문자</code></li>
+</ul>
+</li>
+<li><code class="language-text">IS NULL</code> : NULL은 등호로 판단이 어떤 상황에서도 불가하다</li>
+<li>NOT BETWEEN A AND B, NOT IN (리스트), IS NOT NULL</li>
+</ul>
+</li>
+<li>논리 연산자: AND, OR, NOT</li>
+</ul>
+</li>
+<li>우선순위: <code class="language-text">부정 연산자</code> > <code class="language-text">비교 연산자</code> > <code class="language-text">논리 연산자</code>
+<ol>
+<li>‘()’(괄호)</li>
+<li>NOT</li>
+<li>비교 연산자 및 SQL 연산자</li>
+<li>AND</li>
+<li>OR</li>
+</ol>
+</li>
+<li>문자열 비교방법
+<ul>
+<li><code class="language-text">CHAR vs CHAR</code> : 첫 서로 다른 문자열 값으로 비교 (뒤 순서가 더 큰 값), 길이가 다를 때 공백을 추가하여 길이 맞춤 (공백 수만 다르면 같은 값)</li>
+<li><code class="language-text">CHAR vs VARCHAR</code> : 첫 서로 다른 문자열 값으로 비교, 길이가 다르면 길이가 긴 값이 크다고 판단, VARCHAR의 공백도 문자로 판단, TRIM 함수로 VARCHAR의 공백 제거하고 판단할 수 있다</li>
+<li>CHAR vs 상수 : 상수를 변수 타입으로 바꿔 비교</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>부분 범위 처리
+<ul>
+<li><code class="language-text">ROWNUM</code> (Oracle): SQL 처리 결과 집합의 각 행에 임시로 부여되는 번호, 조건절 내에서 행의 개수를 제한하는 목적으로 사용한다</li>
+<li><code class="language-text">TOP</code> (SQL Server): 출력 행의 수 제한 함수, ’TOP (N)’로 N개 행 출력, 개수 대신 비율로도 제한 가능
+<ul>
+<li>ORDER BY절이 없으면 ROWNUM과 TOP의 기능이 같다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>06. 함수</h2>
+<ol>
+<li>단일 행 함수: 1) SELECT절 2) WHERE절 3) ORDER BY절에 사용 가능, 각 행에 개별적으로 작용, 여러 인자를 입력해도 단 하나의 결과만 출력
+<ul>
+<li>문자형 함수: 문자열 입력 시 문자열이나 숫자 반환
+<ul>
+<li>LOWER, UPPER, LENGTH</li>
+<li><code class="language-text">CONCAT</code> : 문자열 결합</li>
+<li><code class="language-text">SUBSTR</code> : 문자열 부분 추출</li>
+<li>LTRIM, RTRIM, TRIM : 왼쪽 공백 제거, 오른쪽 공백 제거, 양쪽 공백 제거</li>
+<li>ASCII : 아스키 코드값 출력</li>
+</ul>
+</li>
+<li>숫자형 함수
+<ul>
+<li>ABS, SIGN : 절대값, 부호 (1, 0, -1 중 출력)</li>
+<li><code class="language-text">MOD</code> : 나머지, 연산자 ’%’로 대체 가능함</li>
+<li><code class="language-text">ROUND</code>, <code class="language-text">CEIL</code>, <code class="language-text">FLOOR</code> : <code class="language-text">반올림</code>, <code class="language-text">올림</code>, <code class="language-text">버림</code> (‘함수(E,N)’으로 소수점 이후 N번째 자리까지 출력)</li>
+<li><code class="language-text">TRUNC</code> : 숫자형 부분 추출</li>
+</ul>
+</li>
+<li>날짜형 함수
+<ul>
+<li>SYSDATE : 현재 시각 출력 (년, 월, 일, 시, 분, 초)</li>
+<li>EXTRACT : 날짜형 부분 추출
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> EXTRACT<span class="token punctuation">(</span>부분 <span class="token keyword">FROM</span> SYSDATE<span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL<span class="token punctuation">;</span></code></pre></div>
+</li>
+<li>±숫자, ±숫자/24 : 일자 연산, 시간 연산</li>
+<li>NEXT_DAY : 지정된 요일 첫 날짜 출력</li>
+</ul>
+</li>
+<li>변환형 함수: 데이터 타입 변환, 명시적 형 변환 방식
+<ul>
+<li><code class="language-text">TO_NUMBER, TO_CHAR, TO_DATE</code> (Oracle): 문자열을 숫자로, 숫자나 날짜를 문자열로, 문자열을 날짜로</li>
+<li>CAST, CONVERT (SQL Server)</li>
+</ul>
+</li>
+<li>NULL 관련 함수
+<ul>
+<li><code class="language-text">NVL(칼럼,값)</code> : NULL 값 변환</li>
+<li><code class="language-text">NVL2(칼럼,값,값)</code> : NULL이면 앞의 값 아니면 뒤의 값 출력</li>
+<li><code class="language-text">NULLIF(값,값)</code> : 같으면 NULL 다르면 첫 값 출력</li>
+<li><code class="language-text">COALESCE(값,값,…)</code> : NULL이 아닌 첫 값 출력</li>
+<li><code class="language-text">ISNULL(칼럼,값)</code> : NULL이면 값으로 대치 아니면 칼럼 값 출력</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>데이터 변환
+<ul>
+<li>명시적 형 변환: 변환형 함수를 이용하여 데이터 타입 변환</li>
+<li>암시적 형 변환: DBMS가 자동으로 데이터 타입 변환</li>
+</ul>
+</li>
+<li><code class="language-text">조건문</code>: <code class="language-text">IF-THEN-ELSE 형태</code>
+<ul>
+<li>CASE WHEN 조건절1 THEN 출력값1 … ELSE 기본값 END : ELSE 생략 시 NULL 출력
+<ul>
+<li>‘CASE WHEN NULL THEN 출력값 ELSE 기본값’은 조건이 없으므로 모든 행에서 기본값 출력 (일반적으로 ‘WHEN 칼럼 IS NULL’로 수정 필요)</li>
+</ul>
+</li>
+<li><code class="language-text">DECODE</code> (칼럼, 기준값1, 출력값1, …, 기본값) : Oracle 함수, 기준값n이면 출력값n 출력</li>
+</ul>
+</li>
+</ol>
+<h2>07. <code class="language-text">GROUP BY, HAVING절</code></h2>
+<ol>
+<li>집계 함수(Aggregate Function): 그룹별 결과 출력, 다중 행 함수 중 하나, GROUP BY절이 없으면 그룹핑 대상이 존재하지 않아 에러 발생, WHERE절에 사용 불가, 공집합에서도 연산 수행
+<ul>
+<li>ALL, DISTINCT : 전체 출력, 중복 제외 출력</li>
+<li><code class="language-text">SUM,</code> <code class="language-text">AVG</code>, <code class="language-text">MAX</code>, <code class="language-text">MIN</code>, <code class="language-text">VARIAN</code>, <code class="language-text">STDDEV</code> : NULL 제외하고 연산 (↔ 숫자 연산은 NULL 출력)</li>
+<li>COUNT : 행 수 출력
+<ul>
+<li><code class="language-text">COUNT(*)</code> : <code class="language-text">NULL 포함</code></li>
+<li><code class="language-text">COUNT(표현식)</code> : <code class="language-text">NULL 제외</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GROUP BY: 그룹핑 기준 설정, 앨리어스 사용 불가</li>
+<li>HAVING: GROUP BY절에 의한 집계 데이터에 출력 조건을 건다 (↔ WHERE절은 SELECT절에 조건을 걸기 때문에 제외된 데이터가 GROUP BY 대상이 아니다), 일반적으로 GROUP BY 뒤에 위치한다</li>
+</ol>
+<h2>08. ORDER BY절</h2>
+<ol>
+<li>ORDER BY: 특정 칼럼을 기준으로 정렬, 기본 정렬기준은 오름차순
+<ul>
+<li>1)칼럼명 2)앨리어스 3)칼럼의 SELECT절에서 순서로 칼럼 지정 가능, SELECT절에 없는 칼럼도 지정 가능,
+<ul>
+<li>GROUP BY절이 있으면 GROUP BY 대상 칼럼만 지정 가능</li>
+</ul>
+</li>
+<li>Oracle은 NULL을 최대값으로 판단한다, ex) 회장님은 상사가 없다 (↔ SQL Server은 최소값으로 판단한다)</li>
+</ul>
+</li>
+<li>SELECT문 실행 순서
+<ul>
+<li>테이블에서 출력 대상이 아닌 것은 제거하고 그룹핑해서 그룹핑된 값이 조건에 맞는 데이터를 계산 및 출력하고 정렬한다</li>
+</ul>
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"> <span class="token keyword">SELECT</span> 칼럼명 <span class="token keyword">AS</span> “별명”  <span class="token number">5</span><span class="token punctuation">)</span> 계산 및 출력하고 
+ <span class="token keyword">FROM</span> 테이블명            <span class="token number">1</span><span class="token punctuation">)</span> 테이블에서
+ <span class="token keyword">WHERE</span> 조건식            <span class="token number">2</span><span class="token punctuation">)</span> 출력 대상이 아닌 것은 제거하고
+ <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> 칼럼<span class="token operator">/</span>표현식     <span class="token number">3</span><span class="token punctuation">)</span> 그룹핑해서
+ <span class="token keyword">HAVING</span> 조건식           <span class="token number">4</span><span class="token punctuation">)</span> 그룹핑된 값이 조건에 맞는
+ 데이터를
+ <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> 칼럼<span class="token operator">/</span>표현식     <span class="token number">5</span><span class="token punctuation">)</span> 정렬한다</code></pre></div>
+</li>
+</ol>
+<h2>09. 조인(JOIN)</h2>
+<ol>
+<li><code class="language-text">조인</code>: <code class="language-text">여러 테이블을 연결 또는 결합하여 데이터를 출력하는 것</code>, 일반적으로 PK나 FK의 연관성에 의해 성립</li>
+<li>등가 조인: 두 테이블의 칼럼 값이 정확히 일치하는 경우, 대부분 PK와 FK 관계를 기반으로 한다
+<div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 칼럼s <span class="token keyword">FROM</span> 테이블<span class="token number">1</span> A<span class="token punctuation">,</span> 테이블<span class="token number">2</span> B <span class="token keyword">WHERE</span> A<span class="token punctuation">.</span>칼럼명<span class="token operator">=</span>B<span class="token punctuation">.</span>칼럼명<span class="token punctuation">;</span> </code></pre></div>
+<ul>
+<li>SELECT 대상 칼럼이 두 테이블 모두에 있는 경우 앨리어스를 지정해야 한다 (양쪽 앨리어스 모두 무관)</li>
+</ul>
+</li>
+<li>비등가 조인: 두 테이블의 칼럼 값이 정확하게 일치하지 않는 경우, 부등호나 BETWEEN 연산자를 통해 조인</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230312/sqld3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
