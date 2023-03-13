@@ -47,8 +47,7 @@
   </a>
     </span>
 2. ANSI/ISO SQL의 조인 형태: INNER JOIN, NATURAL JOIN, CROSS JOIN, OUTER JOIN
-3. NATURAL JOIN: 같은 이름을 가진 칼럼 전체에 대한 등가 조인, USING 조건절이나 ON 조건절 사용 불가, 같은
-데이터 유형 칼럼만 조인 가능, 앨리어스나 테이블명 사용 불가</p>
+3. NATURAL JOIN: 같은 이름을 가진 칼럼 전체에 대한 등가 조인, USING 조건절이나 ON 조건절 사용 불가, 같은 데이터 유형 칼럼만 조인 가능, 앨리어스나 테이블명 사용 불가</p>
 <div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"> <span class="token keyword">SELECT</span> 칼럼s <span class="token keyword">FROM</span> 테이블<span class="token number">1</span> <span class="token keyword">NATURAL</span> <span class="token keyword">JOIN</span> 테이블<span class="token number">2</span><span class="token punctuation">;</span></code></pre></div>
 <ol start="4">
 <li>INNER JOIN: 행에 동일한 값이 있는 칼럼 조인, JOIN의 디폴트 옵션, USING 조건절이나 ON 조건절 필수, CROSS JOIN이나 OUTER JOIN과 동시 사용 불가, 두 테이블에 동일 이름 칼럼이 있을 경우 SELECT절에 앨리어스 필수
@@ -180,7 +179,7 @@
 <div class="gatsby-highlight" data-language="sql"><pre class="language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> 칼럼명 <span class="token keyword">FROM</span> 테이블명 A <span class="token keyword">WHERE</span> 조건절 MINUS <span class="token keyword">SELECT</span> 테이블명 <span class="token keyword">WHERE</span> 조건절<span class="token punctuation">;</span></code></pre></div>
 </li>
 </ol>
-<h2>03. 계층형 질의와 ۿ프 조인</h2>
+<h2>03. 계층형 질의와 셀프 조인</h2>
 <ol>
 <li>계층형 질의(Hierarchical Query): 계층형 데이터를 조회하기 위해 사용, Oracle에서 지원한다. <span
       class="gatsby-resp-image-wrapper"
