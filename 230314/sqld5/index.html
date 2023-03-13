@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="SQL 최적화 기본 원리"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[Sqld]5장.SQL 최적화 기본 원리"/><meta data-react-helmet="true" property="og:description" content="SQL 최적화 기본 원리"/><meta data-react-helmet="true" property="og:image" content="/static/1eb5e8dd6c983abf05eeb3169edfb996/sqld5.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[Sqld]5장.SQL 최적화 기본 원리"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[Sqld]5장.SQL 최적화 기본 원리"/><meta data-react-helmet="true" name="twitter:description" content="SQL 최적화 기본 원리"/><meta data-react-helmet="true" name="twitter:image" content="/static/1eb5e8dd6c983abf05eeb3169edfb996/sqld5.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[Sqld]5장.SQL 최적화 기본 원리</title><link rel="canonical" href="https://thespeace.github.io/230314/sqld5/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:960px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;540&#x27;%20width=&#x27;960&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkElEQVR42mP4TwFgoL7mf//+/YWB///AiOY2g6z6/3/JkiX9/X01NdWz5y74eabz/72VYPf8JaD5z58/////b2xstLKysrCwCIuMeb/M9/+hon8gg/8Q0PzvH0jZmTNnNmzYMGXKlBWr1ry9sPT/2zP/wHK0D+0/f/78/PnzFxj8+/Pz/7/fJIf2Pwx3UtPZAH9rfDXOT8LlAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/1eb5e8dd6c983abf05eeb3169edfb996/4a319/sqld5.webp 240w,/static/1eb5e8dd6c983abf05eeb3169edfb996/0df1a/sqld5.webp 480w,/static/1eb5e8dd6c983abf05eeb3169edfb996/eeb31/sqld5.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" data-src="/static/1eb5e8dd6c983abf05eeb3169edfb996/f5e84/sqld5.png" data-srcset="/static/1eb5e8dd6c983abf05eeb3169edfb996/d0a15/sqld5.png 240w,/static/1eb5e8dd6c983abf05eeb3169edfb996/c6b60/sqld5.png 480w,/static/1eb5e8dd6c983abf05eeb3169edfb996/f5e84/sqld5.png 960w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/1eb5e8dd6c983abf05eeb3169edfb996/4a319/sqld5.webp 240w,/static/1eb5e8dd6c983abf05eeb3169edfb996/0df1a/sqld5.webp 480w,/static/1eb5e8dd6c983abf05eeb3169edfb996/eeb31/sqld5.webp 960w" sizes="(min-width: 960px) 960px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 960px) 960px, 100vw" decoding="async" loading="lazy" src="/static/1eb5e8dd6c983abf05eeb3169edfb996/f5e84/sqld5.png" srcSet="/static/1eb5e8dd6c983abf05eeb3169edfb996/d0a15/sqld5.png 240w,/static/1eb5e8dd6c983abf05eeb3169edfb996/c6b60/sqld5.png 480w,/static/1eb5e8dd6c983abf05eeb3169edfb996/f5e84/sqld5.png 960w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[Sqld]5장.SQL 최적화 기본 원리</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>Sqld</div><div>2023.03.14.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h2>01. 옵티마이저와 실행계획</h2>
+<ol>
+<li>옵티마이저: SQL문에 대한 최적의 실행방법을 결정하여 실행 계획 도출, SQL문에 대한 파싱 후 실행된다, 내비게이션
+<ul>
+<li>SQL문 실행 순서
+<ol>
+<li>파싱(Parsing): SQL 문법 검사 및 구문 분석 작업</li>
+<li>실행(Execution): 옵티마이저의 실행 계획에 따라</li>
+<li>인출(Fetch): 데이터를 읽어 전송</li>
+</ol>
+</li>
+<li>옵티마이저 엔진
+<ul>
+<li>질의 변환기(Query Transformer): 작성된 SQL문을 처리하기 용이한 형태로 변환하는 모듈</li>
+<li>비용 예측기(Estimator): 생성된 계획의 비용을 예측하는 모듈</li>
+<li>대안계획 생성기(Plan Generator): 동일한 결과를 생성하는 다양한 대안 계획을 생성하는 모듈, 1) 연산 적용 순서 2) 연산 방법 3) 조인 순서의 변경을 통해 대안 계획 생성</li>
+</ul>
+</li>
+<li>종류
+<ul>
+<li>규칙기반 옵티마이저: 우선순위 규칙에 따라 실행계획 생성, 인덱스가 있으면 반드시 인덱스 사용</li>
+<li>비용기반 옵티마이저: 처리 비용이 가장 적은 실행계획 선택, 데이터 딕셔너리(Data Dictionary)의 통계정보나 DBMS의 차이로 같은 쿼리도 다른 실행계획이 생성될 수 있다, 실행계획의 예측 및 제어가 어렵다</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SQL 처리 흐름도: SQL문의 처리절차를 시각적으로 표현한 도표</li>
+<li>실행계획: 1) 객체 2) 조인 방법 및 순서 3) 엑세스 패턴 등의 정보 출력
+<ul>
+<li>DESC PLAN_TABLE; : 실행 계획 확인</li>
+<li>해독 순서: ←로 찾다가 2줄 이상의 동일 레벨을 만나면 ↓로 해독</li>
+</ul>
+</li>
+</ol>
+<h2>02. 인덱스 기본</h2>
+<ol>
+<li>인덱스: 검색 조건에 부합하는 데이터를 효과적으로 검색할 수 있도록 돕는 기능, 인덱스키로 정렬되어 있어 조회 속도가 빠름, DML 작업 효율은 저하한다</li>
+</ol>
+<ul>
+<li>트리기반 인덱스: DBMS에서 사용하는 가장 일반적인 인덱스, 1) 루트 블록(Root Block) 2) 브랜치 블록(Branch Block) 3) 리프 블록(Leaf Block)으로 구성된다
+<ul>
+<li>포인터(Pointer): 루트 블록과 브랜치 블록의 키 값, 하위 블록 키 값의 범위 정보</li>
+<li>리프 블록은 1) 인덱스키 2) ROWID로 구성된다, Doubly Linked List 형태라서 양방향 탐색 가능
+<ul>
+<li>ROWID: Oracle에서 데이터를 구분할 수 있는 유일한 값, 데이터를 입력하면 자동으로 생성된다, 데이터가 어떤 데이터 파일의 어느 블록에 속해 있는지 알려준다
+<ul>
+<li>오브젝트 번호: 해당 데이터가 속하는 오브젝트 번호, 오브젝트 별로 유일한 값을 가진다</li>
+<li>상대 파일 번호: 테이블스페이스 내 데이터 파일의 순번</li>
+<li>블록 번호: 데이터 파일 내 데이터가 속해 있는 블록의 순번</li>
+<li>데이터 번호: 데이터 블록에 데이터가 저장되어 있는 순번</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>클러스터형 인덱스 (SQL Server): 인덱스의 리프 페이지가 데이터를 포함한다, 리프 페이지의 모든 로우가 인덱스키 칼럼 순서대로 물리적으로 정렬되어 있다</li>
+<li>CREATE INDEX 인덱스명 테이블명 ON 테이블명 (칼럼명, …) : 인덱스 생성</li>
+<li>인덱스키가 변환되면 사용 불가 ex) NVL(인덱스키,값), TO_타입(인덱스키), 인덱스키||값</li>
+</ul>
+<ol start="2">
+<li>인덱스 스캔 효율화: 랜덤 액세스 최소화 (인덱스 스캔 후 추가 정보를 가져오기 위한 랜덤 액세스는 DBMS 성능 부하를 유발한다)
+<ul>
+<li>인덱스 칼럼의 순서는 랜덤 액세스와 무관하다</li>
+</ul>
+</li>
+<li>스캔 방법
+<ul>
+<li>전체 테이블 스캔(Full Table Scan): 테이블의 모든 데이터를 읽으며 데이터 추출, 읽은 블록의 재사용성을 낮다고 판단하여 메모리 버퍼에서 제거한다
+<ol>
+<li>SQL문에 조건이 없거나</li>
+<li>SQL문 조건 관련 인덱스가 없거나</li>
+<li>전체 테이블 스캔을 하도록 강제로 힌트를 지정하거나</li>
+<li>옵티마이저가 유리하다고 판단하는 경우 수행, 많은 데이터를 조회할 때 유리하다</li>
+</ol>
+</li>
+<li>인덱스 스캔(Index Scan): 인덱스를 구성하는 칼럼의 값을 기반으로 데이터 추출, 인덱스를 읽어 ROWID를 찾고 해당 데이터를 찾기 위해 테이블을 읽음, 일반적으로 인덱스 칼럼 순서로 정렬되어 출력된다, 적은 데이터를 조회할 때 유리하다
+<ol>
+<li>랜덤 액세스에 의한 부하가 발생할 수 있고</li>
+<li>중복 스캔 비효율이 발생한다</li>
+</ol>
+<ul>
+<li>인덱스 범위 스캔(Index Range Scan): 특정 범위에 인덱스 스캔 적용
+<ul>
+<li>인덱스 역순 범위 스캔: 리프 블록의 Doubly Linked List 저장 방식을 활용하여 인덱스를 역순으로 스캔, 결과 집합이 내림차순으로 정렬된다</li>
+</ul>
+</li>
+<li>인덱스 유일 스캔(Index Unique Scan): 인덱스키가 중복되지 않을 때 단 한 건의 데이터 추출, 등호 조건으로 조회한다, 검색 속도가 가장 빠르다</li>
+<li>인덱스 전체 스캔(Index Full Scan): 리프 블록을 모두 읽으며 데이터 추출
+<ul>
+<li>인덱스 고속 전체 스캔: 물리적으로 저장된 순서대로 인덱스 리프 블록 스캔</li>
+<li>인덱스 스킵 스캔: 인덱스 선두 칼럼이 조건절에 없어도 활용한다, 상위 블록에서 읽은 칼럼 값 정보를 이용해 조건에 맞는 데이터를 포함할 가능성이 있는 리프 블록만 접근</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IOT(Index-Organized Table): 인덱스키가 붙은 칼럼으로 구성된 테이블, 인덱스가 원래 테이블을 참조하지 않는다, 클러스터형 인덱스와 유사하다</li>
+</ol>
+<h2>03. 조인 수행 원리</h2>
+<ol>
+<li>조인 순서: 항상 두 테이블을 조인한다
+<ul>
+<li>선행 테이블(First Table, Outer Table, Driving Table, Build Input)</li>
+<li>후행 테이블(Second Table, Inner Table, Driven Table, Probe Input): 선행 테이블로부터 입력값을 받아 처리한다, 후행 테이블에 걸리는 조인 조건이 성능에 큰 영향을 미친다</li>
+</ul>
+</li>
+<li>조인 방식: NL 조인 > 소트 머지 조인 > 해시 조인 순서로 발전된다
+<ul>
+<li>NL 조인(Nested Loop Join)
+<ul>
+<li>선행 테이블의 데이터 하나씩 순차적으로 조인 (중첩 반복문과 유사하다)</li>
+<li>선행 테이블 처리 범위가 성능을 결정한다 (~ 해시 조인, ↔ 소트 머지 조인은 순서에 무관)</li>
+<li>랜덤 액세스 위주이므로 대용량 데이터 처리 시 불리 유니크 인덱스를 이용하여 소량 테이블 조인할 때 유리하다</li>
+</ul>
+<h5></h5>
+<ul>
+<li>절차
+<ol>
+<li>선행 테이블에서 조건을 만족하는 행을 찾는다</li>
+<li>후행 테이블에 선행 테이블의 조인키가 존재하는지 확인한다</li>
+<li>후행 테이블 인덱스에 선행 테이블의 조인키가 존재하는지 확인한다</li>
+<li>인덱스에서 추출한 ROWID로 후행 테이블을 엑세스 한다</li>
+</ol>
+</li>
+<li>조인 결과를 하나씩 바로 출력하여 OLTP 환경에 적합하다</li>
+</ul>
+</li>
+<li>소트 머지 조인(Sort Merge Join): 두 테이블을 개별적으로 스캔한 후 조인 (↔ NL 조인은 선행 테이블을 랜덤 액세스 방식으로 조회하며 조인), 대용량 데이터 처리 시 디스크에서 정렬이 진행되므로 성능상 불리, 인덱스 유무가 성능에 큰 영향을 주진 않는다 (↔ NL 조인은 인덱스 구성에 크게 영향을 받는다)</li>
+<li>해시 조인(Hash Join)
+<ul>
+<li>조인 칼럼을 기준으로 동일한 해시 값을 갖는 데이터의 실제 값을 비교하며 조인, 두 테이블의 데이터 차이가 클 때 유리</li>
+<li>1)NL 조인의 랜덤 액세스와 2)소트 머지 조인의 정렬 작업 부담 해결, 등가 조인에서만 사용할 수 있다, 해시 메모리에서 해시 테이블을 생성하므로 선행 테이블이 작을 때 유리, 테이블이 커서 소트 부하가 심할 때 유리하다</li>
+<li>OLAP 환경에 적합하다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230314/sqld5/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-68a316cadf90220d60eb.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-9020880bf8eb0e5b0d3a.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-3bd83f7463c5d0c6f28a.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-e1ae68b605eb2c5639bf.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-3e89de5ee0ca6434d2b5.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="5a97a936ccf105e9f059";</script><script src="/webpack-runtime-3053cbe8d74abb1a0dc8.js" async></script><script src="/framework-7c0107cb7d116f0a0f2d.js" async></script><script src="/app-68a316cadf90220d60eb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
