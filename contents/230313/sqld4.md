@@ -10,8 +10,7 @@ thumbnail: './sqld4.png'
 1. SQL에서의 연산
 ![operation](./operation.png)
 2. ANSI/ISO SQL의 조인 형태: INNER JOIN, NATURAL JOIN, CROSS JOIN, OUTER JOIN
-3. NATURAL JOIN: 같은 이름을 가진 칼럼 전체에 대한 등가 조인, USING 조건절이나 ON 조건절 사용 불가, 같은
-   데이터 유형 칼럼만 조인 가능, 앨리어스나 테이블명 사용 불가
+3. NATURAL JOIN: 같은 이름을 가진 칼럼 전체에 대한 등가 조인, USING 조건절이나 ON 조건절 사용 불가, 같은 데이터 유형 칼럼만 조인 가능, 앨리어스나 테이블명 사용 불가
    ```sql
     SELECT 칼럼s FROM 테이블1 NATURAL JOIN 테이블2;
    ```
@@ -67,7 +66,7 @@ thumbnail: './sqld4.png'
    ```sql
    SELECT 칼럼명 FROM 테이블명 A WHERE 조건절 MINUS SELECT 테이블명 WHERE 조건절;
    ```
-## 03. 계층형 질의와 ۿ프 조인
+## 03. 계층형 질의와 셀프 조인
 1. 계층형 질의(Hierarchical Query): 계층형 데이터를 조회하기 위해 사용, Oracle에서 지원한다. ![query](./query.png)
    * 계층형 데이터: 엔터티를 순환관계 데이터 모델로 설계할 때 발생한다
    * CONNECT BY : 트리 형태의 구조로 쿼리 수행 (루트 노드부터 하위 노드의 쿼리를 실행한다) 상사 이름과 사람 이름을 조인하여 상사 밑에 넣기
