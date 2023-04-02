@@ -1,6 +1,6 @@
 ---
 date: '2023-03-26'
-title: '[정처기 실기]1장.소프트웨어 구축'
+title: '[정처기 실기]1-1.소프트웨어 구축'
 categories: ['정처기 실기']
 summary: 'Chapter01.소프트웨어 공학 개념'
 thumbnail: './Engineer_Information_Processing.png'
