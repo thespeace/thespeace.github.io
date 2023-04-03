@@ -238,6 +238,635 @@
 </li>
 </ol>
 </li>
+<li>개발 일정 산정
+<ol>
+<li>소프트웨어 개발 일정 계획
+<ul>
+<li>소프트웨어를 개발하기 위해 어떤 작업이 필요한지 정의하고, 작업들의 우선순위를 정하여 프로젝트 일정에 대한 계획을 세우는 것</li>
+<li>작업 순서
+<ol>
+<li>작업분해(Work Breakdown Structure)</li>
+<li>CPM 네트워크 작성</li>
+<li>최소 소요 기간을 구함</li>
+<li>소요 M/M, 기간을 산정하여 CPM수정</li>
+<li>간트 차트로 표현</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>WBS(Work Breakdown Structure)
+<ul>
+<li>프로젝트 목표를 달성하기 위해 필요한 활동과 업무를 세분화 하는 작업</li>
+<li>WBS 작성방법
+<ul>
+<li>전체를 큰 단위로 분할</li>
+<li>각각의 부분에 대해 좀 더 작은 단위로 분해하여 계층적으로 표현</li>
+<li>담당인원을 배치해 구성도 작성</li>
+</ul>
+</li>
+<li>WBS 역할
+<ul>
+<li>프로젝트에서 수행할 업무를 식별</li>
+<li>일정계획과 우선순위 산정</li>
+<li>전체 일정 진행상황 파악</li>
+<li>이해당사자들 간의 의사소통</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Network Chart(PERT/CPM)
+<ol>
+<li>PERT
+<ul>
+<li>미 해군의 Polaris 미사일 개발 프로젝트의 일정계획 및 진행과정을 효율적으로 관리하기 위해 개발됨</li>
+<li>전체 프로젝트의 시간단축을 목표로 함</li>
+<li>개발기간을 낙관치, 기대치, 비관치로 나누어 예측치를 구한다.</li>
+<li>예측치 = ( 낙관치 + (4 * 기대치) + 비관치 ) / 6</li>
+</ul>
+</li>
+<li>CPM
+<ul>
+<li>미국의 듀폰(Du pont)사와 레밍톤(Remington)사의 화학공장 유지 및 관리를 위해 개발됨</li>
+<li>최소의 비용 추가 투입을 고려하여 전체 프로젝트의 시간단축을 목표로 함</li>
+</ul>
+</li>
+<li>PERT/CPM
+<ul>
+<li>작업의 선/후행 관계를 고려하여 전체작업의 완료시간을 결정하고(PERT), 추가비용 투입을 고려하여 전체작업 완료시간을 단축하는(CPM) 네트워크 분석 기법</li>
+<li>복잡한 대형 프로젝트를 효율적으로 계획 및 통제하기 위해 개발된 기법</li>
+<li>임계경로(Critical Path) : 프로젝트를 끝내기 위해 필요한 최소 소요기간</li>
+</ul>
+</li>
+<li>CPM 소작업 리스트
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>작업</th>
+<th>선행작업</th>
+<th>소요기간(일)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>-</td>
+<td>15</td>
+</tr>
+<tr>
+<td>B</td>
+<td>-</td>
+<td>10</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A, B</td>
+<td>10</td>
+</tr>
+<tr>
+<td>D</td>
+<td>B</td>
+<td>25</td>
+</tr>
+<tr>
+<td>E</td>
+<td>C</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>CPM 네트워크 작성
+<ul>
+<li>사진 첨부!</li>
+</ul>
+</li>
+<li>소요기간 산정
+<ul>
+<li>임계경로(Critical Path) : 40일</li>
+<li>D의 가장 빠른 착수일 : 10일</li>
+<li>D의 가장 늦은 착수일 : 15일</li>
+<li>D의 여유기간 : 5일</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>간트 차트(Gantt chart)
+<ul>
+<li>일정 계획의 최종 산출물</li>
+<li>프로젝트 일정관리를 위한 바(Bar) 형태의 도구</li>
+<li>각 업무별로 일정의 시작과 끝을 그래픽으로 표시하여 전체 일정을 한 눈에 볼 수 있다.</li>
+<li>각 업무 사이의 관계를 보여준다.</li>
+<li>예시 사진 첨부!</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2>Section02.요구사항 분석</h2>
+<ol>
+<li>현행 시스템 분석
+<ol>
+<li>현행 시스템 파악
+<ol>
+<li>현행 시스템 파악의 정의
+<ul>
+<li>현재 운영되는 시스템의 구성, 기능, 하드웨어, 네트워크, 데이터베이스 등을 파악하는 활동</li>
+</ul>
+</li>
+<li>현행 시스템 파악의 목적
+<ul>
+<li>향후 개발하고자 하는 시스템의 개발범위 및 이행 방향성 설정에 도움을 주는 것이 목적</li>
+</ul>
+</li>
+<li>현행 시스템 파악 절차
+<ul>
+<li>1단계 - 현행 시스템의 구성, 기능, 인터페이스 현황을 파악하는 단계</li>
+<li>2단계 - 현행 시스템의 아키텍처 및 소프트웨어 구성 현황을 파악하는 단계</li>
+<li>3단계 - 현행 시스템의 하드웨어 및 네트워크 구성 현황을 파악하는 단계</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>플랫폼 기능 분석
+<ol>
+<li>플랫폼 정의
+<ul>
+<li>애플리케이션을 구동시키는 데 필요한 하드웨어와 소프트웨어의 결합</li>
+<li>생산자와 소비자가 서로 원하는 가치를 거래할 수 있는 매개체 역할을 수행</li>
+</ul>
+</li>
+<li>플랫폼 기능
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>기능</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>연결기능</td>
+<td>연결을 가능하게 하는 장소 제공하여 교류를 촉직<br/>증권거래소, 오픈마켓, 백화점 등</td>
+</tr>
+<tr>
+<td>비용감소</td>
+<td>플랫폼을 제공하여 각 그룹이 처리할 때 발생하는 비용 절감</td>
+</tr>
+<tr>
+<td>브랜드 신뢰 기능</td>
+<td>플랫폼의 브랜드가 사용자에게 신뢰감을 부여하여 일정수준의 질을 보장</td>
+</tr>
+<tr>
+<td>커뮤니티 형성</td>
+<td>그룹 간 상호 작용을 통한 커뮤니티 형성</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>플랫폼의 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>하드웨어 플랫폼</td>
+<td>실제 생활의 다양한 부분에서 접하는 물리적 구조물</td>
+</tr>
+<tr>
+<td>소프트웨어 플랫폼</td>
+<td>다양한 애플리케이션이 작동하는 기반이 되는 운영체제</td>
+</tr>
+<tr>
+<td>서비스 플랫폼</td>
+<td>다른 서비스들이 나의 서비스를 쉽게 사용할 수 있게 해주는 인터넷 기반의 기술 환경</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>플랫폼의 유형
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>유형</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>싱글 사이드 플랫폼<br/>(Single-Side Platform</td>
+<td>제휴 관계를 통해 소비자와 공급자를 연결하는 형태</td>
+</tr>
+<tr>
+<td>투 사이드 플랫폼<br/>(Two-Side Platform)</td>
+<td>두 그룹을 중개하고 모두에게 개방하는 형태</td>
+</tr>
+<tr>
+<td>멀티 사이드 플랫폼<br/>(Multi-Side Platform)</td>
+<td>다양한 이해관계 그룹을 연결하여 중개하는 형태</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>CPND(Contents Platform Network Device)
+<ul>
+<li>콘텐츠를 플랫폼에 맞게 가공하고 네트워크를 통해 사용자의 단말기로 서비스가 이루어짐을 표현하는 무선 인터넷 서비스의 가치사슬</li>
+<li>CPND 요소
+<ul>
+<li>Content</li>
+<li>Platform</li>
+<li>Network</li>
+<li>Device</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>운영체제 분석
+<ol>
+<li>운영체제 개념
+<ul>
+<li>컴퓨터 시스템 자원을 효율적으로 관리하여 사용자가 컴퓨터를 편리하게 사용할 수 있도록 환경을 제공해주는 시스템 소프트웨어</li>
+<li>사용자가 하드웨어 및 소프트웨어를 사용할 수 있도록 해줌</li>
+<li>사용자와 하드웨어 간의 인터페이스를 담당</li>
+</ul>
+</li>
+<li>운영체제 종류
+<ul>
+<li>유닉스(UNIX)</li>
+<li>리눅스(Linux)</li>
+<li>윈도우즈(Windows)</li>
+<li>맥 OS(Mac OS)</li>
+<li>iOS</li>
+<li>Android</li>
+<li>윈도우폰 OS</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>네트워크 분석
+<ol>
+<li>네트워크 개념
+<ul>
+<li>노드(컴퓨터)들이 자원을 공유할 수 있게 하는 디지털 전기 통신망</li>
+<li>노드 간 연결을 통해 서로에게 데이터를 교환</li>
+</ul>
+</li>
+<li>프로토콜
+<ul>
+<li>데이터를 교환하기 위해 사용하는 통신 규칙</li>
+<li>프로토콜의 3요소
+<ol>
+<li>구문(Syntax) : 데이터의 형식이나 부호화 및 신호 레벨을 규정</li>
+<li>의미(Semantic) : 전송의 조작이나 오류 제어를 위한 제어 정보에 대한 규정</li>
+<li>타이밍(Timing) : 접속되어 있는 개체 간의 통신 속도의 조정이나 메시지의 순서 제어 규정</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>DBMS 분석
+<ol>
+<li>DBMS(DataBase Management System) 개념
+<ul>
+<li>사용자, 애플리케이션 등의 상호 작용을 위해 데이터를 저장하고 분석하는 소프트웨어</li>
+<li>데이터베이스 생성, 조회, 변경 등의 관리</li>
+</ul>
+</li>
+<li>현행 시스템 데이터베이스 분석
+<ul>
+<li>DBMS의 종류, 버전, 구성방식, 스토리지 크기, 백업 주기 분석</li>
+<li>테이블 수량, 데이터 증가 추이, 백업 방식 등을 분석</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>미들웨어(Middleware) 분석
+<ol>
+<li>미들웨어 개념
+<ul>
+<li>양 쪽을 연결하여 데이터를 주고받을 수 있도록 중간에서 매개 역할을 하는 소프트웨어</li>
+</ul>
+</li>
+<li>미들웨어 종류
+<ol>
+<li>원격 프로시저 호출(RPC, Remote Procedure Call)
+<ul>
+<li>클라이언트가 원격에서 동작하는 프로시저를 호출하는 시스템</li>
+</ul>
+</li>
+<li>메시지 지향 미들웨어(MOM, Message Oriented Middleware)
+<ul>
+<li>응용 소프트웨어 간의 데이터 통신을 위한 소프트웨어</li>
+<li>메시지 기반의 비동기형 메시지를 전달하는 방식의 미들웨어</li>
+<li>다른 업무를 지속할 수 있도록 하는 비동기식 미들웨어</li>
+</ul>
+</li>
+<li>ORB(Object Request Broker)
+<ul>
+<li>객체지향 시스템에서 객체 및 서비스를 요청하고 전송할 수 있도록 지원하는 미들웨어</li>
+</ul>
+</li>
+<li>DB 접속 미들웨어
+<ul>
+<li>애플리케이션과 데이터베이스 서버를 연결해주는 미들웨어</li>
+</ul>
+</li>
+<li>TP 모니터
+<ul>
+<li>분산 시스템의 애플리케이션을 지원하는 미들웨어</li>
+<li>트랜잭션이 올바르게 처리되고 있는지 데이터를 감시하고 제어</li>
+</ul>
+</li>
+<li>웹 애플리케이션 서버(WAS, Web Application Server)
+<ul>
+<li>동적인 콘텐츠를 처리하기 위한 미들웨어</li>
+</ul>
+</li>
+<li>엔터프라이즈 서비스 버스(ESB, Enterprise Service Bus)
+<ul>
+<li>메시지 기반으로 느슨한 결합 형태의 표준 인터페이스 통신을 지원하는 미들웨어</li>
+<li>기업 안팎에 있는 모든 시스템 환경을 연동하는 미들웨어</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>요구 공학
+<ol>
+<li>요구공학 개념
+<ul>
+<li>고객 요구를 체계적으로 수집, 분석, 명세화, 검증하고 추적, 변경되는 요구사항을 도출하고 관리하는 기법</li>
+</ul>
+</li>
+<li>요구사항의 필요성
+<ol>
+<li>분석의 어려움
+<ul>
+<li>이해부족, 의사소통, 잦은 요구사항의 변경</li>
+</ul>
+</li>
+<li>요구사항 변화
+<ul>
+<li>요구사항은 개발초기에 불완전하고, 개발 동안 지속적으로 변화</li>
+</ul>
+</li>
+<li>관점별 차이 발생
+<ul>
+<li>묵시적 요구사항, 변경과 추적에 대한 문제, 해당 업무에 대한 지식</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>요구사항의 분류
+<ol>
+<li>참여자 관점
+<ol>
+<li>사용자 요구사항
+<ul>
+<li>사용자의 관점에서 소프트웨어에 대해 원하는 사항들</li>
+</ul>
+</li>
+<li>시스템 요구사항
+<ul>
+<li>설계자의 관점에서 하드웨어와 소프트웨어가 갖춰야 하는 것들</li>
+</ul>
+</li>
+<li>소프트웨어 요구사항
+<ul>
+<li>개발자의 관점에서 소프트웨어가 갖춰야 하는 사항들</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>요구사항 내용의 종류
+<ol>
+<li>기능적 요구사항
+<ul>
+<li>소프트웨어를 구성하는 기능들이 무엇인지를 정희한 것</li>
+</ul>
+</li>
+<li>비기능적 요구사항
+<ul>
+<li>소프트웨어의 기능들에 대한 조건과 제약 사항들이 무엇인지 정의한 것</li>
+<li>보안, 성능, 품질, 안정성 등</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>요구사항 개발 프로세스
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 685px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a4ee4edfcd0b2a807428dde85156e070/a31f0/process.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABGElEQVR42l2Q2WrDMBRE/f9/F2iLFhOnXmPZliIZSdZ2b0kcCu15njMDUwGAtVZKqZRKKZVStDbbumltcs4xRq31siz7viNiCOGZezy89wBQpZSUUl3XjuPovXfOzfc7IURr45ybnoyMslmI4ziklIQQSqlSj1JKBQBd23LOKaXOOUQUQnRtN88i57Lve/ei73tENMY0TSPEYoxBxAoRZzFzzpdlAQBEfE3R67VBxJLTMIyUsdut8f7IOQ9DL6W01r7lUkqMsZSCL+7TVHPOGBunCQDqmn+3XYoREGMMX58fl8vFef+WT+DcRdy2rWaMEHKEAADjMBJK+34471RKruuaUv4j/xJC8M5Za8+24zistVrrGOO/5A9kOoxAaiZUkQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a4ee4edfcd0b2a807428dde85156e070/a59e9/process.webp 192w,
+/static/a4ee4edfcd0b2a807428dde85156e070/0ca9f/process.webp 384w,
+/static/a4ee4edfcd0b2a807428dde85156e070/ef8ff/process.webp 685w"
+              sizes="(max-width: 685px) 100vw, 685px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a4ee4edfcd0b2a807428dde85156e070/3b721/process.png 192w,
+/static/a4ee4edfcd0b2a807428dde85156e070/66595/process.png 384w,
+/static/a4ee4edfcd0b2a807428dde85156e070/a31f0/process.png 685w"
+            sizes="(max-width: 685px) 100vw, 685px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a4ee4edfcd0b2a807428dde85156e070/a31f0/process.png"
+            alt="process.png"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<ol>
+<li>도출(Eliciation)
+<ul>
+<li>소프트웨어가 해결해야 할 문제를 이해하고 요구사항이 어디에 있고, 어떻게 수집할 것인가를 확인</li>
+<li>요구사항 도출 기법
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>기법</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>인터뷰(Interview)</td>
+<td>사용자들과의 이야기, 대답을 통해 요구사항 도출</td>
+</tr>
+<tr>
+<td>관찰 또는<br/>문화기술적 연구<br/>(Ethnography)</td>
+<td>사용자의 모습을 지켜보고 사용자들이 무엇을 사용하는지, 어떻게 사용하는지 등을 살피는 기법</td>
+</tr>
+<tr>
+<td>사용자 스토리</td>
+<td>애자일에서 사용<br/>사용자 요구사항을 간단하게 정리한 문서</td>
+</tr>
+<tr>
+<td>시나리오</td>
+<td>사용자의 요구사항을 이야기 형식으로 풀어내는 방법</td>
+</tr>
+<tr>
+<td>설문조사</td>
+<td>이해당사자들로부터 요구를 찾는 도구</td>
+</tr>
+<tr>
+<td>브레인 스토밍</td>
+<td>여러 명으로부터 정보를 얻는 효과적인 방법</td>
+</tr>
+<tr>
+<td>포커스 그룹</td>
+<td>제품의 요구사항에 대한 아이디어를 만들기 위해 소집된 사용자 대표<br/>그룹</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>분석
+<ul>
+<li>요구사항들 간에 상충되는 문제를 해결</li>
+<li>소프트웨어의 범위를 파악</li>
+<li>업무환경과의 상호작용 파악(도메인 분석)</li>
+<li>구조적 분석 도구
+<ul>
+<li>DFD(Data Flow Diagram) : 자료 흐름도</li>
+<li>Data Dictionary : 자료 사전</li>
+<li>Mini-Spec : 소단위 명세서</li>
+<li>ERD(Entity Relationship Diagram) : 개체 관계도</li>
+<li>STD(State Transition Diagram) : 상태 전이도</li>
+</ul>
+</li>
+<li>객체지향 분석 도구
+<ul>
+<li>UML(Unified Modeling Language)</li>
+<li>모델링</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>명세
+<ul>
+<li>체계적으로 검토, 평가, 승인될 수 있는 문서를 작성</li>
+<li>시스템 정의, 시스템 요구사항, 소프트웨어 요구사항을 작성</li>
+<li>요구사항 명세 기법
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>정형 명세 기법</th>
+<th>비정형 명세 기법</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기반</td>
+<td>수학, 논리학</td>
+<td>자연어, 그림 중심</td>
+</tr>
+<tr>
+<td>작성기법</td>
+<td>수학적 기호, 정형화된 표기법</td>
+<td>일반 명사, 동사 등의 자연어를 기반으로<br/>서술하거나 다이어그램으로 작성</td>
+</tr>
+<tr>
+<td>장점</td>
+<td>명세 오류 및 모호성을 쉽게 파악</td>
+<td>사용자/개발자 간 의사전달 용이</td>
+</tr>
+<tr>
+<td>단점</td>
+<td>작성이 어렵고, 시간이 많이 소모됨</td>
+<td>내용이 모호하고, 완전한 검증이 곤란</td>
+</tr>
+<tr>
+<td>언어 종류</td>
+<td>VDM, Z, Petri-net, CSP</td>
+<td>FSM, Decision Table, ER 모델링,<br/>State Chart(SADT) 등</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>산출물
+<ul>
+<li>시스템 정의서</li>
+<li>시스템 요구사항 명세서</li>
+<li>소프트웨어 요구사항 명세서</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>확인
+<ul>
+<li>
+<p>분석가가 요구사항을 이해했는지 확인</p>
+</li>
+<li>
+<p>요구사항 문서가 일관성 있고 완전한지 검증</p>
+</li>
+<li>
+<p>이해 관계자들이 문서를 검토하고, 형상관리를 수행</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
 </ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230402/Engineer_Information_Processing1-2/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
