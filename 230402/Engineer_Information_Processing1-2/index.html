@@ -852,16 +852,534 @@
 </li>
 <li>확인
 <ul>
-<li>
-<p>분석가가 요구사항을 이해했는지 확인</p>
+<li>분석가가 요구사항을 이해했는지 확인</li>
+<li>요구사항 문서가 일관성 있고 완전한지 검증</li>
+<li>이해 관계자들이 문서를 검토하고, 형상관리를 수행</li>
+</ul>
 </li>
-<li>
-<p>요구사항 문서가 일관성 있고 완전한지 검증</p>
+<li>요구사항 분석 기법
+<ol>
+<li>요구사항 분류(Requirement Classification)
+<ul>
+<li>기능 / 비기능 분류</li>
+<li>요구사항이 소프트웨어에 미치는 영향 범위 파악</li>
+<li>생명주기 동안 변경이 발생하는지 확인</li>
+</ul>
 </li>
+<li>개념 모델링(Conceptual Modeling)
+<ul>
+<li>요구사항을 더 쉽게 이해할 수 있도록 현실 세계 상황을 단순화하여 개념적으로 표현</li>
+<li>모델링 표기는 주로 UML, ERD를 사용</li>
+</ul>
+</li>
+<li>요구사항 할당(Requirement Allocation)
+<ul>
+<li>요구사항을 만족시키기 위한 구성 요소를 식별</li>
+<li>식별된 구성 요소들이 어떻게 상호작용하는지 분석하는 과정에서 추가 요구사항 발견</li>
+</ul>
+</li>
+<li>요구사항 협상(Requirement Negotiation)
+<ul>
+<li>요구사항이 서로 충돌될 경우 적절히 해결하는 과정</li>
+<li>요구사항이 서로 충돌되는 경우 우선순위를 부여하여 문제해결</li>
+</ul>
+</li>
+<li>정형 분석(Formal Analysis)
+<ul>
+<li>구문(Syntax)과 의미(Semantics)를 갖는 정형화된 언어를 이용해 요구사항을 수학적 기호로 표현한 후 이를 분석하는 과정</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>요구사항 분석 도구
+<ol>
+<li>요구사항 분석 CASE(Computer Aided Software Engineering) 도구
+<ul>
+<li>요구사항을 자동으로 분석하고, 요구사항 분석 명세서를 기술하는 도구</li>
+<li>소프트웨어 개발 전반에 걸쳐 적용된다.</li>
+<li>CASE 도구의 분류
+<ul>
 <li>
-<p>이해 관계자들이 문서를 검토하고, 형상관리를 수행</p>
+<table>
+<thead>
+<tr>
+<th>분류</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상위 CASE</td>
+<td>생명주기 전반부에 사용되며, 소프트웨어의 계획과 요구분석, 설계 단계를 지원한다.<br/>모순검사, 오류검사, 자료흐름도 작성 등의 기능을 수행한다.</td>
+</tr>
+<tr>
+<td>하위 CASE</td>
+<td>생명 주기 후반부에 사용되며, 코드의 작성과 테스트, 문서화하는 과정을 지원한다.<br/>구문 편집기, 코드 생성기 등의 기능을 수행한다.</td>
+</tr>
+<tr>
+<td>통합 CASE</td>
+<td>소프트웨어 생명주기에 포함되는 전체 과정을 지원한다.</td>
+</tr>
+</tbody>
+</table>
 </li>
 </ul>
+</li>
+<li>종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SADT</td>
+<td>Structured Analaysis and Design Technique<br/>SoftTech사에서 개발<br/>시스템 정의, 요구사항 분석, 시스템/소프트웨어 설계에 이용되는 구조적 분석 및 설계도구</td>
+</tr>
+<tr>
+<td>SREM</td>
+<td>Software Requirements Engineering Methodology<br/>실시간 처리 소프트웨어 시스템에서 요구사항을 명확히 기술하도록 할 목적으로 개발</td>
+</tr>
+<tr>
+<td>PSL/PSA</td>
+<td>미시간 대학에서 개발한 것으로 PSL과 PSA를 사용하는 자동화 도구<br/>PSL(Problem statement Language) : 문제 기술언어<br/>PSA(Problem Statement Analyzer) : PSL로 기술한 요구사항을 자동으로 분석하여 다양한 보고서를 출력하는 문제 분석기</td>
+</tr>
+<tr>
+<td>TAGS</td>
+<td>Technology for Automated Generation of Systems<br/>시스템 공학 방법 응용에 대한 자동 접근 방법<br/>개발 주기의 전 과정에 이용할 수 있는 통합 자동화 도구</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HIPO(Hierarchy Input Process Output)
+<ol>
+<li>HIPO의 개념
+<ul>
+<li>하향식 소프트웨어 개발을 위한 문서화 도구</li>
+<li>시스템의 기능을 여러 개의 고유 모듈들로 분할하여 이들 가느이 계층구조를 표현한 도표</li>
+</ul>
+</li>
+<li>HIPO의 기능
+<ul>
+<li>분석 및 설꼐 도구로 사용된다.</li>
+<li>하향식 개발에 적합하다.</li>
+<li>체계적인 문서관리에 효율적이다.</li>
+<li>기능과 자료의 의존관계를 명시할 수 있다.</li>
+</ul>
+</li>
+<li>HIPO Chart 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>가시적 도표<br/>(Visual Table of Content)</td>
+<td>시스템의 전체 기능과 흐름을 보여주는 Tree(계층) 구조<br/>가시적 도표에는 입력, 처리, 출력 없음</td>
+</tr>
+<tr>
+<td>총체적 도표<br/>(Overview Diagram)</td>
+<td>프로그램을 구성하는 기능을 기술한 것<br/>입력, 처리, 출력에 대한 전반적인 정보 제공</td>
+</tr>
+<tr>
+<td>세부적 도표<br/>(Detail Diagram)</td>
+<td>총체적 도표에 표시된 기능을 구성하는 기본 요소들을 상세히 기술하는 도표<br/>총체적 도표와 같은 모양이지만 내용만 좀 더 복잡하게 들어간 형태</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>요구사항 분석 모델링
+<ol>
+<li>모델링의 개념
+<ul>
+<li>복잡한 시스템을 쉽게 이해하기 위해 간단한 모델로 표현하는 것을 의미</li>
+<li>소프트웨어를 구성하는 모듈들을 식별하고, 모듈들의 연결을 그림으로 표현</li>
+<li>요구분석 과정에 의해 수집된 개념과 정보를 분석하여 UML과 같은 방법을 이용하여 모델로 표현</li>
+</ul>
+</li>
+<li>모델링이 주는 도움
+<ul>
+<li>소프트웨어를 이해하는 데 도움</li>
+<li>이해관계자들 사이에서 문제를 해결할 수 있또록 해준다.</li>
+<li>파악한 개념을 사용자와 고객에게 전달할 때 도움을 준다.</li>
+<li>설계, 구현, 테스팅, 유지보수에 개념적인 기준을 제공한다.</li>
+</ul>
+</li>
+<li>모델링 구분
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기능적 모델링</td>
+<td>시스템의 기능을 사용자 관점으로 표현<br/>사용 사례 다이어그램, 액티비티 다이어그램</td>
+</tr>
+<tr>
+<td>정적 모델링</td>
+<td>시스템 구조를 파악하여 클래스 단위로 표현<br/>클래스 다이어그램</td>
+</tr>
+<tr>
+<td>동적 모델링</td>
+<td>시스템이 어떤 기능을 수행하는지의 상호작용을 표현<br/>순서 다이어그램, 상태 다이어그램, 커뮤니케이션 다이어그램</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>분석 모델의 종류
+<ul>
+<li>구조적 분석 모델</li>
+<li>객체 지향 분석 모델</li>
+<li>정보공학 분석 모델</li>
+<li>정형화 분석 모델</li>
+</ul>
+</li>
+<li>구조적 분석 모델
+<ol>
+<li>구조적 분석 방법론
+<ul>
+<li>도형화된 도구를 이용해 정형화된 분석 절차에 따라 사용자 요구사항을 파악하고 문서화하는 분석 기법</li>
+<li>하향식 기능 분해 기법 등을 사용하는 특성</li>
+</ul>
+</li>
+<li>구조적 분석 도구
+<ol>
+<li>자료 흐름도(DFD, Data Flow Diagram)
+<ul>
+<li>가장 보편적으로 사용되는 시스템 모델링 도구로서, 기능 중심의 시스템을 모델링하는데 적합</li>
+<li>자료의 흐름과 처리 과정을 도형 중심으로 기술</li>
+<li>자료 흐름 그래프 또는 버블 차트라고도 함</li>
+<li>자료 흐름도 구성요소
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>구성요소</th>
+<th>설명</th>
+<th>기호</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>처리 과정(Process)</td>
+<td>자료를 변환시키는 처리 과정을 나타낸다.</td>
+<td>동그라미 ⚪</td>
+</tr>
+<tr>
+<td>자료 흐름(Data Flow)</td>
+<td>자료의 이동을 나타낸다.</td>
+<td>화살표 -></td>
+</tr>
+<tr>
+<td>자료 저장소(Data Store)</td>
+<td>파일, 데이터베이스 등 자료가 저장되는 곳을 나타낸다.</td>
+<td>가로 줄 두개. =</td>
+</tr>
+<tr>
+<td>단말(Terminator)</td>
+<td>데이터의 입출력 주체(사용자)를 나타낸다.</td>
+<td>가로로 긴 직사각형</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>자료 흐름도 사례
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 685px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6253ef1392f0e74e6918a5c2bbc12a3d/a31f0/dataFlow.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA+ElEQVR42nXR22qEMBAGYN//BXwCH0Ho3m62IAhuURPxgKLRYKpZCdIoHjKlK5Qedr/bgf+fYQz4TWsNAFLKPM8JIXEcV1W17zs8Yuh/AOC96zzPO51eEEIY43Vdj9xj+l1jPIzctg0AEEKMMQB42jyOY9d1Qoi+74fbTQhBa6rUR0VpEARhGEopp2lijM3zrJSilDLGmqap69rwfZ8QckZn3w8QQoRgx3FM0yyKYpoU5xxjnCQJxtiyLNu20zR5vVyu1zfXdY22bfM8L+7KsgSAZVmE6NM0zbIsiqJjc621lHIYhuaOMfbVDE/M88w5F0L8ecTPmz8BDoKGIytzgO0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6253ef1392f0e74e6918a5c2bbc12a3d/a59e9/dataFlow.webp 192w,
+/static/6253ef1392f0e74e6918a5c2bbc12a3d/0ca9f/dataFlow.webp 384w,
+/static/6253ef1392f0e74e6918a5c2bbc12a3d/ef8ff/dataFlow.webp 685w"
+              sizes="(max-width: 685px) 100vw, 685px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6253ef1392f0e74e6918a5c2bbc12a3d/3b721/dataFlow.png 192w,
+/static/6253ef1392f0e74e6918a5c2bbc12a3d/66595/dataFlow.png 384w,
+/static/6253ef1392f0e74e6918a5c2bbc12a3d/a31f0/dataFlow.png 685w"
+            sizes="(max-width: 685px) 100vw, 685px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6253ef1392f0e74e6918a5c2bbc12a3d/a31f0/dataFlow.png"
+            alt="dataFlow"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+<li>자료사전(DD, Data Dictionary)
+<ul>
+<li>자료흐름도에 기술된 모든 자료들에 대한 사항을 자세히 정의</li>
+<li>자료사전 사용 기호
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>자료의 정의</td>
+<td>~로 구성되어 있다</td>
+</tr>
+<tr>
+<td>+</td>
+<td>자료의 연결</td>
+<td>그리고, 순차(and)</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>자료의 생략</td>
+<td>생략 가능한 자료</td>
+</tr>
+<tr>
+<td>[ㅣ]</td>
+<td>자료의 선택</td>
+<td>여러 대안 중 하나 선택</td>
+</tr>
+<tr>
+<td>{ }</td>
+<td>자료의 반복</td>
+<td>자료의 반복</td>
+</tr>
+<tr>
+<td>* *</td>
+<td>자료의 설명</td>
+<td>주석</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>자료사전 예시
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>자료 흐름</th>
+<th>쇼핑몰 회원정보는 회원번호, 회원성명, 전화번호, 휴대폰번호로 구성되어<br/>있고, 전화번호와 휴대폰번호는 둘 중 하나만 선택이 가능하다.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>표기형식</td>
+<td>회원정보 = 회원번호 + 회원성명 + [전화번호 ㅣ 휴대폰번호]</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>소단위 명세서(Mini-Specification)
+<ul>
+<li>자료 흐름도에서 어떤 일이 수행되는지를 정의하기 위해 각 처리들이 수행하는 업무를 상세하게 작성</li>
+<li>프로세스 명세서라고도 한다.</li>
+<li>소단위 명세서는 구조적 언어이고, 선후 조건문, 의사결정표 등이 사용</li>
+</ul>
+</li>
+<li>개체 관계도(ERD, Entity Relationship Diagram)
+<ul>
+<li>시스템에서 처리되는 구조인 개체와 속성, 개체 간의 관계를 표현하여 모델화하는데 사용</li>
+<li>개체 관계도 구성
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/61f318b44b7357005ce13296deadd4a8/f0a60/erd.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.833333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR42jWKSQ7EMAgE8/+fjmK80dgJDjDyLKW+dKkO7lXQ9B73Jd/NwSWf/7u93qOWROk1B/4ees9DBERJVd3cPqy1iFKtpffWal1rubsIcibuHWDzX3mISDpP5m7uHuERj1nOlHMutRClMSQiAC61LdvVN3P347pmbw2AqkZsZ8/DzACYuwDhHh7XnA2ybBcfs3kD/53ntcuWVH0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/61f318b44b7357005ce13296deadd4a8/a59e9/erd.webp 192w,
+/static/61f318b44b7357005ce13296deadd4a8/0ca9f/erd.webp 384w,
+/static/61f318b44b7357005ce13296deadd4a8/dc9b9/erd.webp 768w,
+/static/61f318b44b7357005ce13296deadd4a8/88613/erd.webp 771w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/61f318b44b7357005ce13296deadd4a8/3b721/erd.png 192w,
+/static/61f318b44b7357005ce13296deadd4a8/66595/erd.png 384w,
+/static/61f318b44b7357005ce13296deadd4a8/fe486/erd.png 768w,
+/static/61f318b44b7357005ce13296deadd4a8/f0a60/erd.png 771w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/61f318b44b7357005ce13296deadd4a8/fe486/erd.png"
+            alt="ERD"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+<li>상태 전이도(STD, State Transition Diagram)
+<ul>
+<li>시스템에 어떤 일이 발생할 경우 시스템의 상태와 상태 간의 전이를 모델화한 것으로, 상태 전이도를 통해 개발자는 시스템의 행위를 정의</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>객체 지향 분석 모델
+<ol>
+<li>객체 지향 분석
+<ul>
+<li>사용자의 요구사항을 분석하여 요구된 문제와 관련된 모든 클래스, 이와 연관된 속성과 연산, 그들 간의 관계 등을 정의하여 모델링하는 작업</li>
+</ul>
+</li>
+<li>객체지향 분석 방법론
+<ol>
+<li>Rumbaugh(럼바우) 방법
+<ul>
+<li>가장 일반적으로 사용되는 방법으로 분석 활동을 객체 모델, 동적 모델, 기능 모델로 나누어 수행</li>
+<li>분석 절차
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/39166fdf22d787e924c165d79bd3f1c5/c2252/rumbaugh.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34.895833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1ElEQVR42m2P2Y7DMAhF8/+/Oa1iArYTjBe8ZSZSR4ranicEXB1YUkqqep7n/KD3HqPMOe/Te72IBACI8lq6M+e0loiQiJxzAMZa69zVO46jlLKoaghBRHrv38KWEB+PHwAwZiVEkcDMpeTLHKMQYozSWnsPj2kvp0XEK0nIfITAIpJzHmMsVTVGSSnVWr+eDWC2DYjImNVa671X1TH6Zc45IW4SQq369vacE8A8nw9jVmNWADhe7CFw731prZV/Ps3OOSKyRPvuvXfe+yjCfDDz39m/bZGUM6uG9kAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/39166fdf22d787e924c165d79bd3f1c5/a59e9/rumbaugh.webp 192w,
+/static/39166fdf22d787e924c165d79bd3f1c5/0ca9f/rumbaugh.webp 384w,
+/static/39166fdf22d787e924c165d79bd3f1c5/dc9b9/rumbaugh.webp 768w,
+/static/39166fdf22d787e924c165d79bd3f1c5/b0930/rumbaugh.webp 794w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/39166fdf22d787e924c165d79bd3f1c5/3b721/rumbaugh.png 192w,
+/static/39166fdf22d787e924c165d79bd3f1c5/66595/rumbaugh.png 384w,
+/static/39166fdf22d787e924c165d79bd3f1c5/fe486/rumbaugh.png 768w,
+/static/39166fdf22d787e924c165d79bd3f1c5/c2252/rumbaugh.png 794w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/39166fdf22d787e924c165d79bd3f1c5/fe486/rumbaugh.png"
+            alt="rumbaugh"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+<li>Booch(부치) 방법
+<ul>
+<li>미시적 개발 프로세스와 거시적 개발 프로세스를 모두 사용하는 분석 방법</li>
+</ul>
+</li>
+<li>Jacobson 방법
+<ul>
+<li>Use case를 강조하여 사용하는 분석 방법</li>
+</ul>
+</li>
+<li>Coad와 Yourdon 방법
+<ul>
+<li>E-R 다이어그램을 사용하여 객체의 행위를 모델링, 객체 식별, 구조 식별, 주제 정의 등의 과정으로 구성하는 기법</li>
+</ul>
+</li>
+<li>Wirfs-Brock 방법
+<ul>
+<li>분석과 설계 간 구분 없음</li>
+<li>고객 명세서를 평가해서 설계 작업까지 연속적으로 수행</li>
+</ul>
+</li>
+</ol>
 </li>
 </ol>
 </li>
