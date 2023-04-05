@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter03.소프트웨어 설계"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-3.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter03.소프트웨어 설계"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-3.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-3.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter03.소프트웨어 설계"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-3.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230405/Engineer_Information_Processing1-3/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-3.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.03.26.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter03.소프트웨어 설계</h1>
+<h2>Section01. 소프트웨어 설계의 기본 원칙</h2>
+<ol>
+<li>소프트웨어 설계
+<ol>
+<li>소프트웨어 설계의 개념
+<ul>
+<li>요구사항 명세서를 참조하여 소프트웨어의 구체적인 설계서를 작성하는 단계</li>
+<li>물리적으로 구현이 가능하도록 시스템을 구체적으로 정의하는 단계</li>
+</ul>
+</li>
+<li>소프트웨어 설계의 종류
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/511cfdfe3aced0eec77972a19be9fca3/cfc60/TypesOfDesigns.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 23.958333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA4UlEQVR42l2Ny06EQBBF+XITf8toXOhSzfDSoaF5DeCDoemq6mZGCF1GFkY9uauzONdjZjydb+X7Gxgk6kc9ApGxCnAAJGuVxkHjiITGKg3DNgU4L4vHbvXL7uI6vEubvDo8xiKWRd60UVYGoigObSikn8hYVrJu/STzk2y3l4HI0Viv/+gBMVfmNC/sVse8brgf1m/pNsF/8dwy+0VzeRPdp03dvj5EL2ndFU0Ximy3T0VZpVX99JwEiQQyzPy74DGzns5Xomu1MXbqR63JopkU0lEDEIExxxEGjZ/z/O/5CzPZFcwGg3DFAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/511cfdfe3aced0eec77972a19be9fca3/a59e9/TypesOfDesigns.webp 192w,
+/static/511cfdfe3aced0eec77972a19be9fca3/0ca9f/TypesOfDesigns.webp 384w,
+/static/511cfdfe3aced0eec77972a19be9fca3/dc9b9/TypesOfDesigns.webp 768w,
+/static/511cfdfe3aced0eec77972a19be9fca3/fd23a/TypesOfDesigns.webp 776w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/511cfdfe3aced0eec77972a19be9fca3/3b721/TypesOfDesigns.png 192w,
+/static/511cfdfe3aced0eec77972a19be9fca3/66595/TypesOfDesigns.png 384w,
+/static/511cfdfe3aced0eec77972a19be9fca3/fe486/TypesOfDesigns.png 768w,
+/static/511cfdfe3aced0eec77972a19be9fca3/cfc60/TypesOfDesigns.png 776w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/511cfdfe3aced0eec77972a19be9fca3/fe486/TypesOfDesigns.png"
+            alt="Types of Designs"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<ol>
+<li>상위 설계
+<ol>
+<li>아키텍처 설계
+<ul>
+<li>시스템의 전체적인 구조 설계</li>
+</ul>
+</li>
+<li>데이터 설계
+<ul>
+<li>시스템에 필요한 정보를 설계</li>
+<li>데이터베이스 설계</li>
+</ul>
+</li>
+<li>인터페이스 정의
+<ul>
+<li>시스템의 구조와 서브시스템들 사이의 인터페이스를 명확히 정의</li>
+</ul>
+</li>
+<li>사용자 인터페이스 설계
+<ul>
+<li>사용자가 익숙하고 편리하게 사용하도록 인터페이스 설계</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>하위 설계
+<ol>
+<li>모듈 설계
+<ul>
+<li>각 모듈의 실제적인 내부를 알고리즘 형태로 표현</li>
+</ul>
+</li>
+<li>자료구조 설계
+<ul>
+<li>데이터의 저장 구조, 변수 등에 대한 상세한 정보를 설계</li>
+</ul>
+</li>
+<li>알고리즘 설계
+<ul>
+<li>업무의 처리 절차 등을 설계</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>소프트웨어 설계의 원리
+<ol>
+<li>분할과 정복(Divide &#x26; Conquer)
+<ul>
+<li>규모가 큰 소프트웨어를 여러 개의 작은 서브시스템으로 나누어 하나씩 완성시킨다.</li>
+</ul>
+</li>
+<li>추상화(Abstraction)
+<ul>
+<li>실세계의 복잡한 상황을 간결하고 명확하게 핵심 위주로 단순화시킨다.</li>
+<li>자세한 구현 전에 상위 레벨에서 제품의 구현을 먼저 생각해보는 것</li>
+<li>추상화 기법
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9e620cb5044b1c0d2184b66f294d7471/d1716/Abstraction.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 22.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR42m2NUa4DIQwDuf9F2wdLSOhmHRCEivar2jcaWf6w5JDig0s26F1cSjkatDc0u35sO0OMT+bic84x7lI+4t8zH0mkMJcqwmUXLpTzEdoHd1833F1EiAi4APTeW2tmBuBbQs4HEY0x/Macs9ZaSkkpphRFmPbf3jMzgKCqANb/uJmJSK2iquf50s0JXL33tdYb5UshLMHMgxYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/9e620cb5044b1c0d2184b66f294d7471/a59e9/Abstraction.webp 192w,
+/static/9e620cb5044b1c0d2184b66f294d7471/0ca9f/Abstraction.webp 384w,
+/static/9e620cb5044b1c0d2184b66f294d7471/dc9b9/Abstraction.webp 768w,
+/static/9e620cb5044b1c0d2184b66f294d7471/04a2c/Abstraction.webp 774w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/9e620cb5044b1c0d2184b66f294d7471/3b721/Abstraction.png 192w,
+/static/9e620cb5044b1c0d2184b66f294d7471/66595/Abstraction.png 384w,
+/static/9e620cb5044b1c0d2184b66f294d7471/fe486/Abstraction.png 768w,
+/static/9e620cb5044b1c0d2184b66f294d7471/d1716/Abstraction.png 774w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/9e620cb5044b1c0d2184b66f294d7471/fe486/Abstraction.png"
+            alt="Abstraction"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+<li>단계적 분해(Stepwise Refinement)
+<ul>
+<li>기능을 점점 작은 단위로 나누어 점차적으로 구체화하는 방법</li>
+</ul>
+</li>
+<li>모듈화(Modulization)
+<ul>
+<li>실제로 개발할 수 있는 작은 단위로 나눈다.</li>
+</ul>
+</li>
+<li>정보은닉(Information Hiding)
+<ul>
+<li>다른 객체에게 자신의 정보를 숨기고, 자신의 연산만을 통해 접근이 가능하도록 한다.</li>
+<li>클래스 외부에서 특정 정보에 대한 접근을 막는다는 의미</li>
+<li>캡슐화와 밀접한 관계가 있다.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>설계 모델링
+<ol>
+<li>설계 모델링 개념
+<ul>
+<li>소프트웨어를 구성하는 모듈들을 식별하고, 이것들의 연결을 그림으로 표현한 것</li>
+<li>소프트웨어를 만들기 위한 계획 또는 만들어야 할 기능을 의미 있게 표현한 것</li>
+<li>소프트웨어에 대하여 여러 작업자들의 공통된 개념을 공유하는 데 도움을 준다.</li>
+</ul>
+</li>
+<li>설계 모델링 원칙
+<ul>
+<li>소프트웨어 설계는 변경이 용이하도록 구조화시켜야 한다.</li>
+<li>특정 기능을 수행하는 데 필요한 자료만을 사용한다.</li>
+<li>요구사항 분석에 얻은 정보를 이용하여 명확히 표현한다.</li>
+<li>모듈 단위로 설계한다.</li>
+</ul>
+</li>
+<li>설계 모델링 유형
+<ol>
+<li>구조 모델링
+<ul>
+<li>시스템의 구성 요소들과 이들 사이의 구조적인 관계와 특성들을 모델링</li>
+<li>UML 정적 다이어그램</li>
+</ul>
+</li>
+<li>행위 모델링
+<ul>
+<li>소프트웨어의 구성요소들이 언제 어떠한 순서로 기능을 수행해야 작용하는지를 모델링</li>
+<li>UML 동적 다이어그램</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>소프트웨어 설계 절차 및 유형
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2edb1bd14ace94af16a59e267846ccd2/be814/DesignModeling.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.854166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABDElEQVR42o2NXYvCMBBF+/9/mFAbizSxmaRDsrNqIzFaQR+sTdPdrvvh4x6Y4XLhcrKUUtd1IYTj8Xi9XqdpSik9/5PX/Mo0TVlKyTlXVdUyXzrnfsf/IQshGGvX6zUiMlZIKc/ns/f+cDh470MIp9Opbdvwhfee6N1733XdPLbWyrrebrdFUXDOAcAYs1gsAEApRUSMMSGEtZaI8jwvyxIRnXPjOGaXy0UpJYQAACLiQtR1bYzZt3vOudaaiKy1m83GGIOI9s0qBbfbbTYj4qxQulytpJQSQGvNedU0GgAQUSn4XXLOGWMNNrvdbjYPw9D3/ePxiN+M841jjMNPE4fhL9/v977vY4yf5g+IMIAihL+ZNwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2edb1bd14ace94af16a59e267846ccd2/a59e9/DesignModeling.webp 192w,
+/static/2edb1bd14ace94af16a59e267846ccd2/0ca9f/DesignModeling.webp 384w,
+/static/2edb1bd14ace94af16a59e267846ccd2/dc9b9/DesignModeling.webp 768w,
+/static/2edb1bd14ace94af16a59e267846ccd2/e2c2f/DesignModeling.webp 1152w,
+/static/2edb1bd14ace94af16a59e267846ccd2/661f4/DesignModeling.webp 1199w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2edb1bd14ace94af16a59e267846ccd2/3b721/DesignModeling.png 192w,
+/static/2edb1bd14ace94af16a59e267846ccd2/66595/DesignModeling.png 384w,
+/static/2edb1bd14ace94af16a59e267846ccd2/fe486/DesignModeling.png 768w,
+/static/2edb1bd14ace94af16a59e267846ccd2/d2d74/DesignModeling.png 1152w,
+/static/2edb1bd14ace94af16a59e267846ccd2/be814/DesignModeling.png 1199w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2edb1bd14ace94af16a59e267846ccd2/fe486/DesignModeling.png"
+            alt="Design Modeling"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2eecf189080e45b114f08be526cedd0d/cfc60/DesignModeling2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 47.39583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsTAAALEwEAmpwYAAABOElEQVR42j2Q267jIAxF8/8/2c5ppWkmBowNNk64HEGqWQ+IbXn7tlFEisFMrMhpisExLalSSi6av69mlXR/rIhpPq1sItk5x0S11t67mTkH3jtEjDECQET03nnvnHOIwQG01vqkbSKCGIL3qjrGMCt4a+9C8ERxGhys0IzcaWOM3vumqisDa63LbDnnlBIiEsXFt3MIPkY0s/M8zey6rq2UwkylaO99jJFT+jfZvXeqwkx3rcQsIjmlGONSXErZzvMUkTSjqKo5JzgOAAgh5IXqdInM/8rkvOaqtW6qQhRTYjMbYxARwAHHkRLHGHmOjiJyLeqitXZfd7uuuYCZtdbm2Dn9/PzZP5/3+/V8PN6v1/P5+Ox/mVct5nu778H+ixsz2/cPEXnvEdEBABwhBCJiJiK6e9zmX8itA9MlMt7nAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2eecf189080e45b114f08be526cedd0d/a59e9/DesignModeling2.webp 192w,
+/static/2eecf189080e45b114f08be526cedd0d/0ca9f/DesignModeling2.webp 384w,
+/static/2eecf189080e45b114f08be526cedd0d/dc9b9/DesignModeling2.webp 768w,
+/static/2eecf189080e45b114f08be526cedd0d/fd23a/DesignModeling2.webp 776w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2eecf189080e45b114f08be526cedd0d/3b721/DesignModeling2.png 192w,
+/static/2eecf189080e45b114f08be526cedd0d/66595/DesignModeling2.png 384w,
+/static/2eecf189080e45b114f08be526cedd0d/fe486/DesignModeling2.png 768w,
+/static/2eecf189080e45b114f08be526cedd0d/cfc60/DesignModeling2.png 776w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2eecf189080e45b114f08be526cedd0d/fe486/DesignModeling2.png"
+            alt="Design Modeling2"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ol>
+</li>
+</ol>
+<h2>Section02. 소프트웨어 아키텍처</h2>
+<ol>
+<li>
+<p>소프트웨어 아키텍처</p>
+<ol>
+<li>소프트웨어 아키텍처(SoftWare Architecture) 개념
+<ul>
+<li>소프트웨어의 골격이 되는 기본구조</li>
+<li>시스템의 컴포넌트 사이의 관계를 정의한 구조</li>
+</ul>
+</li>
+<li>소프트웨어 아키텍처의 특징
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>특징</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>간략성</td>
+<td>이해하고 추론할 수 있을 정도의 간결성 유지</td>
+</tr>
+<tr>
+<td>추상화</td>
+<td>시스템의 추상적인 표현을 사용</td>
+</tr>
+<tr>
+<td>가시성</td>
+<td>시스템이 표함해야 하는 것들을 가시화</td>
+</tr>
+<tr>
+<td>관점 모형</td>
+<td>이해당사자의 관심사에 따른 모형 제시</td>
+</tr>
+<tr>
+<td>의사소통수단</td>
+<td>이해당사자 간 원활한 의사소통 수단으로 이용</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>소프트웨어 아키텍처 프레임워크 구성요소
+<ol>
+<li>아키텍처 명세서(Architecture Description)
+<ul>
+<li>아키텍처를 기록하기 위한 산출물</li>
+</ul>
+</li>
+<li>이해관계자(Stakeholder)
+<ul>
+<li>소프트웨어 시스템 개발에 관련된 모든 사람과 조직</li>
+<li>고객, 개발자, 프로젝트 관리자 등</li>
+</ul>
+</li>
+<li>관심사(Concerns)
+<ul>
+<li>동일한 시스템에 대해 서로 다른 이해관계자 의견</li>
+<li>예) 사용자 : 기본적인 기능, 신뢰성, 보안 등의 요구</li>
+</ul>
+</li>
+<li>관점(Viewpoint)
+<ul>
+<li>서로 다른 역할이나 책임으로 시스템이나 산출물에 대한 서로 다른 관점</li>
+</ul>
+</li>
+<li>뷰(View)
+<ul>
+<li>이해관계자들과 이들이 가지는 생각이나 견해로부터 전체 시스템을 표현</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>소프트웨어 아키텍처 4+1 뷰
+<ol>
+<li>소프트웨어 아키텍처 4+1 뷰 개념
+<ul>
+<li>고객의 요구사항을 정리해 놓은 시나리오를 4개의 관점에서 바라보는 소프트웨어적인 접근 방법</li>
+<li>복잡한 소프트웨어 아키텍처를 다양한 이해관계자들이 바라보는 관점</li>
+<li>View는 시스템의 여러 가지 측면을 고려하기 위한 다양한 관점을 바탕으로 정의</li>
+</ul>
+</li>
+<li>4+1 View Model과 구성요소
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 710px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ac3acc115473a0d546fbe34c5cc465ae/911ab/4%2B1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.9375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsTAAALEwEAmpwYAAACKklEQVR42j2Sz2sUMRTH9z/zLKhFqAfFu4IXLx48qwfx2lMRD1s9CGJpsRT8QVGoa2u3tFMpu2V2nM4k8zOTTPKS3czM7kRnI35OL8l7ecn3+3qwJE1TIQQASCmVUpxzIQRdIpYAgFLKJuR5zjlXSvUAwPO8s7OzLMvquk7T1AbGmIyQNMtaY9q2BYAoirTWGOPRaIQQAoCelBIA7KKu6yzLkjRtmsYYwxmlRW6WKKUwxlrrpmmCIKCUdsUAQClFCEVRZBsaY3SlD0L66ih4eRR8v2SzmTbL/t2R1kEQMMaklL3pdOq6ruM44/E4SZJ506jZ7PkgvvLk9fX+8Y2N46vr+0/3Yy6VMaaZzzHGjuNMJpOuWCnleZ7ruhjjgtIpp9snk1uf2bVnG3ff/Fxd+7Dy4u3Ke//dSVBLjqLI8zzf9//9GQDKskySRAjBylJLsTcKV3fQvU/48bfw0Z734OPvm1uXO7/CRkHJO9kZYwghIUQnWBiG5+fncRwvFou6rpWE9QPvzi6+/wU9/Ipv78ZrPwKpplVVzedzY8zm5ma/35/NZj1rHUJIay2E8DomUwl+Adun/tapP05KY1pCyMXFhZTSGOP7/nA47HwWQjRN07atvdViheVlyWjxf2kDm7xYLLpnW/cHg8FwOEQIdbIVhU0lRZFmnc+LJW3bVlXlOM7h4aHrupzzTm1KKSEkz/M4jqMoIoTYyWFL7PzaHaUUY4wQQin9a9UfSw+HhALkBUIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ac3acc115473a0d546fbe34c5cc465ae/a59e9/4%2B1.webp 192w,
+/static/ac3acc115473a0d546fbe34c5cc465ae/0ca9f/4%2B1.webp 384w,
+/static/ac3acc115473a0d546fbe34c5cc465ae/3267d/4%2B1.webp 710w"
+              sizes="(max-width: 710px) 100vw, 710px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ac3acc115473a0d546fbe34c5cc465ae/3b721/4%2B1.png 192w,
+/static/ac3acc115473a0d546fbe34c5cc465ae/66595/4%2B1.png 384w,
+/static/ac3acc115473a0d546fbe34c5cc465ae/911ab/4%2B1.png 710w"
+            sizes="(max-width: 710px) 100vw, 710px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ac3acc115473a0d546fbe34c5cc465ae/911ab/4%2B1.png"
+            alt="4+1"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>구성요소</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>논리 뷰<br/>(Logical View)</td>
+<td>시스템의 기능적인 요구사항<br/>시스템이 최종 사용자를 위해 해야 하는 것을 나타낸다.</td>
+</tr>
+<tr>
+<td>구현 뷰<br/>(Implementation<br/>View)</td>
+<td>개발 환경 안에서 정적인 소프트웨어 모듈의 구성<br/>개발자 관점에서 소프트웨어 구현과 관리적인 측면을 컴포넌트 다이어그램으로 표현</td>
+</tr>
+<tr>
+<td>프로세스 뷰<br/>(Process View)</td>
+<td>프로그램 실행 시의 시스템 표현<br/>시스템의 동작을 중점적으로 표현<br/>동시성, 분산처리, 시스템 통합, 오류 허용 등을 표현</td>
+</tr>
+<tr>
+<td>배치 뷰<br/>(Deployment View)</td>
+<td>컴포넌트가 물리적인 노드에 어떻게 배치되는가를 보여주는 매핑<br/>물리적인 노드의 구성과 상호 연결 관계를 배치 다이어그램으로 표현<br/>가용성, 신뢰성, 성능, 확장성 등의 시스템의 비기능적인 요구사항 고려</td>
+</tr>
+<tr>
+<td>유스케이스 뷰<br/>(Use Case View)</td>
+<td>아키텍처를 도출하고 설계하는 작업을 주도하는 뷰<br/>다른 뷰를 검증하는 데 사용<br/>Use Case Diagram이 사용<br/>+1에 해당하며 유스케이스가 나머지 4개 뷰에 모두 참여하면서 영향을 준다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>소프트웨어 아키텍처 품질 속성
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>품질 속성</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정확성<br/>(Correctness)</td>
+<td>사용자가 요구한 기능을 정확히 수행해야 한다.</td>
+</tr>
+<tr>
+<td>신뢰성<br/>(Reliability)</td>
+<td>요구한 기능이 오차나 오류가 없이 동작해야 한다.</td>
+</tr>
+<tr>
+<td>효율성<br/>(Efficiency)</td>
+<td>기능이 수행되면서 자원(CPU, Memory)을 적절히 사용해야 한다.</td>
+</tr>
+<tr>
+<td>무결성<br/>(Integrity)</td>
+<td>자료는 인가된 사용자만 변경할 수 있어야 한다.</td>
+</tr>
+<tr>
+<td>사용 용이성<br/>(Usability)</td>
+<td>쉽게 배우고 사용할 수 있어야 한다.</td>
+</tr>
+<tr>
+<td>유지보수성<br/>(Maintainability)</td>
+<td>오류 수정 및 변경이 용이해야 한다.</td>
+</tr>
+<tr>
+<td>시험 용이성<br/>(Testability)</td>
+<td>테스트를 하는 것이 용이해야 한다.</td>
+</tr>
+<tr>
+<td>유연성<br/>(Flexibility)</td>
+<td>새로운 요구사항을 쉽게 적용할 수 있어야 한다.</td>
+</tr>
+<tr>
+<td>이식성<br/>(Potability)</td>
+<td>다양한 플랫폼 및 하드웨어에서 동작이 가능해야 한다.</td>
+</tr>
+<tr>
+<td>재사용성<br/>(Reusability)</td>
+<td>개발된 소프트웨어는 다른 목적으로 사용하기 용이해야 한다.</td>
+</tr>
+<tr>
+<td>상호 운용성<br/>(Interoperability)</td>
+<td>다른 소프트웨어와 상호 교류가 용이해야 한다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>소프트웨어 아키텍처 평가
+<ol>
+<li>소프트웨어 아키텍처 평가 개념
+<ul>
+<li>아키텍처의 접근법이 품질속성(보안, 선능, UI등)에 미치는 영향을 판단하여 아키텍처 적 합성을 판단하고 평가하는 표준 기법</li>
+</ul>
+</li>
+<li>소프트웨어 아키텍처 평가기법 유형
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>관점</th>
+<th>유형</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>가시성</td>
+<td>가시적 평가</td>
+<td>Inspection, Review, Validation &#x26; Verification</td>
+</tr>
+<tr>
+<td>가시성</td>
+<td>비가시적 평가</td>
+<td>SAAM, ATAM, CBAM, ARID, ADR</td>
+</tr>
+<tr>
+<td>시점</td>
+<td>이른 평가</td>
+<td>아키텍처 구축과정 중 어느 때나 평가 가능</td>
+</tr>
+<tr>
+<td>시점</td>
+<td>늦은 평가</td>
+<td>기존 시스템의 요구사항에 대한 아키텍처의 적합성을 판단할 때 사용</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>소프트웨어 아키텍처 패턴</p>
+</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230405/Engineer_Information_Processing1-3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-68a316cadf90220d60eb.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-9020880bf8eb0e5b0d3a.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-3bd83f7463c5d0c6f28a.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-e1ae68b605eb2c5639bf.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-3e89de5ee0ca6434d2b5.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="5a97a936ccf105e9f059";</script><script src="/webpack-runtime-3053cbe8d74abb1a0dc8.js" async></script><script src="/framework-7c0107cb7d116f0a0f2d.js" async></script><script src="/app-68a316cadf90220d60eb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
