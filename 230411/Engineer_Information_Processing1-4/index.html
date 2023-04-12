@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-4.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230411/Engineer_Information_Processing1-4/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-4.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.03.26.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter04.화면 설계</h1>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-4.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter04.화면 설계"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-4.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230411/Engineer_Information_Processing1-4/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-4.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.04.11.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter04.화면 설계</h1>
 <h2>Section01. UI 설계</h2>
 <ol>
 <li>UI(User Interface) 개념
@@ -46,10 +46,660 @@
 </li>
 <li>UI 설계
 <ol>
-<li>UI 요구사항 구분</li>
+<li>UI 요구사항 구분
+<ol>
+<li>기능적 요구사항
+<ul>
+<li>시스템이 제공해야 하는 기능에 대한 요구사항</li>
+<li>입력, 출력, 데이터, 연산에 관한 요구사항</li>
+</ul>
+</li>
+<li>비기능적 요구사항
+<ul>
+<li>사용성, 효울성, 신뢰성, 유지 보수성, 재사용성 등 품질에 관한 요구사항</li>
+<li>플랫폼, 사용 기술 등 시스템 환경에 관한 요구사항</li>
+<li>비용, 일정 등 프로젝트 계획에 관한 요구사항</li>
+</ul>
+</li>
 </ol>
 </li>
-</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230411/Engineer_Information_Processing1-4/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<li>UI 설계 절차
+<ul>
+<li>UI 개발목표 및 범위 수립 -> UI 전략 수립 -> 사용자 요구사항 분석 -> UI 상세 설계 -> 구현 -> 테스트</li>
+</ul>
+<ol>
+<li>UI 개발 목표 및 범위 수립
+<ul>
+<li>해당 프로젝트의 UI 부분의 목표와 범위에 대한 계획을 수립하는 단계</li>
+<li>프로젝트 계획 전반에 UI 계획을 반영한다</li>
+<li>이해 당사자의 UI 요구사항을 조사하고, 정의한다.</li>
+<li>UI 트랜드 및 해당 서비스의 사용자를 분석한다.</li>
+</ul>
+</li>
+<li>UI 전략 수립
+<ul>
+<li>서비스를 사용할 사용자 조사 및 시장 조사를 통해 UI, UX 전략을 수립하는 단계</li>
+<li>기술적 관점에서도 전략을 수립한다.</li>
+</ul>
+</li>
+<li>사용자 요구사항 분석
+<ul>
+<li>사용자 조사 결과를 기반으로 사용자 요구사항을 추출하고 선별하여 요구사항을 분석하는 단계</li>
+<li>프로토타입(Prototype)을 제작</li>
+</ul>
+</li>
+<li>UI 상세 설계
+<ul>
+<li>UI 기능에 대한 구조와 화면 간의 상호 흐름, 예외 처리 등의 UI 전반에 걸친 설계를 하는 단계</li>
+</ul>
+</li>
+<li>구현
+<ul>
+<li>HTML5, CSS3, JavaScript 등의 언어들로 구현하는 단계</li>
+</ul>
+</li>
+<li>테스트
+<ul>
+<li>UI의 사용성을 검증하는 단계</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>UI 설계 원칙
+<ol>
+<li>직관성
+<ul>
+<li>누구나 쉽게 이해하고 사용할 수 있어야 한다.</li>
+</ul>
+</li>
+<li>유효성
+<ul>
+<li>사용자의 목적을 정확하게 달성해야 한다.</li>
+</ul>
+</li>
+<li>학습성
+<ul>
+<li>누구나 쉽게 배우고 익힐 수 있어야 한다.</li>
+</ul>
+</li>
+<li>유연성
+<ul>
+<li>사용자의 요구사항을 최대한 수용하며, 오류를 최소화해야 한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>UI 설계 도구
+<ol>
+<li>와이어프레임(Wireframe)
+<ul>
+<li>와이어프레임의 개념
+<ul>
+<li>선(Wire)으로 틀(Frame)을 잡는다는 뜻</li>
+<li>화면 단위의 레이아웃을 설계하는 작업</li>
+<li>간단한 모양만을 사용하여 인터페이스를 시각적으로 묘사</li>
+<li>와이어프레임에는 내용, 구조, 흐름, 기능 등이 포함</li>
+<li>제작 방법에 제한은 없지만, 실무에서는 손그림이나 파워포인트로 작성</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>스토리보드
+<ul>
+<li>개발 후 완성된 콘텐츠의 최정 결과를 예상할 수 있는 기초 문서</li>
+<li>디자이너와 개발자가 최정적으로 참고하는 설계 산출 문서</li>
+<li>정책, 프로세스 및 콘텐츠 구성, 와이어 프레임, 기능 정의 등 서비스 구축을 위한 대부분의 정보를 수록</li>
+<li>스토리보드 작성 절차
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>작성문서</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>표지</td>
+<td>프로젝트명, 문서버전, 최종 업데이트 일자, 작성자 등을 작성한다.</td>
+</tr>
+<tr>
+<td>문서의 버전</td>
+<td>변경된 문서버전, 변경일, 변경된 내용, 작성자 등이 포함된다.</td>
+</tr>
+<tr>
+<td>Index 작성</td>
+<td>스토리보드를 빠르게 찾아갈 수 있는 차례를 작성한다.</td>
+</tr>
+<tr>
+<td>IA(Information<br/>Architecture) 작성</td>
+<td>소프트웨어의 사이트 맵을 작성한다.</td>
+</tr>
+<tr>
+<td>공통모듈 작성</td>
+<td>스토리보드 전반에서 사용될 공통 모듈을 작성한다.<br/>웹의 경우 기본 구성화면(Header, Footer, GNB, LNB 등) 등의 내용을 공통 모듈 정의서로 작성한다.</td>
+</tr>
+<tr>
+<td>화면설계와<br/>설명서(Description)<br/>작성</td>
+<td>실제로 구현될 화면을 설계한다.<br/>해당 화면에서 설명이 필요한 부분에 넘버링을 하고, 설명을 따로 적어둔다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>스토리보드 작성 예시
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 550px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/05af0698cbd47732b3e461c28ff16bac/8c3ad/StoryBoard.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsTAAALEwEAmpwYAAACZElEQVR42m2Sy07jMBiF+65skFgwj8EA26pUQmJFZgHtGkYCCVSpCNGqlCqUKeRi2sbkUidObMe3ZKYJg0DiLOzfsj9fznEjsixvsQje3rIoUkoJIbTWQkouJedcSqm1VkrxSlJKIQRjzHVdhFBDWpZrWc58bgMAPQ8h5Np2EoYZQpQQ3/eXy2UYhowxSmldMMaEEJTShtY6RigFIHRd0zTD1WrY66HpdOW6GSGe5w0Gg8fHR0KIEGIOAE6SoiyLosjzvFFo7Xne82DwZJrPt7fs8jJKU5wkKEnw2RnyvJSQJI4RQkopkmWUEKXUO1yW5fX19c7ubrPVenl6yoPgzfdjhFarFXacyPdRVdewUqqs9AX+ubPTbDZHoxHnHGMspSSEpJVqhzDG38Onp6ebm5vb2z+63S6EXrPZPDw8PDo6Cny/2+222+1Wq3V3d1eWZZ7n9RZSyjWsgiCAELy+OrYNIaSUOo7jui4AgHPueZ7jOLZtx3GstZaftIYlAHPXnS8Wr8slAIBgXF+YEkIwXreEULru8zxHCFFK67TWUZVlGccxiiLkONPRKKtIzlg2MUkU4SyrI82yTEo5m80ghLrS+5t937dfXpzx+M/VFe/1VG2IVPnFhUzTeiSEqL+X1vqLYf1+f29vr9Vuz0xTQpgLoZWSSrH5nFP68T2llN+4fXNzs7+/3z44GA6HHyvqaSHE55O/gTudzsbGxtbWlmEYQRAYhnFyctLpdMIwOj//bRi/jo+Nh4dJWZac84+oGGONoigghNNKAIA0Te/v78fj8WQyIYRYljWp5Pt+bRL/r3/wX7PlLuiA0WobAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/05af0698cbd47732b3e461c28ff16bac/a59e9/StoryBoard.webp 192w,
+/static/05af0698cbd47732b3e461c28ff16bac/0ca9f/StoryBoard.webp 384w,
+/static/05af0698cbd47732b3e461c28ff16bac/7df4b/StoryBoard.webp 550w"
+              sizes="(max-width: 550px) 100vw, 550px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/05af0698cbd47732b3e461c28ff16bac/3b721/StoryBoard.png 192w,
+/static/05af0698cbd47732b3e461c28ff16bac/66595/StoryBoard.png 384w,
+/static/05af0698cbd47732b3e461c28ff16bac/8c3ad/StoryBoard.png 550w"
+            sizes="(max-width: 550px) 100vw, 550px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/05af0698cbd47732b3e461c28ff16bac/8c3ad/StoryBoard.png"
+            alt="Story Board"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ul>
+</li>
+<li>프로토타입
+<ul>
+<li>프로토타입은 실제 서비스와 흡사한 모형을 만드는 작업</li>
+<li>와이어프레임이나 스토리보드에 동적효과를 적용하여 실제 구현된 것처럼 시연할 수 있다.</li>
+<li>실제 개발하는 것보다 단시간에 구현이 가능하기 때문에 사용자 경험에 대한 테스트를 진행 할 수 있다.</li>
+</ul>
+</li>
+<li>목업(Mockup)
+<ul>
+<li>와이어프레임보다 좀 더 실제 화면과 유사하게 만든 정적인 형태의 모형</li>
+<li>파워목업, 발사믹 목업 등</li>
+</ul>
+</li>
+<li>유스케이스
+<ul>
+<li>사용자 측면의 요구사항</li>
+<li>사용자가 원하는 목표를 달성하기 위해 수행할 내용을 기술</li>
+<li>다이어그램 형태로 제작</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>감성공학
+<ol>
+<li>감성공학의 개념
+<ul>
+<li>인간의 심상을 구체적인 물리적 설계 요소로 번역하여 이를 실현하는 기술</li>
+<li>인간의 감성과 이미지를 물리적인 디자인 요소로 해석하여 구체적 제품으로 만들어내는 공학적 접근 방법</li>
+<li>감성공학 = 마음속의 이미지 파악(심리학) + 형상화(인간공학) + 구체적인 제품 생산(생산 공학)</li>
+<li>요소화 -> 형상화 -> 구현 -> 생산</li>
+</ul>
+</li>
+<li>제품과 관련된 인간의 감성
+<ol>
+<li>감각적 감성
+<ul>
+<li>제품에 관하여 사용자가 느끼는 감성, 제품의 외관, 색상, 디자인에 관련된 것</li>
+</ul>
+</li>
+<li>기능적 감성
+<ul>
+<li>제품의 성능과 사용 시 편리함에 대한 것</li>
+</ul>
+</li>
+<li>문화적 감성
+<ul>
+<li>개인이 속한 사회나 문화에 관련된 것</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>감성공학의 접근 방법
+<ol>
+<li>1류 접근 방법
+<ul>
+<li>인간의 어휘를 이용하여 제품에 대한 이미지를 조사하고 제품 디자인 요소와 연계시킴</li>
+</ul>
+</li>
+<li>2류 접근 방법
+<ul>
+<li>문화적 감성의 일부를 반영한 개념</li>
+<li>1류와 함께 감성의 심리적 특성을 강조한 접근 방법</li>
+</ul>
+</li>
+<li>3류 접근 방법
+<ul>
+<li>특정 시제품을 사용하여 감각 척도를 계측하고, 정량화된 값을 환산</li>
+<li>인간 감각계측과 이의 활용이 강조된 접근 방법</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>UI 설계 지침
+<ol>
+<li>한국 HCI 연구회 설계 지침
+<ol>
+<li>가기성의 원칙(Visibility)
+<ul>
+<li>소프트웨어의 기능을 노출시켜 최대한 조작이 쉽도록 한다.</li>
+</ul>
+</li>
+<li>조작 결과 예측의 원칙(Natural Mapping)
+<ul>
+<li>사용자가 소프트웨어를 조작하여 작동시킨 결과를 조작 부위만 보고도 예측 가능하게 설계한다.</li>
+</ul>
+</li>
+<li>일관성의 원칙(Consistency)
+<ul>
+<li>소프트웨어의 조작방식에 일관성을 제공하여 사용자가 쉽게 기억하고 빠르게 적응할 수 있게 한다.</li>
+</ul>
+</li>
+<li>단순성의 원칙(Simplicity)
+<ul>
+<li>소프트웨어의 기능구조를 단순화시켜 조작에 요구되는 노력을 최소화한다.</li>
+</ul>
+</li>
+<li>지식 배분의 원칙(Knowledge in World &#x26; Head)
+<ul>
+<li>학습하기 쉽고 기억하기 쉽게 설계해야 한다.</li>
+</ul>
+</li>
+<li>조작오류의 원칙(Design for Error)
+<ul>
+<li>사용 간 발생한 오류를 쉽게 발견하고 수정 또한 쉽게 이루어져야 한다.</li>
+</ul>
+</li>
+<li>제한사항 선택사용의 원칙(Constraints)
+<ul>
+<li>소프트웨어를 조작할 때 선택의 여지를 줄여 조작 방법이 명확하도록 유도한다.</li>
+</ul>
+</li>
+<li>표준화의 원칙(Standardization)
+<ul>
+<li>소프트웨어의 기능 구조와 디자인을 한 번 학습한 이후, 보다 효과적으로 서비스를 사용할 수 있어야 한다.</li>
+</ul>
+</li>
+<li>행동 유도성의 원칙(Affordance)
+<ul>
+<li>사용자가 디자인을 보고 기능 및 조작법을 유추할 수 있도록 해야 한다.</li>
+</ul>
+</li>
+<li>접근성의 원칙(Accessibility)
+<ul>
+<li>사용자의 성별, 연력 등 다양한 계층의 사용자가 받아들일 수 있는 사용자 인터페이스를 구축해야 한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>전자정부 웹 사이트 UI, UX 설계 기준
+<ul>
+<li>사용자에게 필요한 정보와 기능을 제공한다.</li>
+<li>작업에 소요되는 시간과 단계를 최소화 한다.</li>
+<li>직관적이고 일관성 있게 만든다.</li>
+<li>사용자가 원하는 방식으로 이용할 수 있게 만든다.</li>
+<li>사용자가 실수하지 않게 만든다.</li>
+<li>모든 유형의 사용자가 이용할 수 있게 만든다.</li>
+<li>원하는 서비스와 정보를 쉽게 찾을 수 있게 만든다.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2>Section02. UI 구현</h2>
+<ol>
+<li>화면 레이아웃 구성
+<ol>
+<li>레이아웃(Layout)의 개념
+<ul>
+<li>특정 공간에 여러 구성 요소를 보기 좋게 효과적으로 배치하는 작업</li>
+<li>레이아웃 작성 방법
+<ul>
+<li>DIV 요소를 이용한 레이아웃</li>
+<li>SPAN 요소를 이용한 레이아웃</li>
+<li>TABLE 요소를 이용한 레이아웃</li>
+<li>시맨틱(Semantic) 태그를 이용한 레이아웃</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTML5
+<ol>
+<li>HTML5 개념
+<ul>
+<li>월드와이드웹(World Wide Web)을 통해 제공되는 정보를 나타낼 목적으로 사용되는 마크업 언어</li>
+<li>HTML의 5번째 버전을 의미한다.</li>
+<li>웹 페이지의 기본 구조를 담당</li>
+</ul>
+</li>
+<li>HTML5 특징
+<ul>
+<li>플러그인의 설치 없이 동영상이나 음악을 웹 브라우저상에서 재생</li>
+<li>다양한 2차원 그래픽 표현 가능(SVG 태그, CANVAS 이용)</li>
+<li>실시간으로 서버와 양방향 통신 가능</li>
+<li>GPS를 통한 위치 확인 및 장치 접근이 가능</li>
+<li>오프라인 상태에서도 작업이 가능</li>
+</ul>
+</li>
+<li>시맨틱 요소
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 444px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/664f0c37a4be45153387930868d8ebbf/39d25/Semantic.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 63.020833333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAACTElEQVR42mVSW2+iQBjl9yLDRRAKMwMDpWsU6oX21UtXtKYvq1W5eEOpVBvT7m6zP2ijJGbTTc7Dl3O+5DtnzlAPD71Wq9Nud7/A9wf9/mOv1/9farU63e734/GdEsUSABzL8v+C4wRCLNOydZ1wnPBFBYDj+eJ2u6MMw1Q1pCFd1ZCqQg1iDWJVQ4ZhVqsuIdZJzUkVaudZ1RDCxm73ShFiQYgR0g3DtO1v+QwhJsRynFvTvL4wtl02DBNCDCHWdZJle0qWr3i+CACHkO44twzDsiwvCCIhFkK6dW0XRYlleZpmXLcGIc5DSZKcpjtKkmRFUeHZ1c1Nud3uDodP/f6j7w96vb7vD3x/MBw+dToP5XJFlq8URcXYKBaldbKlSiVFgxhjQ9NQpeLE8+Xh7Zi+ZOPn6WQaTKbBNt0d3o7LVeI4NUVREdJ1nYhiKdmkFM8XCwVA00yppFSqbhDG2esh2aTTWTgLoiCI1sl2l+3j+dJ1a6JYommmQDMsy282KSUIYl6ALF9VKs5oPFkn23i+/DF6Ho0no/Ekjher9Wb8PK1WXUmS88wcJ2zyywBwDMNKkuy6tWSTfvz8nb5k01kYhHEQRPv92/vHr3Wydc6XGYYFgAOAO9kmxDq1pyHLshsNz3VrnnffbN7V6816w6s3vEbD87x7x7ltNO8sy86XDcPMssPph12csCzPMGyhAAoMwNjQdYKQDgBH08y5Qu6yJgjFk+0oWsxmYXB+mzCMo2ieY7FYrVbrxWJ1YcJziiCIZrMwiuafn3/+AioGtRGucN/5AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/664f0c37a4be45153387930868d8ebbf/a59e9/Semantic.webp 192w,
+/static/664f0c37a4be45153387930868d8ebbf/0ca9f/Semantic.webp 384w,
+/static/664f0c37a4be45153387930868d8ebbf/836f4/Semantic.webp 444w"
+              sizes="(max-width: 444px) 100vw, 444px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/664f0c37a4be45153387930868d8ebbf/3b721/Semantic.png 192w,
+/static/664f0c37a4be45153387930868d8ebbf/66595/Semantic.png 384w,
+/static/664f0c37a4be45153387930868d8ebbf/39d25/Semantic.png 444w"
+            sizes="(max-width: 444px) 100vw, 444px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/664f0c37a4be45153387930868d8ebbf/39d25/Semantic.png"
+            alt="Semantic"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>TAG</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x3C; header ></td>
+<td>헤더 영역<br/>제목, 내비게이션, 검색 등의 내용을 포함</td>
+</tr>
+<tr>
+<td>&#x3C; nav ></td>
+<td>메인 메뉴나 목차 등을 정의</td>
+</tr>
+<tr>
+<td>&#x3C; section ></td>
+<td>맥락이 같은 요소들을 주제별로 그룹화</td>
+</tr>
+<tr>
+<td>&#x3C; article ></td>
+<td>본문의 주요 내용이 들어가는 공간</td>
+</tr>
+<tr>
+<td>&#x3C; aside ></td>
+<td>본문 외의 콘텐츠 영역<br/>사이드 메뉴나 광고 등의 영역</td>
+</tr>
+<tr>
+<td>&#x3C; footer ></td>
+<td>푸터 영역<br/>작성자나 회사 정보 등을 포함</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>INPUT 요소
+<ol>
+<li>텍스트 입력(text, textarea)
+<ul>
+<li>text : 한 줄의 텍스트 입력</li>
+<li>textarea : 여러 줄의 텍스트 입력</li>
+</ul>
+</li>
+<li>비밀번호 입력(password)
+<ul>
+<li>입력받은 문자를 별표나 작은 원으로 표시</li>
+</ul>
+</li>
+<li>라디오 버튼(radio)
+<ul>
+<li>여러 개의 라디오 버튼 옵션 중에서 단 하나만의 값을 선택</li>
+</ul>
+</li>
+<li>체크 박스(checkbox)
+<ul>
+<li>여러 개의 체크박스 중에서 여러 개의 옵션 값을 선택</li>
+</ul>
+</li>
+<li>파일 선택(file)
+<ul>
+<li>사용자 컴퓨터의 파일을 입력</li>
+</ul>
+</li>
+<li>선택 입력(select)
+<ul>
+<li>여러 개의 드롭다운 리스트(drop-down-list) 중에서 한 개의 옵션을 선택</li>
+</ul>
+</li>
+<li>버튼(button)
+<ul>
+<li>사용자가 클릭했을 때 작업을 수행</li>
+</ul>
+</li>
+<li>전송(submit)
+<ul>
+<li>입력받은 데이터를 서버로 전송</li>
+</ul>
+</li>
+<li>필드셋(fieldset)
+<ul>
+<li>관련된 데이터를 하나로 묶어준다.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>CSS(Cascading Style Sheet)
+<ol>
+<li>CSS 개념
+<ul>
+<li>HTML과 함께 웹을 구성하는 기본 프로그래밍 요소</li>
+<li>색상이나 크기, 이미지 크기나 위치, 배치 방법 등 웹 문서의 디자인 요소를 담당</li>
+</ul>
+</li>
+<li>CSS 특징
+<ul>
+<li>HTML로부터 디자인적인 요소를 분리해 정의할 수 있다.</li>
+<li>잘 정의된 CSS는 서로 다른 여러 웹페이지에 적용할 수 있다.</li>
+<li>자바스크립트와 연계해 동적인 콘텐츠 표현이나 디자인 적용 가능</li>
+<li>다양한 기기(PC, 스마트폰, 태플릿 등)에 맞게 탄력적으로 바뀌는 콘텐츠(반응형 웹) 적용 가능</li>
+</ul>
+</li>
+<li>CSS3
+<ul>
+<li>이전 버전 CSS와 완전히 호환되는 CSS의 최신 표준 권고안</li>
+<li>차세대 웹 개발을 위한 새로운 표준</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>JavaScript
+<ol>
+<li>JavaScript 개념
+<ul>
+<li>모질라 재단의 프로토타입 기반의 프로그래밍 언어로, 스크립트 언어에 해당된다.</li>
+<li>HTML, CSS와 함께 웹을 구성하는 요소 중 하나이다.</li>
+<li>클라이언트 단에서 웹 페이지가 동작하는 것을 담당</li>
+</ul>
+</li>
+<li>JavaScript 특징
+<ul>
+<li>웹 문서에 삽입해서 사용하는 스크립트 언어</li>
+<li>이벤트 중심(event-driven)의 프로그래밍 언어</li>
+<li>프로토타입 기반 객체 지향 언어</li>
+<li>값에 따라 변수의 형변환이 자동으로 이루어지는 동적 형변환</li>
+<li>주로 웹 브라우저에서 사용되나, Node.js와 같은 프레임워크를 사용하면 서버측 프로그래밍도 가능</li>
+</ul>
+</li>
+<li>JavaScript 프레임워크
+<ol>
+<li>React
+<ul>
+<li>유저 인터페이스를 만드는 데 사용되는 오픈 소스 자바스크립트 라이브러리</li>
+<li>페이스북에서 개발</li>
+<li>싱글 페이지 애플리케이션(SPA)이나 모바일 애플리케이션 개발에 사용될 수 있다.</li>
+</ul>
+</li>
+<li>Vue.js
+<ul>
+<li>자바스크립트로 개발된 컴포넌트 구조 기반 프론트엔드 프레임워크</li>
+<li>고성능의 싱글 페이지 애플리케이션(SPA)을 구축하는 데 이용가능하다.</li>
+<li>Evan You에 의해 개발</li>
+</ul>
+</li>
+<li>AngularJS
+<ul>
+<li>자바스크립트 기반의 오픈 소스 프론트엔드 웹 애플리케이션 프레임워크</li>
+<li>구글에서 개발</li>
+</ul>
+</li>
+<li>Ajax(Asynchronous JavaScript and XML)
+<ul>
+<li>비동기적인 웹 애플리케이션의 제작을 위한 웹 개발 기법</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>UI 관련용어</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>용어</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>웹 표준</td>
+<td>월드 와이드 웹의 측면을 서술하고 정의하는 공식 표준이나 다른 기술 규격을 말한다.</td>
+</tr>
+<tr>
+<td>웹 호환성</td>
+<td>이용자의 단말기(PC, 모바일 기기 등)의 하드웨어 및 소프트웨어 환경이 다른 경우에도 동등한 서비스를 제공할 수 있는 것을 말한다.</td>
+</tr>
+<tr>
+<td>웹 접근성</td>
+<td>장애인과 비장애인 모두가 동등하게 웹 사이트에 접근하여 이용할 수 있도록 보장하는 방식을 말한다.</td>
+</tr>
+<tr>
+<td>반응형 웹</td>
+<td>PC, Mobile 등 다양한 디바이스에서 화면크기에 맞춰 하나의 사이트를 보여준다.</td>
+</tr>
+<tr>
+<td>인포그래픽<br/>(Infographic)</td>
+<td>정보(Information)와 그래픽(Graphic)의 합성어로, 복잡한 정보를 쉽고 빠르게 전달하기 위해 정보를 분석, 정리하여 차트, 그래프, 아이콘, 그래픽스, 이미지 등을 활용하여 시각화한 것을 말한다.</td>
+</tr>
+<tr>
+<td>브랜드 아이덴티티(BI)</td>
+<td>사용자에게 전달하고자 하는 특정 브랜드의 가치와 의미를 반영한 심적 표상을 말한다.</td>
+</tr>
+<tr>
+<td>내비게이션<br/>(Navigation)</td>
+<td>하이퍼링크를 따라 웹 공간의 정보를 요청하고 받아오는 웹 브라우징을 의미하며, 웹 사이트를 탐색하기 위한 도구를 뜻하기도 한다.</td>
+</tr>
+<tr>
+<td>아코디언(Accordion)</td>
+<td>사용자가 원하는 정보만 선택적으로 볼 수 있게 접을 수 있는 내용 패널을 말한다.</td>
+</tr>
+<tr>
+<td>플레이스 홀더<br/>(Placeholder)</td>
+<td>사용자가 값을 입력하는 데 참고할 수 있도록, 입력 필드에 제공되는 간략한 텍스트 도움말을 말한다.</td>
+</tr>
+<tr>
+<td>필터링(Filtering)</td>
+<td>원하지 않는 데이터를 차단하거나, 원하는 데이터만 볼 수 있도록 해주는 기능을 말한다.</td>
+</tr>
+<tr>
+<td>입력 폼(Input Form)</td>
+<td>다양한 입력 필드로 구성되어, 사용자가 웹 서버로 전송할 정보를 입력 할 수 있는 웹 문서의 일부를 말한다.</td>
+</tr>
+<tr>
+<td>입력 필드(Input Field)</td>
+<td>사용자가 정보를 입력하거나 선택하는 데 이용되는 사용자 인터페이스 요소를 말한다.</td>
+</tr>
+<tr>
+<td>썸네일(Thumbnail)</td>
+<td>커다란 이미지를 축소하여 제공한 이미지를 말한다.</td>
+</tr>
+<tr>
+<td>레이블(Label)</td>
+<td>입력폼을 구성하는 다양한 입력 필드를 식별하기 위해 사용하는 명칭을 말한다.</td>
+</tr>
+<tr>
+<td>대체 텍스트<br/>(Alternative Text)</td>
+<td>콘텐츠를 대신하기 위해 제공되는 텍스트를 의미한다.</td>
+</tr>
+<tr>
+<td>초점(Focus)</td>
+<td>웹 페이지에서 사용자가 선택한 해당 요소에 있을 때, 해당 요소에 Focus가 있다고 한다.</td>
+</tr>
+</tbody>
+</table></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230411/Engineer_Information_Processing1-4/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
