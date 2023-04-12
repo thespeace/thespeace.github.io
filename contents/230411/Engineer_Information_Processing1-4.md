@@ -1,5 +1,5 @@
 ---
-date: '2023-03-26'
+date: '2023-04-11'
 title: '[정처기 실기]1-4.소프트웨어 구축'
 categories: ['정처기 실기']
 summary: 'Chapter04.화면 설계'
