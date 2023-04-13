@@ -1,0 +1,620 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter05.서버 프로그램 구현- Section2.개발 프레임워크, Section3.모듈 구현"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-5-2.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter05.서버 프로그램 구현- Section2.개발 프레임워크, Section3.모듈 구현"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-5-2.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-5-2.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter05.서버 프로그램 구현- Section2.개발 프레임워크, Section3.모듈 구현"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-5-2.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230413/Engineer_Information_Processing1-5-2/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-5-2.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.04.13.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter05.서버 프로그램 구현</h1>
+<h2>Section02. 개발 프레임워크</h2>
+<ol>
+<li>프레임워크의 개념
+<ul>
+<li>소프트웨어 개발에 공통적으로 사용되는 구성 요소와 아키텍처를 일반화하여 송쉽게 구현할 수 있도록 여러 가지 기능들을 제공해주는 반제품 형태의 소프트웨어</li>
+<li>소프트웨어 개발에 바탕이 되는 템플릿과 같은 역할을 하는 클래스들과 인터페이스들의 집합</li>
+<li>소프트웨어 개발 시 공통적인 부분을 제공</li>
+</ul>
+</li>
+<li>프레임워크의 특징
+<ol>
+<li>모듈화(Modularity)
+<ul>
+<li>프레임워크는 구현을 인터페이스 뒤에 감추는 캡슐화를 통해서 모듈화를 강화</li>
+<li>설계와 구현의 변경에 따르는 영향을 최소화시킴으로써 쉽게 소프트웨어의 품질을 향상 시킴</li>
+</ul>
+</li>
+<li>재사용성(Reusability)
+<ul>
+<li>프레임워크가 제공하는 인터페이스는 여러 애플리케이션에서 반복적으로 사용할 수 잇는 일반적인 컴포넌트를 정의할 수 있게 함으로써 재사용성을 높여준다.</li>
+<li>소프트웨어의 품질, 성능, 신뢰성, 상호 운용성을 향상시키고, 프로그래머의 생산성을 높여준다.</li>
+</ul>
+</li>
+<li>확장성(Extensibility)
+<ul>
+<li>다형성(Polymorphism)을 통해 애플리케이션의 프레임워크의 인터페이스를 확장할 수 있게 한다.</li>
+</ul>
+</li>
+<li>제어의 역흐름(Inversion of Control)
+<ul>
+<li>프레임워크가 외부의 이벤트에 대해 애플리케이션이 어떠한 메소드들을 수행해야 하는지 결정</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>프레임워크의 구분
+<ol>
+<li>Java 프레임워크
+<ul>
+<li>전자정부 표준 프레임워크</li>
+<li>스트럿츠</li>
+<li>스프링</li>
+</ul>
+</li>
+<li>ORM 프레임워크
+<ul>
+<li>아이바티스(iBatis)</li>
+<li>마이바티스(myBatis)</li>
+<li>하이버네이트(Hibernate)</li>
+</ul>
+</li>
+<li>자바스크립트 프레임워크
+<ul>
+<li>앵귤러제이에스(AngularJS)</li>
+<li>ReactJS</li>
+<li>ExtJS</li>
+</ul>
+</li>
+<li>프론트엔드 프레임워크
+<ul>
+<li>Bootstrap</li>
+<li>Foundation</li>
+<li>MDL</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>라이브러리(Library)
+<ul>
+<li>컴퓨터 프로그램에서 빈번하게 사용되는 루틴 또는 리소스(클래스, 템플릿, 설정 데이터 등)를 모아둔 것</li>
+<li>재사용이 필요한 기능으로 반복적인 코드 작성을 없애기 위해 언제든지 필요한 곳에서 호출하여 사용할 수 있도록 클래스(Class)나 함수(Function)로 만들어진 것</li>
+<li>라이브러리는 애플리케이션의 특정 기능, 프레임워크는 애플리케이션의 구조</li>
+</ul>
+</li>
+<li>API(Application Programming Interface)
+<ul>
+<li>일종의 소프트웨어 인터페이스이며 다른 종류의 소프트웨어에 서비스를 제공한다.</li>
+<li>API는 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스</li>
+<li>API 특징
+<ul>
+<li>개발 비용 감축</li>
+<li>반복 작업 줄이기</li>
+<li>쉬운 유지 관리</li>
+<li>새로운 수익 채널의 확대</li>
+<li>비즈니스 파이의 확장</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2>Section03. 모듈 구현</h2>
+<ol>
+<li>단위 모듈 구현
+<ol>
+<li>단위 모듈 구현의 개념
+<ul>
+<li>소프트웨어를 기능 단위로 분해하여 구현하는 기법</li>
+<li>서브시스템, 서브루틴, 작업 단위 등으로 나누어 각 모듈이 독립적으로 활용될 수 있게 구현</li>
+<li>모듈의 크기는 작고, 하나의 일만을 수행해야 한다.</li>
+<li>모듈의 크기가 작으면 읽기 쉽고, 구현하기 쉬우며, 테스트 부담이 적어진다.</li>
+</ul>
+</li>
+<li>단위 모듈 구현 시 장점
+<ul>
+<li>프로그램의 효율적인 관리 및 성능이 향상</li>
+<li>전체적인 소프트웨어 복잡성 감소 및 이해성 증대</li>
+<li>테스트, 모듈 통합, 변경 용이성 쉬움</li>
+<li>기능의 분리가 가능하고 인터페이스가 단순해짐</li>
+<li>오류의 파급효과 최소화</li>
+<li>모듈의 재사용으로 개발과 유지보수가 용이</li>
+</ul>
+</li>
+<li>효과적인 모듈화
+<ul>
+<li>결합도를 낮추고 응집도를 높여 모듈의 독립성을 높임</li>
+<li>FAN-OUT 최소화, FAN-IN 증가</li>
+<li>모듈 인터페이스를 평가하여 복잡성과 중복성을 줄이고 일관성을 높인다.</li>
+<li>기능 예측이 가능한 모듈을 정의</li>
+<li>하나의 입력과 하나의 출력을 유지</li>
+</ul>
+</li>
+<li>단위 모듈 설계의 원리
+<ol>
+<li>단계적 분해
+<ul>
+<li>처음엔 간단히 작성하고, 점점 세밀하게 작성</li>
+</ul>
+</li>
+<li>추상화
+<ul>
+<li>복잡한 문제를 일반화하여, 쉽게 이해할 수 있도록 한다.</li>
+</ul>
+</li>
+<li>독립성
+<ul>
+<li>모듈은 응집도를 높이고, 결합도는 낮춰 독립성을 가져야 한다.</li>
+</ul>
+</li>
+<li>정보은닉
+<ul>
+<li>모듈 내부의 데이터를 외부에 은폐</li>
+</ul>
+</li>
+<li>분할과 정복
+<ul>
+<li>큰 문제를 작게 나누어 하나씩 해결</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>단위 모듈 작성 원칙
+<ol>
+<li>정확성(Correctness)
+<ul>
+<li>해당 기능이 실제 시스템 구현 시 필요한지 여부를 알 수 있도록 정확하게 작성</li>
+</ul>
+</li>
+<li>명확성(Clarity)
+<ul>
+<li>해당 기능에 대해 일관되게 이해되고 한 가지로 해석될 수 있도록 작성</li>
+</ul>
+</li>
+<li>완정성(Completeness)
+<ul>
+<li>시스템이 구현될 때 필요하고 요구되는 모든 것을 기술</li>
+</ul>
+</li>
+<li>일관성(Consistency)
+<ul>
+<li>공통 기능들 간에 상호 충돌이 없도록 작성</li>
+</ul>
+</li>
+<li>추적성(Traceability)
+<ul>
+<li>공통 기능에 대한 요구사항 출처와 관련 시스템 등의 유기적 관계에 대한 식별이 가능하도록 작성</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>결합도
+<ol>
+<li>결합도(Coupling)의 개념
+<ul>
+<li>어떤 모듈이 다른 모듈에 의존하는 정도</li>
+<li>두 모듈 사이의 연관 관계</li>
+<li>결합도가 낮을수록 잘 설계된 모듈이다.</li>
+</ul>
+</li>
+<li>결합도 유형
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">구분</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">자료 결합도<br/>(Data Coupling)</td>
+<td align="left">모듈 간의 인터페이스로 값이 전달되는 경우</td>
+</tr>
+<tr>
+<td align="center">스탬프 결합도<br/>(Stamp Coupling)</td>
+<td align="left">모듈 간의 인터페이스로 배열이나 오브젝트, 스트럭처 등이 전달되는 경우</td>
+</tr>
+<tr>
+<td align="center">제어 결합도<br/>(Control Coupling)</td>
+<td align="left">단순 처리할 대상인 값만 전달되는 것이 아니라 어떻게 처리를 해야 한다는 제어 요소가 전달되는 경우</td>
+</tr>
+<tr>
+<td align="center">외부 결합도<br/>(External Coupling)</td>
+<td align="left">어떤 모듈에서 선언한 데이터(변수)를 외부의 다른 모듈에서 참조하는 경우</td>
+</tr>
+<tr>
+<td align="center">공통 결합도<br/>(Common Coupling)</td>
+<td align="left">파라미터가 아닌 모듈 밖에 선언되어 있는 전역 변수를 참조하고 전역 변수를 갱신하는 식으로 상호 작용하는 경우</td>
+</tr>
+<tr>
+<td align="center">내용 결합도<br/>(Content Coupling)</td>
+<td align="left">다른 모듈 내부에 있는 변수나 기능을 다른 모듈에서 사용하는 경우</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>응집도
+<ol>
+<li>응집도(Cohesion)의 개념
+<ul>
+<li>모듈의 독립성을 나타내는 개념으로, 모듈 내부 구성요소 간 연관 정도</li>
+<li>정보 윽닉 개념의 확장개념으로, 하나의 모듈은 하나의 기능을 수행하는 것을 의미</li>
+<li>응집도는 높을수록 좋고, 결합도는 낮을수록 이상적</li>
+</ul>
+</li>
+<li>응집도 유형
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">구분</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">기능적 응집도<br/>(Functional Cohesion)</td>
+<td align="left">모듈 내부의 모든 기능이 단일한 목적을 위해 수행되는 경우</td>
+</tr>
+<tr>
+<td align="center">순차적 응집도<br/>(Sequential Cohesion)</td>
+<td align="left">모듈 내에서 한 활동으로부터 나온 출력값을 다른 활동이 사용할 경우</td>
+</tr>
+<tr>
+<td align="center">통신적 응집도<br/>(Communication Cohesion)</td>
+<td align="left">동일한 입력과 출력을 사용하여 다른 기능을 수행하는 활동들이 모여 있을 경우</td>
+</tr>
+<tr>
+<td align="center">절차적 응집도<br/>(Procedural Cohesion)</td>
+<td align="left">모듈이 다수의 관련 기능을 가질 때 모듈 안의 구성 요소들이 그 기능을 순차적으로 수행할 경우</td>
+</tr>
+<tr>
+<td align="center">시간적 응집도<br/>(Temporal Cohesion)</td>
+<td align="left">연관된 기능이라기보다는 특정 시간에 처리되어야 하는 활동들을 한 모듈에서 처리할 경우</td>
+</tr>
+<tr>
+<td align="center">논리적 응집도<br/>(Logical Cohesion)</td>
+<td align="left">유사한 성격을 갖거나 특정 형태로 분류되는 처리 요소들이 한 모듈에서 처리되는 경우</td>
+</tr>
+<tr>
+<td align="center">우연적 응집도<br/>(Coincidental Cohesion)</td>
+<td align="left">모듈 내부의 각 구성 요소들이 연관이 없을 경우</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>팬인(Fan-in), 팬아웃(Fan-out)
+<ol>
+<li>팬인(Fan-in), 팬아웃(Fan-out)의 개념
+<ul>
+<li>소프트웨어의 구성요소인 모듈을 계층적으로 분석하기 위해 활용</li>
+<li>팬인과 팬아웃 분석을 통해 시스템의 복잡도를 측정</li>
+<li>시스템 복잡도를 최적화하기 위해서는 팬인은 높게, 팬 아웃은 낮게 설계</li>
+<li>팬인 : 얼마나 많은 모듈들이 현재 모듈을 호출하는지를 나타낸다. / 해당 모듈로 들어오는 상위 모듈 수</li>
+<li>팬아웃 : 해당 모듈에서 호출하는 하위 모듈 수</li>
+</ul>
+</li>
+<li>팬인/팬아웃 계산법
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 730px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/2988de2bcf75d9f6a8d69aab4e7537bc/a6a70/FaninFanout.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 64.0625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABsElEQVR42oWSXU/UQBSG+6v9DRqjRrwwQU24kws1kQtcYAUkKwGjrgFxzSpht7tbWrZDe+az087MMZ1KjRvEN3Nx5uM552TeE+R5JqQUQlJKASDPc0pplmVSSoAcADjnlFLOuVIKAKiXkkpIGdQhUCGEUqrBtNYeFowxAGCMcc6EEFJKVZcRjNW5hOCBc84665xDROfVBq1sc361bYPAP62Xse7J3vTWix/DmCOiB9DWqVCV1udcVNBGxrqjCe0NLwnT9gprVBp7Hevh7QG52xkdnOabX9Pld5OQKEQ8TcSDzfHq4Tki6upPs4twb3j56G34JYSN4/lSdxwSiYizTD3rTdf6iYf/UXmtn9xeP3s/JA+3xk/3plGm7rw5e7wzGUR0qRs+P4x8264oivl8TlLyF/xpBKsf4m8ztvOdbJ2QlOntAdn/mU2JfPkx6Z6kDWyM1V6LbVfGrR+lrz5fgKx0ZV/3LzrHaVGa2oj/fpgq7Upvdn9jFOcF1+ZeZ7S8O+Gq8obdCBel1ca1bhn7+6IyrjROlfYmnz3grENV6Cg6j+NEl1Xjs/WT0wzcdYXxF/574tQmh1YJAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/2988de2bcf75d9f6a8d69aab4e7537bc/a59e9/FaninFanout.webp 192w,
+/static/2988de2bcf75d9f6a8d69aab4e7537bc/0ca9f/FaninFanout.webp 384w,
+/static/2988de2bcf75d9f6a8d69aab4e7537bc/3a833/FaninFanout.webp 730w"
+              sizes="(max-width: 730px) 100vw, 730px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/2988de2bcf75d9f6a8d69aab4e7537bc/3b721/FaninFanout.png 192w,
+/static/2988de2bcf75d9f6a8d69aab4e7537bc/66595/FaninFanout.png 384w,
+/static/2988de2bcf75d9f6a8d69aab4e7537bc/a6a70/FaninFanout.png 730w"
+            sizes="(max-width: 730px) 100vw, 730px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/2988de2bcf75d9f6a8d69aab4e7537bc/a6a70/FaninFanout.png"
+            alt="FaninFanout"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+</ol>
+</li>
+<li>공통 모듈 구현
+<ol>
+<li>공통 모듈 구현 순서
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 722px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/961f1519d02f5b42a7b41d54eef06355/ad973/CommonModule.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 49.479166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB3ElEQVR42jWQ2W6bQAAA+f+vaar2ycrZOBhibrPL3hcsYLC57DitVLdKo0rzMJrHcZrj24/EeKDZgMaDzTor3dyGbEjVKZFLIuYP5JKqJVXnVJ0+eyTmw/zT2cnj18dstUFfboOb+/jmLry5i1YecfNmndXrYliD7iW3z2l5H4iHSD6E0s3tY2KJXRysDwVmmLAgil+DMIjibRCFcYIwAQXZwHoLDCxIBrDrhd5rHERZQXgCGLOTQ6uBUMYYU0ppra21QggppZJSafNcTBnvCUZJmkpVElGlSRrHMcRcNCenOZ6Z6WTVi7Lj5Z7plpv9p4uy81G/E3tjW0SVqXvEKypMQQSRtpvend/XP/1w2h9nYRqAOZUlwBxzAwknwkDM0hwRUUIimKqoKKfzr7obh+VyvV4d1py+u+zbGt0GerXVGzz5dPHo7NHFI8s/Xzwy+//LBk8vxfAEB929OciM/k4GQD6lNiiqjFQ+7kN6ALyJWe/jPuftTnRucchYm9E6on3G2gjXsl0cZifKPxbFtBWmprhIiEWylQwTVWe0YZQwLra4pYxDCLDqdjkAsDDt5OzHCylHZkegZ1pO3I5Qz8hM3A7ITNDMvBppOeZ6ptXI7YT0SKsBm+NhvvwFnBcGy0SEW4YAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/961f1519d02f5b42a7b41d54eef06355/a59e9/CommonModule.webp 192w,
+/static/961f1519d02f5b42a7b41d54eef06355/0ca9f/CommonModule.webp 384w,
+/static/961f1519d02f5b42a7b41d54eef06355/6aa51/CommonModule.webp 722w"
+              sizes="(max-width: 722px) 100vw, 722px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/961f1519d02f5b42a7b41d54eef06355/3b721/CommonModule.png 192w,
+/static/961f1519d02f5b42a7b41d54eef06355/66595/CommonModule.png 384w,
+/static/961f1519d02f5b42a7b41d54eef06355/ad973/CommonModule.png 722w"
+            sizes="(max-width: 722px) 100vw, 722px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/961f1519d02f5b42a7b41d54eef06355/ad973/CommonModule.png"
+            alt="CommonModule"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></li>
+<li>공통 모듈 구현요소
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">구현 요소</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DTO<br/>(Data Transfer Object)</td>
+<td align="left">프로레스 사이에서 데이터를 전송하는 객체<br/>Getter, Setter 메서드만 포함된다.</td>
+</tr>
+<tr>
+<td align="center">VO<br/>(Value Object)</td>
+<td align="left">도메인에서 속성들을 묶어서 특정 값을 나타내는 객체<br/>DTO와 동일한 개념이나 차이점은 Read-Only 속성 객체이다.</td>
+</tr>
+<tr>
+<td align="center">DAO<br/>(Data Access Object)</td>
+<td align="left">실질적으로 DB에 접근하는 객체<br/>DataBase에 접근하기 위한 로직 &#x26; 비지니스 로직을 분리하기 위해 사용</td>
+</tr>
+<tr>
+<td align="center">Service</td>
+<td align="left">DAO 클래스를 호출하는 객체</td>
+</tr>
+<tr>
+<td align="center">Controller</td>
+<td align="left">비즈니스 로직을 수행하는 객체</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>공통 모듈 구현
+<ol>
+<li>DTO/VO 구현</li>
+</ol>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>vo</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CodeVO</span><span class="token punctuation">{</span>
+     <span class="token keyword">private</span> <span class="token class-name">String</span> code<span class="token punctuation">;</span>
+     <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+     <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>code<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setCode</span><span class="token punctuation">(</span><span class="token class-name">String</span> code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>code <span class="token operator">=</span> code<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setName</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name"><span class="token namespace">this<span class="token punctuation">.</span></span>Name</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="2">
+<li>SQL 문 구현</li>
+</ol>
+<div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">mapper</span> <span class="token name">PUBLIC</span> <span class="token string">"-//ibatis.apache.org//DTD Mapper 3.0//EN"</span>
+<span class="token string">"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mapper</span> <span class="token attr-name">namespace</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.explain.sql<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>getCodeList<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.explain.vo.CodeVo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         SELECT
+             code, name
+         FROM tb_code
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
+
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>update</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>updateCodeInfo<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>com.explain.vo.CodeVo<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+         UPDATE tb_code
+         SET
+             name = #{name, jdbcType=CHAR}
+         WHERE code = #{code, jdbcType=INTEGER}
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>update</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span></code></pre></div>
+<ol start="3">
+<li>DAO 구현</li>
+</ol>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>dao</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span><span class="token class-name">CodeVo</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Repository</span><span class="token punctuation">(</span><span class="token string">"codeDao"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CodeDao</span><span class="token punctuation">{</span>
+     <span class="token annotation punctuation">@Autowired</span>
+     <span class="token keyword">private</span> <span class="token class-name">SqlSession</span> sqlSession<span class="token punctuation">;</span>
+
+     <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CodeVo</span><span class="token punctuation">></span></span> <span class="token function">getCodeList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> sqlSession<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span><span class="token string">"com.explain.sql.getCodeList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+
+     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">updateCodeIsUse</span><span class="token punctuation">(</span><span class="token class-name">CodeVo</span> code<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> sqlSession<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token string">"com.explain.sql.updateCodeInfo"</span><span class="token punctuation">,</span> code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="4">
+<li>Service 구현</li>
+</ol>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>service</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span><span class="token class-name">CodeVO</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>dao<span class="token punctuation">.</span></span><span class="token class-name">CodeDao</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Service</span><span class="token punctuation">(</span><span class="token string">"codeService"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CodeService</span><span class="token punctuation">{</span>
+     <span class="token annotation punctuation">@Resource</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"codeDao"</span><span class="token punctuation">)</span>
+     <span class="token keyword">private</span> <span class="token class-name">CodeDao</span> codeDao<span class="token punctuation">;</span>
+
+     <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CodeVo</span><span class="token punctuation">></span></span> <span class="token function">getCodeList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> codeDao<span class="token punctuation">.</span><span class="token function">getCodeList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+
+     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">updateCodeIsUse</span><span class="token punctuation">(</span><span class="token class-name">CodeDao</span> codeDao<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+         <span class="token keyword">return</span> codeDao<span class="token punctuation">.</span><span class="token function">updateCodeIsUse</span><span class="token punctuation">(</span>codeDao<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="5">
+<li>Controller 구현</li>
+</ol>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>controller</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>vo<span class="token punctuation">.</span></span><span class="token class-name">CodeVo</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>dao<span class="token punctuation">.</span></span><span class="token class-name">CodeDao</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>explain<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">CodeService</span></span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Controller</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CodeController</span><span class="token punctuation">{</span>
+     <span class="token annotation punctuation">@Autowired</span>
+     <span class="token keyword">private</span> <span class="token class-name">CodeService</span> codeService<span class="token punctuation">;</span>
+
+     <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/code/list"</span><span class="token punctuation">)</span>
+     <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">CodeVO</span><span class="token punctuation">></span><span class="token punctuation">></span></span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token keyword">try</span><span class="token punctuation">{</span>
+             <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">CodeVO</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> codeService<span class="token punctuation">.</span><span class="token function">getCodeList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+             <span class="token keyword">if</span><span class="token punctuation">(</span>list <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                 <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">CodeVO</span><span class="token punctuation">></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token punctuation">}</span>
+             <span class="token keyword">else</span><span class="token punctuation">{</span>
+                 <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">CodeVO</span><span class="token punctuation">></span><span class="token punctuation">></span></span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> <span class="token class-name">HttpStatus</span><span class="token punctuation">.</span><span class="token constant">NO_CONTENT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token punctuation">}</span>
+         <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+             logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+<li>Annotation
+<ol>
+<li>Annotation 개념
+<ul>
+<li>사전적으로는 “주석”이라는 의미를 가지고 있다.</li>
+<li>자바코드에 주석처럼 달아 특수한 의미를 부여한다.</li>
+<li>컴파일 또는 런타임에 해석된다.</li>
+</ul>
+</li>
+<li>Annotation 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">@Controller</td>
+<td align="left">스프링 MVC의 컨트롤러 객체임을 명시</td>
+</tr>
+<tr>
+<td align="center">@RequestMapping</td>
+<td align="left">특정 URL에 매칭되는 클래스나 메소드임을 명시</td>
+</tr>
+<tr>
+<td align="center">@RequestParam</td>
+<td align="left">요청(request)에서 특정한 파라미터 값을 찾아낼 때 사용하는 어노테이션</td>
+</tr>
+<tr>
+<td align="center">@RequestHeader</td>
+<td align="left">요청(request)에서 특정 HTTP 헤더 정보를 추출할 때 사용</td>
+</tr>
+<tr>
+<td align="center">@PathVariable</td>
+<td align="left">현재 URL에서 원하는 정보를 추출할 때 사용</td>
+</tr>
+<tr>
+<td align="center">@CookieValue</td>
+<td align="left">현재 사용자의 쿠키값을 추출할 때 사용</td>
+</tr>
+<tr>
+<td align="center">@ModelAttribute</td>
+<td align="left">자동으로 해당 객체를 뷰까지 전달하도록 한다.</td>
+</tr>
+<tr>
+<td align="center">@ResponseBody</td>
+<td align="left">리턴 타입이 HTTP의 응답 메시지로 전송</td>
+</tr>
+<tr>
+<td align="center">@RequestBody</td>
+<td align="left">요청 문자열이 그대로 파라미터로 전달</td>
+</tr>
+<tr>
+<td align="center">@Repository</td>
+<td align="left">DAO 객체</td>
+</tr>
+<tr>
+<td align="center">@Service</td>
+<td align="left">서비스 객체</td>
+</tr>
+<tr>
+<td align="center">@Scheduled</td>
+<td align="left">스프링에서 지원하는 배치 어노테이션</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230413/Engineer_Information_Processing1-5-2/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-68a316cadf90220d60eb.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-9020880bf8eb0e5b0d3a.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-3bd83f7463c5d0c6f28a.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-e1ae68b605eb2c5639bf.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-3e89de5ee0ca6434d2b5.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="5a97a936ccf105e9f059";</script><script src="/webpack-runtime-3053cbe8d74abb1a0dc8.js" async></script><script src="/framework-7c0107cb7d116f0a0f2d.js" async></script><script src="/app-68a316cadf90220d60eb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
