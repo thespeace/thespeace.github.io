@@ -1,0 +1,791 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter05.서버 프로그램 구현- Section4.서버 프로그램 구현, Section5.배치 프로그램 구현"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-5-3.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter05.서버 프로그램 구현- Section4.서버 프로그램 구현, Section5.배치 프로그램 구현"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-5-3.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-5-3.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter05.서버 프로그램 구현- Section4.서버 프로그램 구현, Section5.배치 프로그램 구현"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-5-3.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230416/Engineer_Information_Processing1-5-3/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-5-3.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.04.16.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter05.서버 프로그램 구현</h1>
+<h2>Section04.서버 프로그램 구현</h2>
+<ol>
+<li>서버 프로그램 구현
+<ol>
+<li>업무 프로세스 확인
+<ol>
+<li>업무 프로세스의 개념
+<ul>
+<li>개인이나 조직이 한 개 이상의 자원 입력을 통해 가치 있는 산출물을 제공하는 활동
+<ul>
+<li>공급자(Supplier) –(자원 / 입력)–> 프로세스(Process) –(제품,서비스 / 출력)–> 고객(Customer)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>업무 프로세스 구성 요소
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">구성 요소</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">프로세스 책임자</td>
+<td align="left">프로세스의 성과와 운영을 책임지는 구성원<br/>프로세스를 설계하고 지속적으로 유지한다.</td>
+</tr>
+<tr>
+<td align="center">프로세스 맵</td>
+<td align="left">상위 프로세스와 하위 프로세스의 체계를 도식화하여 업무의 청사진 표현<br/>구조적 분석 기법 : 자료 흐름도<br/>객체지향 분석 기법 : UML</td>
+</tr>
+<tr>
+<td align="center">프로세스 Task 정의서</td>
+<td align="left">결과물을 산출하기 위해 Task들의 운영방법을 문서화한다.</td>
+</tr>
+<tr>
+<td align="center">프로세스 성과 지표</td>
+<td align="left">프로세스의 과정과 결과를 고객 입장에서 정량적으로 표현한 성과 지표</td>
+</tr>
+<tr>
+<td align="center">프로세스 조직</td>
+<td align="left">프로세스를 성공적으로 수행하기 위해 개인들의 업무를 유기적으로 수행하는 구성원</td>
+</tr>
+<tr>
+<td align="center">경영자의 리더십</td>
+<td align="left">경영자는 프로세스의 중요성을 인식한다.<br/>기업의 경영 방침을 확고하게 한다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>서버 프로그램 구현
+<ul>
+<li>업무 프로세스(Business Logic)를 기반으로 개발언어, 도구를 이용하여 서버에서 서비스를 제공하는 데 필요한 기능을 구현하는 활동</li>
+<li>서버 프로그램 구현 절차</li>
+</ul>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4ce7cb66c578844d5e9f990ee2990eea/d6170/ServerProcedure.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 31.770833333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA9ElEQVR42m1Qu07EQAzM/38DFRVfgERDCQIpEgjEgY6K4i533F7ifTj2er1GmxRQMNXI9lgz09UFqmr/oZqpKgR0U9RSaq1/t93v3fKk1jo4f4ZUq5ZScs7MLI3IylXbfEX39r7dfGyfXzcpxHA8ICIxM2ciQsQQAgDEGFNK3nsAYGZEFJEmvn/sv0+uf3oB781MRIjmmOb2IGcf4m43IGLOOcY0gVdVkeaiie8e+uub24vLq3kmW8LHRA7mNV6KMLo9M5lZADeNBzMrpbQsIh0RjxO4ccpE8XhkmsfDpz9/lVKaEQ7o96piZpRO6IelxLWg+gMtMVke8mqQZgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4ce7cb66c578844d5e9f990ee2990eea/a59e9/ServerProcedure.webp 192w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/0ca9f/ServerProcedure.webp 384w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/dc9b9/ServerProcedure.webp 768w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/16274/ServerProcedure.webp 850w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4ce7cb66c578844d5e9f990ee2990eea/3b721/ServerProcedure.png 192w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/66595/ServerProcedure.png 384w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/fe486/ServerProcedure.png 768w,
+/static/4ce7cb66c578844d5e9f990ee2990eea/d6170/ServerProcedure.png 850w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4ce7cb66c578844d5e9f990ee2990eea/fe486/ServerProcedure.png"
+            alt="ServerProcedure"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
+<ul>
+<li>구현 요소
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">구현 요소</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DTO<br/>(Data Transfer Object)</td>
+<td align="left">프로세스 사이에서 데이터를 전송하는 객체<br/>Getter, Setter 메서드만 포함한다.</td>
+</tr>
+<tr>
+<td align="center">VO<br/>(Value object)</td>
+<td align="left">도메인에서 속성들을 묶어서 특정 값을 나타내는 객체<br/>DTO와 동일한 개념이나 차이점은 Read-Only 속성 객체이다.</td>
+</tr>
+<tr>
+<td align="center">DAO<br/>(Data Access Object)</td>
+<td align="left">실질적으로 DB에 접근하는 객체<br/>DataBase에 접근하기 위한 로직 &#x26; 비지니스 로직을 분리하기 위해 사용</td>
+</tr>
+<tr>
+<td align="center">Service</td>
+<td align="left">DAO 클래스를 호출하는 객체</td>
+</tr>
+<tr>
+<td align="center">Controller</td>
+<td align="left">비즈니스 로직을 수행하는 객체</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MVC 모델의 계층
+<ol>
+<li>프레젠테이션 계층(Presentation Layer)
+<ul>
+<li>사용자 인터페이스</li>
+<li>사용자가 선택할 수 있는 기능 및 부가정보를 전달할 양식을 표현한다.</li>
+<li>JSP와 JSTL 태그 라이브러리를 결합하는 방식(JAVA의 경우)</li>
+</ul>
+</li>
+<li>제어 계층(Control Layer)
+<ul>
+<li>프레젠테이션 계층과 비즈니스 로직 계층을 분리하기 위한 컨트롤러를 제공</li>
+<li>어떤 요청이 들어왔을 때 어떤 로직이 처리해야 하는지를 결정한다.</li>
+<li>사용자 요청을 검증하고 로직에 요청을 전달하는 일과 로직에서 전달된 응답을 적절한 뷰에 연결하는 역할</li>
+</ul>
+</li>
+<li>비즈니스 로직 계층(Business Logic Layer)
+<ul>
+<li>핵심 업무를 어떻게 처리하는지에 대한 방법을 구현하는 계층</li>
+<li>핵심 업무 로직의 구현과 그에 관련된 데이터의 적합성 검증, 트랜잭션 처리 등을 담당한다.</li>
+</ul>
+</li>
+<li>퍼시스턴스 계층(Persistence Layer)
+<ul>
+<li>데이터 처리를 담당하는 계층</li>
+<li>데이터의 생성/수정/삭제/선택(검색)과 같은 CRUD 연산을 수행한다.</li>
+</ul>
+</li>
+<li>도메인 모델 계층(Domain Model Layer)
+<ul>
+<li>각 계층 사이에 전달되는 실질적인 비즈니스 객체</li>
+<li>데이터 전송 객체(DTO) 형태로 개발자가 직접 제작해서 데이터를 넘기게 된다.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>DBMS 접속기술
+<ol>
+<li>DBMS 접속기술의 개념
+<ul>
+<li>프로그램에서 DB에 접근하여 DML을 사용 가능하게 하는 기술</li>
+<li>프로그램이 DB를 사용할 수 있도록 연결해주는 인터페이스</li>
+</ul>
+</li>
+<li>DBMS 접속기술 종류
+<ol>
+<li>소켓통신
+<ul>
+<li>응용프로그램과 DBMS가 주고받는 통신</li>
+<li>DBMS사에서 프로토콜을 공개하지 않기 때문에 개발은 어렵다.</li>
+</ul>
+</li>
+<li>Vender API
+<ul>
+<li>DBMS사에서 공개한 API를 이용해 DBMS와 통신</li>
+<li>DBMS사마다 API 사용법이 상이하다.</li>
+</ul>
+</li>
+<li>JDBC(Java DataBase Connectivity)
+<ul>
+<li>Java에서 DB에 접속하고 SQL문을 수행할 때 사용되는 표준 API</li>
+<li>JDBC는 Java SE(Standard Edition)에 포함되어 있다.</li>
+<li>java sql 패키지와 javax.sql 패키지에 포함되어 있다.</li>
+<li>접속하려는 DBMS에 맞는 드라이버가 필요하다.</li>
+</ul>
+</li>
+<li>ODBC(Open DataBase Connectivity)
+<ul>
+<li>데이터베이스에 접근하기 위한 표준 규격</li>
+<li>개발언어에 관계없이 사용할 수 있따.</li>
+<li>모든 DBMS에 접근하는 방법을 통일시킴</li>
+<li>1990년대 초 MS사에서 개발됨</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>ORM(Object-Relational Mapping) 프레임워크</li>
+</ol>
+<ol>
+<li>ORM 프레임워크의 개념
+<ul>
+<li>객체와 관계형 데이터베이스의 데이터를 자동으로 매핑(연결)해 주는 것</li>
+<li>객체지향 프로그램에서 클래스를 생성하고, 관계형 데이터베이스의 테이블의 내용을 매핑</li>
+<li>객체지향 프로그램을 통해 데이터베이스의 데이터를 다룬다.</li>
+</ul>
+</li>
+<li>ORM의 장/단점
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">장점</th>
+<th align="left">비즈니스 로직에 더 집중할 수 있다.<br/>재사용 및 유지보수의 편리성이 증가한다.<br/>DBMS에 대한 종속성이 줄어든다.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">단점</td>
+<td align="left">완벽한 ORM으로만 서비스를 구현하기 어렵다.<br/>프로시저가 많은 시스템에선 ORM의 객체지향 장점을 활용하기 어렵다.</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>매핑 기술 비교
+<ol>
+<li>SQL Mapper
+<ul>
+<li>SQL을 명시하여 단순히 필드를 매핑시키는 것이 목적</li>
+<li>SQL 문장으로 직접 데이터베이스 데이터를 다룬다.</li>
+<li>SQL 의존적인 방법</li>
+<li>종류 : iBatis, Mybatis, jdbc Templetes 등</li>
+</ul>
+</li>
+<li>OR Mapping(=ORM)
+<ul>
+<li>객체를 통해 간접적으로 데이터베이스를 다룬다.</li>
+<li>객체와 관계형 데이터베이스의 데이터를 자동으로 매핑</li>
+<li>ORM을 이용하면 SQL Query가 아닌 직관적인 코드로 데이터를 조작할 수 있다.</li>
+<li>종류 : JPA(Java Persistent API), Hibernate</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="4">
+<li>시큐어 코딩(Secure Coding)
+<ol>
+<li>OWASP(The Open Web Application Security Project)
+<ul>
+<li>오픈소스 웹 애플리케이션 보안 프로젝트</li>
+<li>주로 웹에 관한 정보 노출, 악성 파일 및 스크립트 보안 취약점 등을 연구하며 10대 취약점을 발표했다.</li>
+<li>OWASP Top 10
+<ul>
+<li>웹 애플리케이션 취약점 중 빈도가 많이 발생하고, 보안상 영향을 줄 수 있는 10가지를 선정하여 발표</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>시큐어 코딩 가이드
+<ol>
+<li>시큐어 코딩 가이드의 개념
+<ul>
+<li>해킹 등 사이버 공격의 원인인 보안취약점을 제거해 안전한 소프트웨어를 개발하는 SW개발 기법</li>
+<li>개발자의 실수나 논리적 오류로 인해 발생할 수 있는 문제점을 사전에 차단하여 대응하고자 하는 것</li>
+</ul>
+</li>
+<li>시큐어 코딩 가이드 항목
+<ul>
+<li>입력 데이터 검증 및 표현
+<ul>
+<li>프로그램 입력값에 대한 검증 누락 또는 부적절한 검증, 데이터 형식을 잘못 지정하여 발생하는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SQL Injection</td>
+<td align="left">SQL문을 삽입하여 DB로부터 정보를 열람 및 조작할 수 있는 공격</td>
+</tr>
+<tr>
+<td align="center">XSS(크로스<br/>사이트 스크립트)</td>
+<td align="left">악의적인 스크립트를 포함해 사용자 측에서 실행되게 유도하는 공격</td>
+</tr>
+<tr>
+<td align="center">자원 삽입</td>
+<td align="left">외부 입력값이 시스템 자원 접근 경로 또는 자원 제어에 사용되는 공격</td>
+</tr>
+<tr>
+<td align="center">위험한 형식<br/>파일 업로드</td>
+<td align="left">서버 측에서 실행될 수 있는 스크립트 파일을 업로드 하여 공격</td>
+</tr>
+<tr>
+<td align="center">명령 삽입</td>
+<td align="left">운영체제 명령어 삽입<br/>XQuery 삽입<br/>XPath 삽입<br/>LDAP 삽입</td>
+</tr>
+<tr>
+<td align="center">메모리 버퍼<br/>오버프로</td>
+<td align="left">입력 받는 값이 버퍼를 가득 채우다 못해 넘쳐흘러 버퍼 이후의 공간을 침범하는 공격</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>보안 기능
+<ul>
+<li>보안 기능을 부적절하게 구현하는 경우 발생할 수 있는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">적절한 인증 없이<br/>중요기능 허용</td>
+<td align="left">적절한 인증과정이 없이 중요정보(계좌, 개인정보 등)를 열람할 때<br/>발생하는 보안 약점</td>
+</tr>
+<tr>
+<td align="center">부적절한 인가</td>
+<td align="left">적절한 접근 제어 없이 외부 입력값을 포함한 문자열로 중요 자원에 접근할 수 있는 보안 약점</td>
+</tr>
+<tr>
+<td align="center">취약한 암호화<br/>알고리즘 사용</td>
+<td align="left">DES, MD5 등 안전하지 않은 알고리즘 사용</td>
+</tr>
+<tr>
+<td align="center">하드코딩된<br/>패스워드</td>
+<td align="left">소스코드 내에 비밀번호가 하드코딩되어 있어 소스코드 유출 시 노출되는 보안 약점</td>
+</tr>
+<tr>
+<td align="center">패스워드 평문 저장</td>
+<td align="left">계정 정보 탈취 시 패스워드 노출</td>
+</tr>
+<tr>
+<td align="center">취약한 패스워드 허용</td>
+<td align="left">비밀번호 조합규칙(영문, 숫자, 특수문자 등)이 미흡하거나 길이가 충분하지 않아 노출될 수 있는 보안 약점</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>시간 및 상태
+<ul>
+<li>동시 수행을 지원하는 병렬 시스템이나 하나 이상의 프로세스가 동작하는 환경에서 시간 및 상태를 부적절하게 관리하여 발생할 수 있는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">경쟁 조건</td>
+<td align="left">동일 자원에 대한 검사 시점과 사용 시점이 상이하여 동기화 오류, 교착 상태를 유발</td>
+</tr>
+<tr>
+<td align="center">종류되지 않는<br/>반복문 또는<br/>재귀 함수</td>
+<td align="left">종료 조건이 없어 무한 루프에 빠져 자원 고갈을 유발</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>에러 처리
+<ul>
+<li>에러를 처리하지 않거나 불충분하게 처리하여 에러 정보에 중요 정보가 포함될 때 발생 할 수 있는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">오류 메시지<br/>정보 노출</td>
+<td align="left">응용 프로그램의 민감 정보가 오류 메시지를 통해 노출됨<br/>오류 메시지는 사용자가 필요한 최소한의 정보만을 노출해야 한다.</td>
+</tr>
+<tr>
+<td align="center">오류 상황 대응 부재</td>
+<td align="left">예외처리 미구현</td>
+</tr>
+<tr>
+<td align="center">부적절한 예외 처리</td>
+<td align="left">프로그램 수행 중 발생한 예외 조건을 적절히 검사하지 않음</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>코드 오류
+<ul>
+<li>개발자가 범할 수 있는 코딩 오류로 인해 유발되는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">널 포인터 역참조</td>
+<td align="left">널 값을 고려하지 않은 코드에서 발생</td>
+</tr>
+<tr>
+<td align="center">부적절한<br/>자원 해제</td>
+<td align="left">자원을 할당받아 사용한 뒤 반환하지 않는 코드에서 발생</td>
+</tr>
+<tr>
+<td align="center">해제된 자원 사용</td>
+<td align="left">해제한 메모리를 참조하는 코드에서 발생</td>
+</tr>
+<tr>
+<td align="center">초기화되지 않은<br/>변수 사용</td>
+<td align="left">지역변수를 초기화하지 않고 사용하는 코드에서 발생</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>캡슐화
+<ul>
+<li>중요한 데이터 또는 기능성을 불충분하게 캡슐화하거나 잘못 사용해 발생하는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">잘못된 세션에 의한<br/>정보 노출</td>
+<td align="left">멀티 스레드 환경에서 서로 다른 세션 간 데이터가 공유될 수 있음</td>
+</tr>
+<tr>
+<td align="center">제거되지 않은<br/>디버그 코드</td>
+<td align="left">배포 단계에 디버그 코드가 남아 있는 경우 민감 정보가 노출될 수 있음</td>
+</tr>
+<tr>
+<td align="center">시스템 정보 노출</td>
+<td align="left">시스템 내부 데이터가 노출될 수 있음</td>
+</tr>
+<tr>
+<td align="center">잘못된 접근 지정자</td>
+<td align="left">private, public 잘못되니 접근 지정자 사용으로 민감 정보 노출될 수 있음</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>API 오용
+<ul>
+<li>의도된 사용에 반하는 방법으로 API를 사용하거나 보안에 취약한 API를 사용하여 발생 할 수 있는 보안 약점</li>
+<li>보안 약점 종류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DNS에 의존한 보안 결정</td>
+<td align="left">공격자가 DNS 정보를 변조하여 보안 결정을 우회 가능함</td>
+</tr>
+<tr>
+<td align="center">취약한 API 사용</td>
+<td align="left">금지되거나 안전하지 않은 함수를 사용함</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2>Section04.서버 프로그램 구현</h2>
+<ol>
+<li>배치 프로그램
+<ol>
+<li>배치의 개념
+<ul>
+<li>데이터를 일괄적으로 모아서 처리하는 대량의 작업을 처리</li>
+<li>컴퓨터 흐름에 따라 순차적으로 자료를 처리하는 방식</li>
+<li>배치 프로그램이란, 대량의 데이터를 모아 정기적으로 반복 처리하는 프로그램이다.</li>
+</ul>
+</li>
+<li>배치 프로그램의 필수 요소
+<ol>
+<li>대용량 데이터
+<ul>
+<li>대용량의 데이터를 처리할 수 있어야 한다.</li>
+</ul>
+</li>
+<li>자동화
+<ul>
+<li>심각한 오류 상황 외에는 사용자의 개입 없이 동작해야 한다.</li>
+</ul>
+</li>
+<li>견고함
+<ul>
+<li>비정상적인 동작 중단이 발생하지 않아야 한다.</li>
+</ul>
+</li>
+<li>안정성
+<ul>
+<li>어떤 문제가 발생했을 때, 해당 문제를 추적하고 복구할 수 있어야 한다.</li>
+</ul>
+</li>
+<li>성능
+<ul>
+<li>주어진 시간에 작업을 완료해야 하고, 다른 애플리케이션의 동작을 방해하지 않아야 한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>스케줄 관리 종류
+<ol>
+<li>크론탭(Crontab)
+<ul>
+<li>UNIX, LINUX 계열에서 사용</li>
+<li>크론탭 형식
+<ul>
+<li>[분 시 일 월 요일 명령어]</li>
+</ul>
+</li>
+<li>항목의 범위
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">필드</th>
+<th align="center">의미</th>
+<th align="left">범위</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">첫 번째</td>
+<td align="center">분</td>
+<td align="left">0 ~ 59</td>
+</tr>
+<tr>
+<td align="center">두 번째</td>
+<td align="center">시</td>
+<td align="left">0 ~ 23</td>
+</tr>
+<tr>
+<td align="center">세 번째</td>
+<td align="center">일</td>
+<td align="left">1 ~ 31</td>
+</tr>
+<tr>
+<td align="center">네 번째</td>
+<td align="center">월</td>
+<td align="left">1 ~ 12</td>
+</tr>
+<tr>
+<td align="center">다섯 번째</td>
+<td align="center">요일</td>
+<td align="left">0 ~ 6(0:일요일, 1:월요일)</td>
+</tr>
+<tr>
+<td align="center">여섯 번째</td>
+<td align="center">명령어</td>
+<td align="left">실행할 명령</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>허용 특수문자
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">특수문자</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">*</td>
+<td align="left">모든 값(매시, 매일, 매주)</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="left">특정 값이 아닌 어던 값이든 상관없음</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="left">범위를 지정할 때 (12-14 : 12시부터 14시)</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="left">여러 값을 지정할 때 (12, 14 : 12시, 14시)</td>
+</tr>
+<tr>
+<td align="center">/</td>
+<td align="left">증분값, 즉 초기값과 증가치 설정(*/20 : 매 20분마다)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>설정 예
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">형식</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">* * * * * 명령</td>
+<td align="left">매분 실행</td>
+</tr>
+<tr>
+<td align="center">30 4 * * 0 명령</td>
+<td align="left">매주 일요일 4시 30분 실행</td>
+</tr>
+<tr>
+<td align="center">10-30 4 * * * 명령</td>
+<td align="left">매일 오전 4시 10분부터 30분까지 매분 실행</td>
+</tr>
+<tr>
+<td align="center">0,10,20 * * * * 명령</td>
+<td align="left">매일 매시간 0분, 10분, 20분 실행</td>
+</tr>
+<tr>
+<td align="center">*/30 * * * * 명령</td>
+<td align="left">매 30분마다 실행</td>
+</tr>
+<tr>
+<td align="center">30 0 1 1,6 * 명령</td>
+<td align="left">1월과 6월, 1일, 0시 30분에 실행</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Spring Batch
+<ul>
+<li>백엔드의 배치처리 기능을 구현하는 데 사용하는 프레임워크</li>
+<li>대용량 및 고성능 배치 작업을 가능하게 하는 고급 기술 서비스 및 기능을 제공</li>
+<li>배치가 실패하여 작업 재시작을 하게 된다면 처음부터가 아닌 실패한 지점부터 실행</li>
+<li>Batch Job을 관리하지만 Job을 구동하거나 실행시키는 기능은 지원하지는 않는다.</li>
+<li>Batch Job을 실행시키기 위해서는 Quartz, Scheduler, Jenkins 등 전용 Scheduler를 사용</li>
+<li>구성 요소 : Job, Job Launcher, Step, Job Repository</li>
+</ul>
+</li>
+<li>Quartz Job Scheduler
+<ul>
+<li>표준 자바 프로그램을 만들어진 작업을 지정된 일정에 따라 실행시키는 데 사용하는 Java 패키지</li>
+<li>특정한 시간에 특정한 작업을 한다든지 또는 주기적으로 실행해야 할 Java 애플리케이션을 사전에 정해 놓으면 일정에 따라 실행</li>
+<li>주요 인터페이스 : Scheduler, Job, JobDetail, Trigger, JobBuilder, TriggerBuilder</li>
+<li>형식
+<ul>
+<li>[초 분 시 일 월 요일 년(생략가능)]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>배치 스케줄러 클래스 작성
+<ol>
+<li>배치 설계서 확인</li>
+<li>DTO/VO 구현</li>
+<li>SQL 문 구현</li>
+<li>DAO 구현</li>
+<li>Schedule 구현(매일 1시에 배치 실행)</li>
+</ol>
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token annotation punctuation">@Scheduled</span><span class="token punctuation">(</span>cron<span class="token operator">=</span><span class="token string">"0 0 1 * * ? "</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">scheduleExecute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token class-name">String</span> result <span class="token operator">=</span> <span class="token string">"SUCC"</span><span class="token punctuation">;</span>
+  <span class="token keyword">try</span><span class="token punctuation">{</span>
+      <span class="token comment">/* 수행해야 할 업무를 코딩한다 */</span>
+  <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      result <span class="token operator">=</span> <span class="token string">"FAIL"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"스케줄 실행 결과 : "</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+</ol>
+</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230416/Engineer_Information_Processing1-5-3/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-68a316cadf90220d60eb.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-9020880bf8eb0e5b0d3a.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-3bd83f7463c5d0c6f28a.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-e1ae68b605eb2c5639bf.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-3e89de5ee0ca6434d2b5.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="5a97a936ccf105e9f059";</script><script src="/webpack-runtime-3053cbe8d74abb1a0dc8.js" async></script><script src="/framework-7c0107cb7d116f0a0f2d.js" async></script><script src="/app-68a316cadf90220d60eb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
