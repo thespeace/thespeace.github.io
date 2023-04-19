@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.5.0"/><meta data-react-helmet="true" name="description" content="Chapter07.객체지향 구현"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[정처기 실기]1-7.소프트웨어 구축"/><meta data-react-helmet="true" property="og:description" content="Chapter07.객체지향 구현"/><meta data-react-helmet="true" property="og:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[정처기 실기]1-7.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[정처기 실기]1-7.소프트웨어 구축"/><meta data-react-helmet="true" name="twitter:description" content="Chapter07.객체지향 구현"/><meta data-react-helmet="true" name="twitter:image" content="/static/15bb6ba7418b45b5261b083e12f5d3b8/Engineer_Information_Processing.png"/><meta data-react-helmet="true" name="twitter:site" content="@사용자이름"/><meta data-react-helmet="true" name="twitter:creator" content="@사용자이름"/><style data-href="/styles.9e907bc32054b7771552.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[정처기 실기]1-7.소프트웨어 구축</title><link rel="canonical" href="https://thespeace.github.io/230418/Engineer_Information_Processing1-7/" data-baseprotocol="https:" data-basehost="thespeace.github.io"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global u5c8b4">@import url("https://avatars.githubusercontent.com/u/84652554?v=4");*{padding:0;margin:0;box-sizing:border-box;font-family:"Nanum Myeongjo",serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1088px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;522&#x27;%20width=&#x27;1088&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2ElEQVR42q1SWwqDMBD0/gfxz/7YE7SVar2ADyr4Ua2iBY3gK2ZKUgKREqHFhWSTzDI72V0DO5vBN8YYpNetLVzFDMksAZ1t4Srpl8KiKEDpgnEcMc8z+r5HXdcCb5pGvHVdh5YQUErFWeUQhMuyiEuS3GGaJsZpwsGyEMcxHMfB6XxBWZaw7SNerxqe5yGKYvg3D1fXBVOUrhQOwwDf90X2MAyR509UVYU0TYXSIAhEDFfPExDS4pFlH0JdDaXaX231ZbWG0nPira7rOq0dGzXzX2Oz12C/ATfND37MLtRPAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" data-src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" data-srcset="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/827d4/Engineer_Information_Processing.webp 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/13272/Engineer_Information_Processing.webp 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/5903f/Engineer_Information_Processing.webp 1088w" sizes="(min-width: 1088px) 1088px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1088px) 1088px, 100vw" decoding="async" loading="lazy" src="/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png" srcSet="/static/15bb6ba7418b45b5261b083e12f5d3b8/08b1d/Engineer_Information_Processing.png 272w,/static/15bb6ba7418b45b5261b083e12f5d3b8/4ef7f/Engineer_Information_Processing.png 544w,/static/15bb6ba7418b45b5261b083e12f5d3b8/98036/Engineer_Information_Processing.png 1088w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">[정처기 실기]1-7.소프트웨어 구축</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>정처기 실기</div><div>2023.04.18.</div></div></div></div><style data-emotion="css 1opytqt">.css-1opytqt{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1opytqt p{padding:3px 0;}.css-1opytqt h1,.css-1opytqt h2,.css-1opytqt h3{font-weight:800;margin-bottom:30px;}.css-1opytqt *+h1,.css-1opytqt *+h2,.css-1opytqt *+h3{margin-top:80px;}.css-1opytqt hr+h1,.css-1opytqt hr+h2,.css-1opytqt hr+h3{margin-top:0;}.css-1opytqt h1{font-size:30px;}.css-1opytqt h2{font-size:25px;}.css-1opytqt h3{font-size:20px;}.css-1opytqt blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1opytqt ol,.css-1opytqt ul{margin-left:20px;padding:30px 0;}.css-1opytqt hr{border:1px solid #000000;margin:100px 0;}.css-1opytqt a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1opytqt pre[class*="language-"]{margin:30px 0;padding:15px;font-size:15px;}.css-1opytqt pre[class*="language-"]::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1opytqt code[class*="language-"],.css-1opytqt pre[class*="language-"]{tab-size:2;}@media (max-width: 768px){.css-1opytqt{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1opytqt h1{font-size:23px;}.css-1opytqt h2{font-size:20px;}.css-1opytqt h3{font-size:17px;}.css-1opytqt img{width:100%;}.css-1opytqt hr{margin:50px 0;}}</style><div class="css-1opytqt e1ijh0y10"><h1>Chapter07.객체 지향 구현</h1>
+<h2>Section01.객체지향 설계</h2>
+<ol>
+<li>객체지향(OOP, Object Oriented Programming)
+<ol>
+<li>객체지향 개념
+<ul>
+<li>현실 세계의 유형, 무형의 모든 대상을 객체(Object)로 나누고, 객체의 행동(Method)과 고유한 값(Attribute)을 정의하여 설꼐하는 방법</li>
+<li>객체를 만들고 조작하며 객체끼리 관계를 맺음으로써 다수의 객체가 함께 수행될 수 있게 한다.</li>
+</ul>
+</li>
+<li>객체지향 구성요소
+<ol>
+<li>클래스(Class)
+<ul>
+<li>유사한 종류의 유형/무형의 존재를 속성과 연산을 정의해서 만든 툴</li>
+<li>다른 클래스와 독립적으로 디자인한다.</li>
+<li>데이터를 추상화하는 단위</li>
+</ul>
+</li>
+<li>객체(Object)
+<ul>
+<li>클래스의 인스턴스</li>
+<li>객체는 자신 고유의 속성을 가지며, 클래스에서 정의한 연산을 수행</li>
+<li>객체의 연산은 클래스에 정의된 연산을 공유함으로써 메모리를 경제적으로 사용</li>
+</ul>
+</li>
+<li>속성(Attribute)
+<ul>
+<li>객체들이 가지고 있는 고유한 데이터를 단위별로 정의한 것</li>
+<li>성질, 분류, 수량, 현재 상태 등에 대해 표현한 값</li>
+</ul>
+</li>
+<li>메서드(Method)
+<ul>
+<li>특정한 작업을 수행하기 위한 명령문의 집합</li>
+<li>객체가 가지고 있는 속성들을 변경할 수 있는 하나의 연산</li>
+</ul>
+</li>
+<li>메시지(Message)
+<ul>
+<li>객체에게 어던 행위를 하도록 지시</li>
+<li>객체의 메서드를 호출함으로써 객체 간의 상호작용을 할 수 있도록 한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>객체지향언어의 특징
+<ol>
+<li>캡슐화(Encapsulation)
+<ul>
+<li>데이터(Attribute)와 데이터를 처리하는 행동(Method)을 하나로 묶은 것</li>
+<li>캡슐화된 객체의 세부내용은 외부에 은폐(정보은닉)되어 오류의 파급 효과가 적다.</li>
+<li>캡슐화된 객체들은 재사용이 용이</li>
+<li>객체들 간의 메시지를 주고받을 때, 해당 객체의 세부 내용을 알 필요가 없으므로 인터페이스가 단순해지고, 결합도가 낮아진다.</li>
+</ul>
+</li>
+<li>정보은닉(Information Hiding)
+<ul>
+<li>캡슐화의 가장 중요한 개념</li>
+<li>다른 객체에게 자신의 데이터를 숨기고, 자신이 정의한 행동만을 통하여 접근을 허용</li>
+</ul>
+</li>
+<li>상속(Inheritance)
+<ul>
+<li>상위클래스(부모클래스)의 모든 데이터와 행동을 하위 클래스가 물려받는 것</li>
+<li>상속을 이용하면 하위 클래스는 상위 클래스의 데이터와 행동을 자신의 클래스에 다시 정의하지 않아도 된다.</li>
+<li>하위 클래스는 상위 클래스에서 상속받은 요소 외에 새로운 데이터와 행동을 추가하여 사용할 수 있다.</li>
+<li>상위클래스의 요소들을 사용할 수 있기 때문에, 소프트웨어 재사용을 증대시키는 중요한 개념</li>
+</ul>
+</li>
+<li>다형성(Polymorphism)
+<ul>
+<li>하나의 메시지에 대해 각 객체가 가지고 있는 여러 가지 방법으로 응답할 수 있는 개념</li>
+<li>객체에서 동일한 메서드명을 인자값의 유형이나 개수만 다르게 하는 오버로딩이 존재</li>
+<li>객체에서 상속받은 메서드를 재정의하는 오버라이딩이 존재</li>
+</ul>
+</li>
+<li>추상화(Abstraction)
+<ul>
+<li>어떤 실체로부터 공통적인 부분들만 모아 놓은 것</li>
+<li>객체의 성질을 분해하고, 공통된 성질을 추출하여 슈퍼 클래스를 설정한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>객체지향 설계원칙(SOLID)
+<ol>
+<li>단일 책임 원칙(SRP, Single Responsibility Principle)
+<ul>
+<li>한 클래스는 하나의 책임만을 가져야한다.</li>
+</ul>
+</li>
+<li>개방 폐쇄 원칙(OCP, Open-Closed Principle)
+<ul>
+<li>확장에는 열려 있고, 수정에는 닫혀 있어야 한다.</li>
+<li>기존의 코드를 변경하지 않으면서(Closed) 기능을 추가할 수 있도록(Open) 설계</li>
+</ul>
+</li>
+<li>리스코프 치환 원칙(LSP, Liskov Substitution Principle)
+<ul>
+<li>자식 클래스는 언제나 자신의 부모 클래스를 대체할 수 있어야 한다.</li>
+<li>부모 클래스가 들어갈 자리에 자식 클래스를 넣어도 계획대로 작동해야 한다.</li>
+</ul>
+</li>
+<li>인터페이스 분리 원칙(ISP, Interface Segregation Principle)
+<ul>
+<li>자신이 사용하지 않는 인터페이스는 구현하지 말아야 한다.</li>
+<li>자신이 사용하지 않는 인터페이스 때문에 영향을 받아서는 안 된다.</li>
+</ul>
+</li>
+<li>의존성 역전 원칙(DIP, Dependency Inversion Principle)
+<ul>
+<li>의존 관계를 맺을 때 자주 변화하는 것보다, 변화가 거의 없는 것에 의존해야 한다.</li>
+<li>구체적인 클래스보다 인터페이스나 추상 클래스와 의존 관계를 맺어야 한다.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>디자인패턴
+<ol>
+<li>디자인 패턴(Design Pattern) 개념
+<ul>
+<li>객체 지향 프로그래밍 설계를 할 때 자주 발생하는 문제들에 대해 재사용할 수 있도록 만들어놓은 패턴들의 모음</li>
+<li>이미 만들어져서 잘 되는 것을 활용하여 재사용함으로써 프로그램 최적화에 도움을 준다.</li>
+<li>효율적인 코드를 만들기 위한 방법론</li>
+</ul>
+</li>
+<li>디자인 패턴 구조
+<ol>
+<li>패턴의 이름과 유형
+<ul>
+<li>패턴을 부를 때 사용하는 이름과 패턴의 유형</li>
+</ul>
+</li>
+<li>문제 및 배경
+<ul>
+<li>패턴이 사용되는 분야 또는 배경, 해결하는 문제</li>
+</ul>
+</li>
+<li>솔루션
+<ul>
+<li>패턴을 이루는 요소들, 관계, 협동 과정</li>
+</ul>
+</li>
+<li>결과
+<ul>
+<li>패턴을 사용하면 얻게 되는 이점과 영향</li>
+</ul>
+</li>
+<li>사례
+<ul>
+<li>간단한 적용사례</li>
+</ul>
+</li>
+<li>샘플 코드
+<ul>
+<li>패턴이 적용된 원시코드</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>GoF 디자인 패턴
+<ul>
+<li>GoF(Gang of Four)의 디자인 패턴
+<ul>
+<li>에리히 감마(Erich Gamma), 리차드 헬름(Richard Helm), 랄프 존슨(Ralph Johnson), 존 블리시디스(John Vissides)에 의해 개발 영역에서 디자인 패턴을 구체화하고 체계화시킴</li>
+<li>23가지의 디자인 패턴을 정리</li>
+<li>각각의 디자인 패턴을 생성(Creational), 구조(Structural), 행위(Behavioral) 3가지로 분류</li>
+</ul>
+</li>
+<li>GoF 디자인 패턴 분류
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">생성 패턴</th>
+<th align="left">객체 생성과 관련한 패턴<br/>객체 생성에 있어서 프로그램 구조에 영향을 크게 주지 않는 유연성 제공</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">구조 패턴</td>
+<td align="left">클래스나 객체를 조합해서 더 큰 구조를 만드는 패턴</td>
+</tr>
+<tr>
+<td align="center">행위 패턴</td>
+<td align="left">객체나 클래스 사이의 알고리즘이나 책임 분배에 관련된 패턴</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>생성(Creational) 패턴</th>
+<th>구조(Structural) 패턴</th>
+<th>행위(Behavioral) 패턴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Abstract Factory<br/>Builder<br/>Factory Method<br/>Prototype<br/>Singleton</td>
+<td>Adapter<br/>Bridge<br/>Composite<br/>Decorator<br/>Facade<br/>Flyweight<br/>Proxy</td>
+<td>Chanin of Responsibility<br/>Command<br/>Interpreter<br/>Iterator<br/>Mediator<br/>Memento<br/>Observer<br/>State<br/>Strategy<br/>Template Method<br/>Visitor</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>디자인 패턴 종류
+<ol>
+<li>생성 패턴
+<ul>
+<li>객체의 생성과 관련된 패턴</li>
+<li>객체의 인스턴스 생성을 추상화하는 방법</li>
+<li>객체의 생성과 참조 과정을 캡슐화하여 객체가 생성되거나 변경되어도 프로그램 구조에 영향을 받지 않도록 한다.
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">추상 팩토리<br/>(Abstract Factory)</td>
+<td align="left">구체적인 클래스에 의존하지 않고 서로 연관되거나 의존적인 객체들의 조합을 만드는 인터페이스를 제공하는 패턴</td>
+</tr>
+<tr>
+<td align="center">빌더<br/>(Builder)</td>
+<td align="left">복합 객체의 생성과 표현을 분리하여 동일한 생성 절차에서도 다른 표현 결과를 만들어 낼 수 있음<br/><code class="language-text">new User.Builder(10).name("이름").password("1234").age(43).build();</code></td>
+</tr>
+<tr>
+<td align="center">팩토리 메소드<br/>(Factory Method)</td>
+<td align="left">객체 생성을 서브클래스로 위임하여 캡슐화 함<br/>Virtual-Constructor 패턴이라고도 함</td>
+</tr>
+<tr>
+<td align="center">프로토타입<br/>(Prototype)</td>
+<td align="left">원본 객체를 복사함으로써 객체를 생성함<br/>java의 clone()을 이용하여 생성하고자 하는 객체에 clone에 대한 Override를 해준다.</td>
+</tr>
+<tr>
+<td align="center">싱글톤<br/>(Singleton)</td>
+<td align="left">어떤 클래스의 인스턴스는 하나임을 보장하고 어디서든 참조할 수 있도록 함</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>싱글톤 예시
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CarClass</span><span class="token punctuation">{</span>
+     <span class="token comment">//자신의 객체를 바로 생성</span>
+     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">CarClass</span> car <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CarClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token comment">//생성자가 private이기 때문에 외부에서 접근 불가</span>
+     <span class="token keyword">private</span> <span class="token class-name">CarClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+     <span class="token comment">//getInstance 메서드를 이용해서 해당 인스턴스를 사용</span>
+     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">CarClass</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token keyword">return</span> car<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>구조 패턴
+<ul>
+<li>클래스나 객체들을 조합해 더 큰 구조로 만들 수 있게 해주는 패턴</li>
+<li>상속을 통해 클래스나 인터페이스를 합성하는 방법을 정의
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">어댑터<br/>(Adapter)</td>
+<td align="left">클래스의 인터페이스를 다른 인터페이스로 변환하여 다른 클래스가 이용할 수 있도록 함</td>
+</tr>
+<tr>
+<td align="center">브리지<br/>(Bridge)</td>
+<td align="left">구현부에서 추상층을 분리하여 각자 독립적으로 확장할 수 있게 함</td>
+</tr>
+<tr>
+<td align="center">컴포지트<br/>(Composite)</td>
+<td align="left">객체들의 관계를 트리 구조로 구성하여 복합 객체와 단일 객체를 구분없이 다룸<br/>하나 이상의 유사한 객체를 구성으로 설계된 객체로 모두 유사한 기능을 나타낸다.</td>
+</tr>
+<tr>
+<td align="center">데코레이터<br/>(Decorator)</td>
+<td align="left">주어진 상황 및 용도에 따라 어떤 객체에 다른 객체를 덧붙이는 방식</td>
+</tr>
+<tr>
+<td align="center">퍼사드<br/>(Facade)</td>
+<td align="left">서브시스템에 있는 인터페이스 집합에 대해 하나의 통합된 인터페이스(Wrapper) 제공<br/>서브시스템의 가장 앞쪽에 위치하면서 서브시스템에 있는 객체들을 사용할 수 있또록 인터페이스 역할</td>
+</tr>
+<tr>
+<td align="center">플라이웨이트<br/>(Flyweight)</td>
+<td align="left">크기가 작은 여러 개의 객체를 매번 생성하지 않고 가능한 한 공유할 수 있도록 하여 메로리를 절약함</td>
+</tr>
+<tr>
+<td align="center">프록시<br/>(Proxy)</td>
+<td align="left">접근이 어려운 객체로의 접근을 제어하기 위해 객체의 대리(Surrogate)나 대체글(Placeholder)을 제공</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>프리지 예시
+<div class="gatsby-highlight" data-language="java"><pre class="language-java"><code class="language-java"><span class="token keyword">interface</span> <span class="token class-name">Shape</span><span class="token punctuation">{</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">CircleShape</span> <span class="token keyword">implements</span> <span class="token class-name">Shape</span><span class="token punctuation">{</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Circle"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">SquareShapeimplements</span> <span class="token class-name">Shape</span><span class="token punctuation">{</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Square"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>행위 패턴
+<ul>
+<li>클래스나 객체들이 상호작용하는 방법을 정의한 패턴</li>
+<li>하나의 객체로 수행할 수 없는 작업을 여러 객체로 분배하여 결합도를 최소화할 수 있도록 도와준다.
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th align="center">종류</th>
+<th align="left">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">책임 연쇄<br/>(Chain of Responsibility)</td>
+<td align="left">요청을 받는 객체를 연쇄적으로 묶어 요청을 처리하는 객체를 만날 때까지 객체 Chain을 따라 요청을 전달함</td>
+</tr>
+<tr>
+<td align="center">커맨드<br/>(Command)</td>
+<td align="left">요청을 객체의 형태로 캡슐화하여 재사용하거나 취소할 수 있도록 저장함</td>
+</tr>
+<tr>
+<td align="center">인터프리터<br/>(Interpreter)</td>
+<td align="left">특정 언어의 문법 표현을 정의함</td>
+</tr>
+<tr>
+<td align="center">반복자<br/>(Iterator)</td>
+<td align="left">내부를 노출하지 않고 접근이 잦은 어떤 객체의 원소를 순차적으로 접근할 수 있는 동일한 인터페이스 제공</td>
+</tr>
+<tr>
+<td align="center">중재자<br/>(Mediator)</td>
+<td align="left">한 집합에 속해있는 객체들의 상호작용을 캡슐화하여 새로운 객체로 정의</td>
+</tr>
+<tr>
+<td align="center">메멘토<br/>(Memento)</td>
+<td align="left">객체가 특정 상태로 다시 되돌아올 수 있도록 내부 상태를 실체화</td>
+</tr>
+<tr>
+<td align="center">옵저버<br/>(Observer)</td>
+<td align="left">객체 상태가 변할 때 관련 객체들이 그 변화를 통지받고 자동으로 갱신될 수 있게 함</td>
+</tr>
+<tr>
+<td align="center">상태<br/>(State)</td>
+<td align="left">객체 상태에 따라 동일한 동작을 다르게 처리해야 할 때 사용</td>
+</tr>
+<tr>
+<td align="center">전략<br/>(Strategy)</td>
+<td align="left">동일 계열의 알고리즘군을 정의하고 캡슐화하여 상호교환이 가능하도록 함</td>
+</tr>
+<tr>
+<td align="center">템플릿 메소드<br/>(Template Method)</td>
+<td align="left">상위클래스는 알고리즘의 골격만을 작성하고 구체적인 처리는 서브클래스로 위임함</td>
+</tr>
+<tr>
+<td align="center">방문자<br/>(Visitor)</td>
+<td align="left">객체의 원소에 대해 수행할 연산을 분리하여 별도의 클래스로 구성함<br/>객체지향 원칙(SOLID) 중 하나인 개방-폐쇄 원칙(OCP, Open-Closed Principle)을 적용하는 방법</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1gqsjds0"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e1oae0v80">Thank You for Visiting My Blog, Have a Good Day 😆<br/>© 2023 Developer SeongHwan Seo, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230418/Engineer_Information_Processing1-7/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-68a316cadf90220d60eb.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-9020880bf8eb0e5b0d3a.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-3bd83f7463c5d0c6f28a.js\"],\"component---src-pages-info-tsx\":[\"/component---src-pages-info-tsx-e1ae68b605eb2c5639bf.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-3e89de5ee0ca6434d2b5.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="5a97a936ccf105e9f059";</script><script src="/webpack-runtime-3053cbe8d74abb1a0dc8.js" async></script><script src="/framework-7c0107cb7d116f0a0f2d.js" async></script><script src="/app-68a316cadf90220d60eb.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
