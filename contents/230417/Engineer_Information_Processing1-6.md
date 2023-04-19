@@ -1,6 +1,6 @@
 ---
 date: '2023-04-17'
-title: '[정처기 실기]1-6.인터페이스 구현'
+title: '[정처기 실기]1-6.소프트웨어 구축'
 categories: ['정처기 실기']
 summary: 'Chapter06.인터페이스 구현'
 thumbnail: './Engineer_Information_Processing.png'
